@@ -1,0 +1,18 @@
+project:
+  type: website
+  pre-render: R/generate_ctd_reports.R
+
+website:
+  title: "MBON Cruise CTD Reports"
+  navbar:
+    left: 
+      - ctd_reports.qmd
+    
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  cache: true
