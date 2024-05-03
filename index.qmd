@@ -1,0 +1,66 @@
+---
+title: "SEUS MBON Cruise Data"
+author: "USF IMaRS"
+format: html
+code-fold: true
+editor: source
+params: 
+  cruise_id: WS15320
+  station_id: stn9_5
+---
+
+```{R}
+#| code-summary: setup
+
+if (!nzchar(system.file(package = "librarian"))) {
+  install.packages("librarian")
+}
+
+librarian::shelf(
+  quiet = TRUE,
+  librarian, conflicted, ggplot2, tibble, tidyr, readr, purrr, dplyr, stringr,
+  forcats, lubridate, glue, fs, magrittr, here, rerddap, cli,
+)
+
+conflicts_prefer(
+  dplyr::filter(),
+  dplyr::select()
+)
+
+# source(here("R", "ctd_download.R"))
+```
+```{R}
+#| code-summary: list all cruises
+"https://gcoos5.geos.tamu.edu/erddap/" %>%
+  Sys.setenv(RERDDAP_DEFAULT_URL = .)
+
+# search for  all cruise ctd tables in ERDDAP
+all_cruise_info <-
+  ed_search_adv(
+    query     = "Walton Smith CTD",
+    # maxTime   = "2016-01-01T01:00:00Z",
+    page_size = 1e4
+  )
+
+# find unique cruise names
+all_cruise_ids <-
+  str_extract(all_cruise_info$info$title, "(WS|SAV|WB|H)\\d{3,5}") %>%
+  unique()
+
+# print info about cruise IDs found
+cli::cli_alert_info(
+  c(
+    "{col_green(\"Number of files queried\")}: ",
+    "{nrow(all_cruise_info$info)} files\n",
+    "{col_blue(\"N cruises:\")} {length(all_cruise_ids)}\n\n"
+  )
+)
+print(all_cruise_ids)
+```
+```{R}
+#| code-summary: get ready for download
+dir_data_dwnld_save <- here("data", "raw", "ctd")       # download path
+dir_data_avg_save   <- here("data", "processed", "ctd") # averaged path
+
+dir_create(dir_data_avg_save)
+```
