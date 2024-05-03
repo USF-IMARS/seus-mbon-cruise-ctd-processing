@@ -1,6 +1,6 @@
 # creates a report template .qmd for each
-REPORT_TEMPLATE = "ctd_report_template.qmd"
-REPORTS_DIR = "ctd_reports"
+REPORT_TEMPLATE = "ctd_report/ctd_report_template.qmd"
+REPORTS_DIR = "ctd_report/ctd_reports"
 
 library(whisker)
 library(glue)
