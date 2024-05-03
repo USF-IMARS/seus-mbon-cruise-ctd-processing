@@ -12,27 +12,60 @@ params:
 
 # Cruise `r params$cruise_id` `r params$station_id`
 
+TODO: upate to use OCE package & code from https://github.com/Mostafaawada/Dissertation_code/blob/main/analysis/cast_cleanup.qmd
+
 ```{R}
 #| code-summary: setup
-  if (!nzchar(system.file(package = "librarian"))) {
-    install.packages("librarian")
-  }
+if (!nzchar(system.file(package = "librarian"))) {
+  install.packages("librarian")
+}
 
-  librarian::shelf(
-    quiet = TRUE,
-    readr, here, glue, "jiho/castr", dplyr
-  )
+librarian::shelf(
+  quiet = TRUE,
+  readr, here, glue, "jiho/castr", dplyr, oce, tidyr
+)
 
+source("R/ctd_load.R")
 ```
 
-
 ```{R}
-#| code-summary: load data file
+ctd_dir <- here("data/01_raw")
 fpath <- here(glue(
   "data/01_raw/{params$cruise_id}/{params$cruise_id}_{params$station_id}.csv"
 ))
+WS23061 <-
+  ctd_dir %>%
+  fs::dir_ls(regexp = "{params$cruise_id}") %>%
+  read_csv(show_col_types = FALSE)
 
 ctd_station_df <- read_csv(fpath, show_col_types = FALSE)
+```
+
+## use OCE package to load ctd
+
+```{R}
+#| code-summary: load data file
+test_data <- 
+  ctd_station_df %>%
+  nest(.by = station) %>%
+  slice(1:2) %>%
+  tidyr::unnest(data) 
+
+ctd <- ctd_load(
+  fpath, 
+  other_params = c("chlorophyll_fluorescence", "dissolved_oxygen"))
+```
+
+```{R}
+#| code-summary: 
+plotScan(ctd)
+
+```
+
+## Without using oce package:
+
+```{R}
+#| code-summary: load data file
 ```
 
 ```{R}
