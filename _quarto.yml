@@ -1,6 +1,6 @@
 project:
   type: website
-  pre-render: R/generate_ctd_reports.R
+  pre-render: R/pre_render.R
 
 website:
   title: "MBON Cruise CTD Reports"
