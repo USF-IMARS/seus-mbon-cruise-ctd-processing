@@ -1,15 +1,13 @@
 ---
-title: "Cleans us casts in cruise"
-author: "Mostafa, Tylar, Sebastian"
-date: "2024-05-08"
+# TODO: set draft: True  # this gets removed by the preprocessor
 format: html
 code-fold: true
 editor: source
 params: 
-  cruise_id: WS20006
-  # cruise_id: WS22072
+  # cruise_id: WS20006
+  cruise_id: WS22337
 ---
-# Cruise `r params$cruise_id`
+# WS22337 `r params$cruise_id`
 
 ```{R}
 #| code-summary: setup
@@ -19,10 +17,8 @@ if (!nzchar(system.file(package = "librarian"))) {
 
 librarian::shelf(
   quiet = TRUE,
-  readr, here, glue, "jiho/castr", dplyr, oce, tidyr
+  readr, here, ggplot2, glue, "jiho/castr", dplyr, oce, tidyr
 )
-
-source(here("R/ctd_load.R"))
 ```
 
 ```{R}
@@ -36,8 +32,17 @@ cruise_df <- read_csv(fpath, show_col_types = FALSE)
 
 
 ```{R}
+#| code-summary: plot across all stations
+p <- ggplot(cruise_df, aes(x = time, y = depth, fill = station)) +
+  geom_col() +  # This creates the bars
+  # geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position
+  labs(x = "Time", y = "Depth", title = "Depth over Time by Station") +  # Set labels and title
+  theme_minimal()  # Use a minimal theme
+print(p)
+```
+
+```{R}
 #| code-summary: plot depth & pressure vs time elapsed
-library(ggplot2)
 data <- cruise_df
 stations <- unique(data$station)
 final_ctd <- list()
