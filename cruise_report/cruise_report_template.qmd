@@ -1,15 +1,13 @@
 ---
-title: "Cleans us casts in cruise"
-author: "Mostafa, Tylar, Sebastian"
-date: "2024-05-08"
+# TODO: set draft: True  # this gets removed by the preprocessor
 format: html
 code-fold: true
 editor: source
 params: 
   # cruise_id: WS20006
-  cruise_id: WS22072
+  cruise_id: WS22072  # NOTE: *must* change this back for generate_cruise_reports.R to work
 ---
-# Cruise `r params$cruise_id`
+# WS22072 `r params$cruise_id`
 
 ```{R}
 #| code-summary: setup
@@ -35,12 +33,6 @@ cruise_df <- read_csv(fpath, show_col_types = FALSE)
 
 ```{R}
 #| code-summary: plot across all stations
-print(
-  plot(
-    cruise_df$time, cruise_df$depth
-  )
-)
-
 p <- ggplot(cruise_df, aes(x = time, y = depth, fill = station)) +
   geom_col() +  # This creates the bars
   # geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position
