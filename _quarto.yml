@@ -1,13 +1,14 @@
 project:
   type: website
-  # pre-render: R/pre_render.R
+  pre-render: R/pre_render.R
 
 website:
   title: "MBON Cruise CTD Reports"
   navbar:
     left:
       - index.qmd
-      - ctd_report/ctd_reports.qmd
+      # - ctd_report/ctd_reports.qmd
+      - cruise_report/cruise_reports.qmd
     
 format:
   html:
