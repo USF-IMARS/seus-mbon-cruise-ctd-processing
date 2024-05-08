@@ -6,8 +6,8 @@ format: html
 code-fold: true
 editor: source
 params: 
-  cruise_id: WS20006
-  # cruise_id: WS22072
+  # cruise_id: WS20006
+  cruise_id: WS22072
 ---
 # Cruise `r params$cruise_id`
 
@@ -21,8 +21,6 @@ librarian::shelf(
   quiet = TRUE,
   readr, here, glue, "jiho/castr", dplyr, oce, tidyr
 )
-
-source(here("R/ctd_load.R"))
 ```
 
 ```{R}
@@ -60,7 +58,7 @@ ctd_load <- function(data, other_params = NULL) {
   final_ctd <- list()
   
   for (station_name in stations) {
-    cat(station, "\n")
+    cat(station_name, "\n")
     test <- filter(data, station == station_name)
     
     # create csv into ctd object
@@ -84,7 +82,7 @@ ctd_load <- function(data, other_params = NULL) {
       }
     }
     
-    final_ctd[[station]] <- test_ctd
+    final_ctd[[station_name]] <- test_ctd
   }
   return(final_ctd)
 }
@@ -105,7 +103,7 @@ other_params <- c(
 # Split data by station and create data list
 ctd_FK <- cruise_df %>%
   split(.$station) %>%
-  map(~ ctd_load(.x, other_params = other_params))
+  map(~ ctd_load(.x, other_params = other_params)) # ~ is a lambda(x)
 ```
 
 

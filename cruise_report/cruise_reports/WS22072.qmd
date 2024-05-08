@@ -6,7 +6,8 @@ format: html
 code-fold: true
 editor: source
 params: 
-  cruise_id: WS22072
+  cruise_id: WS20006
+  # cruise_id: WS22072
 ---
 # Cruise `r params$cruise_id`
 
@@ -33,14 +34,34 @@ fpath <- here(glue(
 cruise_df <- read_csv(fpath, show_col_types = FALSE)
 ```
 
+
+```{R}
+#| code-summary: plot depth & pressure vs time elapsed
+library(ggplot2)
+data <- cruise_df
+stations <- unique(data$station)
+final_ctd <- list()
+
+for (station_name in stations) {
+  # cat(station_name, "\n")
+  test <- filter(data, station == station_name)
+  p <- ggplot(test, aes(x = time_elapsed)) +
+    geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
+    geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
+    ggtitle(glue("Station Name: {station_name}")) +
+    ylab("Depth and Sea Water Pressure")  # Custom y-axis title
+  print(p)
+}
+```
+
 ```{R}
 ctd_load <- function(data, other_params = NULL) {
   stations <- unique(data$station)
   final_ctd <- list()
   
-  for (station in stations) {
-    cat(station, "\n")
-    test <- filter(data, station == station)
+  for (station_name in stations) {
+    cat(station_name, "\n")
+    test <- filter(data, station == station_name)
     
     # create csv into ctd object
     test_ctd <-
@@ -63,12 +84,11 @@ ctd_load <- function(data, other_params = NULL) {
       }
     }
     
-    final_ctd[[station]] <- test_ctd
+    final_ctd[[station_name]] <- test_ctd
   }
   return(final_ctd)
 }
 ```
-
 
 ```{R}
 library(purrr)  # For map() function
@@ -85,7 +105,7 @@ other_params <- c(
 # Split data by station and create data list
 ctd_FK <- cruise_df %>%
   split(.$station) %>%
-  map(~ ctd_load(.x, other_params = other_params))
+  map(~ ctd_load(.x, other_params = other_params)) # ~ is a lambda(x)
 ```
 
 
