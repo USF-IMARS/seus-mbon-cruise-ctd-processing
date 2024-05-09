@@ -4,7 +4,7 @@ format: html
 code-fold: true
 editor: source
 params: 
-  # cruise_id: WS20006
+  # cruise_id: WS1212
   cruise_id: WS22072  # NOTE: *must* change this back for generate_cruise_reports.R to work
 ---
 # WS22072 `r params$cruise_id`
@@ -17,7 +17,7 @@ if (!nzchar(system.file(package = "librarian"))) {
 
 librarian::shelf(
   quiet = TRUE,
-  readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purr, tidyr
+  readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purrr, tidyr
 )
 ```
 
@@ -49,6 +49,9 @@ for (station_name in unique(cruise_df$station)) {
       axis.ticks.y = element_blank()
     )  # Remove individual axis titles and text
 }
+
+# drop nulls
+plots <- purrr::compact(plots)
 
 # Combine all plots into a grid
 combined_plot <- wrap_plots(plots) + 
@@ -82,37 +85,31 @@ print(p)
 ```{R}
 #| code-summary: create oce.ctd objects from dataframes
 ctd_load <- function(data, other_params = NULL) {
-  stations <- unique(data$station)
-  final_ctd <- list()
   
-  for (station_name in stations) {
-    cat(station_name, "\n")
-    test <- filter(data, station == station_name)
-    
-    # create csv into ctd object
-    test_ctd <-
-      as.ctd(
-        salinity    = test$sea_water_salinity,
-        temperature = test$sea_water_temperature,
-        pressure    = test$sea_water_pressure,
-        station     = test$station
-      )
-    
-    # add additional columns to ctd object
-    if (!is.null(other_params)) {
-      for (param_name in other_params) {
-        test_ctd <-
-          oceSetData(
-            object = test_ctd,
-            name   = param_name,
-            value  = test[[param_name]]
-          )
-      }
+  # create csv into ctd object
+  test_ctd <-
+    as.ctd(
+      salinity    = data$sea_water_salinity,
+      temperature = data$sea_water_temperature,
+      pressure    = data$sea_water_pressure,
+      station     = data$station
+    )
+  
+  # add additional columns to ctd object
+  if (!is.null(other_params)) {
+    for (param_name in other_params) {
+      test_ctd <-
+        oceSetData(
+          object = test_ctd,
+          name   = param_name,
+          value  = data[[param_name]]
+        )
     }
-    
-    final_ctd[[station_name]] <- test_ctd
   }
-  return(final_ctd)
+  print(glue("{data$station[1]}:\t{length(test_ctd@data$scan)} scans"))
+
+
+  return(test_ctd)
 }
 
 # Define other parameters to add
@@ -127,13 +124,14 @@ other_params <- c(
 ctd_FK <- cruise_df %>%
   split(.$station) %>%
   map(~ ctd_load(.x, other_params = other_params)) # ~ is a lambda(x)
+
 ```
 
 
 ```{R}
 #| code-summary: plotting scans for each cast in the first list 
 for (i in seq(ctd_FK)){
-  cast <- ctd_FK[[i]][[1]]  # 1 is selecting only the first sublist
+  cast <- ctd_FK[[i]]  # 1 is selecting only the first sublist
   # print(i)
   print(glue("=== station: {cast@metadata$station[1]}"))
   print(glue("# scans: {length(cast@data$scan)}"))
@@ -146,7 +144,7 @@ for (i in seq(ctd_FK)){
 #| message: false
 #| warning: false
 for (i in seq(ctd_FK)){
-  cast <- ctd_FK[[i]][[1]]  # 1 is selecting only the first sublist
+  cast <- ctd_FK[[i]]  # 1 is selecting only the first sublist
   tryCatch({
     plot(ctdDecimate(ctdTrim(cast)))
   }, error = function(e){
@@ -164,7 +162,7 @@ for (i in seq(ctd_FK)){
 
 # Loop through each CTD cast
 for (i in seq(ctd_FK)){
-  cast <- ctd_FK[[i]][[1]]  # Assuming each sublist contains only one relevant CTD object
+  cast <- ctd_FK[[i]]  # Assuming each sublist contains only one relevant CTD object
   tryCatch({
     # Extract metadata for station name and cruise ID
     station_name <- cast@metadata$station[1]
