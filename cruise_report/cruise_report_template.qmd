@@ -30,17 +30,6 @@ fpath <- here(glue(
 cruise_df <- read_csv(fpath, show_col_types = FALSE)
 ```
 
-
-```{R}
-#| code-summary: plot across all stations
-p <- ggplot(cruise_df, aes(x = time, y = depth, fill = station)) +
-  geom_col() +  # This creates the bars
-  # geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position
-  labs(x = "Time", y = "Depth", title = "Depth over Time by Station") +  # Set labels and title
-  theme_minimal()  # Use a minimal theme
-print(p)
-```
-
 ```{R}
 #| code-summary: plot depth & pressure vs time elapsed
 plots <- list()
@@ -78,6 +67,16 @@ combined_plot <- wrap_plots(plots) +
 
 print(combined_plot)
 
+```
+
+```{R}
+#| code-summary: plot across all stations
+p <- ggplot(cruise_df, aes(x = time, y = depth, fill = station)) +
+  geom_col() +  # This creates the bars
+  # geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position
+  labs(x = "Time", y = "Depth", title = "Depth over Time by Station") +  # Set labels and title
+  theme_minimal()  # Use a minimal theme
+print(p)
 ```
 
 ```{R}
