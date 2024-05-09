@@ -5,7 +5,7 @@ code-fold: true
 editor: source
 params: 
   # cruise_id: WS20006
-  cruise_id: WS22337
+  cruise_id: WS22337  # NOTE: *must* change this back for generate_cruise_reports.R to work
 ---
 # WS22337 `r params$cruise_id`
 

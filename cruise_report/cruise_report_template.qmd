@@ -43,13 +43,9 @@ print(p)
 
 ```{R}
 #| code-summary: plot depth & pressure vs time elapsed
-data <- cruise_df
-stations <- unique(data$station)
-final_ctd <- list()
-
-for (station_name in stations) {
+for (station_name in unique(cruise_df$station)) {
   # cat(station_name, "\n")
-  test <- filter(data, station == station_name)
+  test <- filter(cruise_df, station == station_name)
   p <- ggplot(test, aes(x = time_elapsed)) +
     geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
     geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
