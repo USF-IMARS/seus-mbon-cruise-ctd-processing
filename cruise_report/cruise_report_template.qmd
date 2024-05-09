@@ -17,7 +17,7 @@ if (!nzchar(system.file(package = "librarian"))) {
 
 librarian::shelf(
   quiet = TRUE,
-  readr, here, ggplot2, glue, "jiho/castr", dplyr, oce, tidyr
+  readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purr, tidyr
 )
 ```
 
@@ -43,19 +43,45 @@ print(p)
 
 ```{R}
 #| code-summary: plot depth & pressure vs time elapsed
+plots <- list()
+
 for (station_name in unique(cruise_df$station)) {
-  # cat(station_name, "\n")
-  test <- filter(cruise_df, station == station_name)
-  p <- ggplot(test, aes(x = time_elapsed)) +
+  subset_df <- filter(cruise_df, station == station_name)
+  plots[[station_name]] <- ggplot(subset_df, aes(x = time_elapsed)) +
     geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
     geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
-    ggtitle(glue("Station Name: {station_name}")) +
-    ylab("Depth and Sea Water Pressure")  # Custom y-axis title
-  print(p)
+    ggtitle(glue("{station_name}")) +
+    theme(
+      axis.title.x = element_blank(),
+      axis.title.y = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      axis.ticks.x = element_blank(),
+      axis.ticks.y = element_blank()
+    )  # Remove individual axis titles and text
 }
+
+# Combine all plots into a grid
+combined_plot <- wrap_plots(plots) + 
+  plot_layout(ncol = 4) +  # Adjust ncol to set number of columns in the grid
+  plot_annotation(
+    title = "Depth (blue) and Pressure (red)",
+    subtitle = "Each panel represents a different station",
+    caption = "Time Elapsed (x-axis) vs Depth & Pressure (y-axis)"
+  ) +
+  theme(
+    plot.tag = element_text(size = 12, face = "bold"),
+    plot.tag.position = "topleft",
+    axis.title.x = element_text(margin = margin(t = 10)),
+    axis.title.y = element_text(margin = margin(r = 10))
+  )
+
+print(combined_plot)
+
 ```
 
 ```{R}
+#| code-summary: create oce.ctd objects from dataframes
 ctd_load <- function(data, other_params = NULL) {
   stations <- unique(data$station)
   final_ctd <- list()
@@ -89,11 +115,6 @@ ctd_load <- function(data, other_params = NULL) {
   }
   return(final_ctd)
 }
-```
-
-```{R}
-library(purrr)  # For map() function
-library(fs)     # For dir_ls() function
 
 # Define other parameters to add
 other_params <- c(
