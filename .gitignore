@@ -7,3 +7,5 @@
 *_cache/
 *_files/
 _site/*
+
+cruise_report/cruise_reports/*
