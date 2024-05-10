@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ws0923-ws0923" id="toc-ws0923-ws0923" class="nav-link active" data-scroll-target="#ws0923-ws0923">WS0923 WS0923</a></li>
+  <li><a href="#ws0923" id="toc-ws0923" class="nav-link active" data-scroll-target="#ws0923">WS0923</a></li>
   </ul>
 </nav>
     </div>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws0923-ws0923" class="level1">
-<h1>WS0923 WS0923</h1>
+<section id="ws0923" class="level1">
+<h1>WS0923</h1>
 <div class="cell" data-hash="WS0923_cache/html/unnamed-chunk-1_4991eed762bc59b4d4a26e934d821c61">
 <details>
 <summary>setup</summary>
@@ -239,7 +239,7 @@ e.g.:
 <p><img src="WS0923_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="WS0923_cache/html/unnamed-chunk-5_7e31c65f1605c99c783f08159daa7e88">
+<div class="cell" data-hash="WS0923_cache/html/unnamed-chunk-5_3135022b4b7921556ba751eab31b4248">
 <details>
 <summary>create oce.ctd objects from dataframes</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
@@ -249,7 +249,7 @@ e.g.:
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>depth,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>

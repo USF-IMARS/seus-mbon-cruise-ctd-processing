@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ws16004-ws16004" id="toc-ws16004-ws16004" class="nav-link active" data-scroll-target="#ws16004-ws16004">WS16004 WS16004</a></li>
+  <li><a href="#ws16004" id="toc-ws16004" class="nav-link active" data-scroll-target="#ws16004">WS16004</a></li>
   </ul>
 </nav>
     </div>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws16004-ws16004" class="level1">
-<h1>WS16004 WS16004</h1>
+<section id="ws16004" class="level1">
+<h1>WS16004</h1>
 <div class="cell" data-hash="WS16004_cache/html/unnamed-chunk-1_c3a02604cb66cf7450ceb31fc7038b11">
 <details>
 <summary>setup</summary>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="WS16004_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="WS16004_cache/html/unnamed-chunk-5_ee6700518c791887756392c8a8720fbb">
+<div class="cell" data-hash="WS16004_cache/html/unnamed-chunk-5_f1ae3aaa338028a80a8a46e6d76e2b23">
 <details>
 <summary>create oce.ctd objects from dataframes</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>depth,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -421,6 +421,9 @@ WS: 2830 scans</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="WS16004_files/figure-html/unnamed-chunk-7-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="WS16004_files/figure-html/unnamed-chunk-7-11.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <div class="cell" data-hash="WS16004_cache/html/unnamed-chunk-8_8d1aaebdd3fd5f4a93d10bfc1548b446">

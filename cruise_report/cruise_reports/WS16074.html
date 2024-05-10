@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ws16074-ws16074" id="toc-ws16074-ws16074" class="nav-link active" data-scroll-target="#ws16074-ws16074">WS16074 WS16074</a></li>
+  <li><a href="#ws16074" id="toc-ws16074" class="nav-link active" data-scroll-target="#ws16074">WS16074</a></li>
   </ul>
 </nav>
     </div>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws16074-ws16074" class="level1">
-<h1>WS16074 WS16074</h1>
+<section id="ws16074" class="level1">
+<h1>WS16074</h1>
 <div class="cell" data-hash="WS16074_cache/html/unnamed-chunk-1_ecaf0834dba4aacec5de137291525be5">
 <details>
 <summary>setup</summary>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="WS16074_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="WS16074_cache/html/unnamed-chunk-5_3ceec1774b0db93329e7d1d0ea23f57a">
+<div class="cell" data-hash="WS16074_cache/html/unnamed-chunk-5_505ef39fd92983064966878ae5d1a54a">
 <details>
 <summary>create oce.ctd objects from dataframes</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>depth,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -399,6 +399,18 @@ WS: 3206 scans</code></pre>
 <div class="cell-output-display">
 <p><img src="WS16074_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid" width="672"></p>
 </div>
+<div class="cell-output-display">
+<p><img src="WS16074_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="WS16074_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="WS16074_files/figure-html/unnamed-chunk-7-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="WS16074_files/figure-html/unnamed-chunk-7-9.png" class="img-fluid" width="672"></p>
+</div>
 </div>
 <div class="cell" data-hash="WS16074_cache/html/unnamed-chunk-8_290d3ab87c3b92301128cdc5edbc1838">
 <details>
@@ -443,10 +455,10 @@ WS: 3206 scans</code></pre>
 <pre><code>[1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
-[1] "plot.new has not been called yet"
-[1] "plot.new has not been called yet"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
-[1] "plot.new has not been called yet"
+[1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"chlorophyll_concentrationsea_water_electrical_conductivityCDOMdissolved_oxygenphotosynthetically_available_radiationbeam_attenuation\" cannot be handled"</code></pre>

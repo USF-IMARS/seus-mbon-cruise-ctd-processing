@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ws22072-ws22072" id="toc-ws22072-ws22072" class="nav-link active" data-scroll-target="#ws22072-ws22072">WS22072 WS22072</a></li>
+  <li><a href="#ws22072" id="toc-ws22072" class="nav-link active" data-scroll-target="#ws22072">WS22072</a></li>
   </ul>
 </nav>
     </div>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws22072-ws22072" class="level1">
-<h1>WS22072 WS22072</h1>
+<section id="ws22072" class="level1">
+<h1>WS22072</h1>
 <div class="cell" data-hash="cruise_report_template_cache/html/unnamed-chunk-1_060099aac6d95e96ac9599691f161f29">
 <details>
 <summary>setup</summary>
@@ -233,7 +233,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="cruise_report_template_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="cruise_report_template_cache/html/unnamed-chunk-5_aac61f48a822bcd03e130a3e587fa5e3">
+<div class="cell" data-hash="cruise_report_template_cache/html/unnamed-chunk-5_1690fd0576ea563a86c2bdac6aae6d94">
 <details>
 <summary>create oce.ctd objects from dataframes</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
@@ -243,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>depth,</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -569,7 +569,7 @@ WS: 4022 scans</code></pre>
 <p><img src="cruise_report_template_files/figure-html/unnamed-chunk-8-16.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="cruise_report_template_cache/html/unnamed-chunk-9_dcd84bf406db711733ddf1a44e2f5328">
+<div class="cell" data-hash="cruise_report_template_cache/html/unnamed-chunk-9_7b072710f906482eef98a94d6d076519">
 <details>
 <summary>loop through every cast, clean, &amp; save</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
@@ -578,7 +578,7 @@ WS: 4022 scans</code></pre>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(class(cast))</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clean cast </span></span>
 <span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  trimmed_cast <span class="ot">&lt;-</span> <span class="fu">ctdTrim</span>(cast)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  decimated_cast <span class="ot">&lt;-</span> <span class="fu">ctdDecimate</span>(trimmed_cast, <span class="at">p =</span> <span class="fl">0.5</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  decimated_cast <span class="ot">&lt;-</span> <span class="fu">ctdDecimate</span>(trimmed_cast, <span class="at">p =</span> <span class="fl">0.5</span>)  <span class="co"># binned to 0.5 m</span></span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to df</span></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  cast_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(decimated_cast<span class="sc">@</span>data)</span>

@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#ws0623-ws0623" id="toc-ws0623-ws0623" class="nav-link active" data-scroll-target="#ws0623-ws0623">WS0623 WS0623</a></li>
+  <li><a href="#ws0623" id="toc-ws0623" class="nav-link active" data-scroll-target="#ws0623">WS0623</a></li>
   </ul>
 </nav>
     </div>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="ws0623-ws0623" class="level1">
-<h1>WS0623 WS0623</h1>
+<section id="ws0623" class="level1">
+<h1>WS0623</h1>
 <div class="cell" data-hash="WS0623_cache/html/unnamed-chunk-1_0afc17818a6b3d39195c9c6680ae415e">
 <details>
 <summary>setup</summary>
@@ -247,7 +247,7 @@ Removed 1 row containing missing values or values outside the scale range
 <p><img src="WS0623_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="WS0623_cache/html/unnamed-chunk-5_5f851d240e198b2d58046bd166c9f28c">
+<div class="cell" data-hash="WS0623_cache/html/unnamed-chunk-5_4d40e411ff4238278ff30d88ae91d669">
 <details>
 <summary>create oce.ctd objects from dataframes</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
@@ -257,7 +257,7 @@ Removed 1 row containing missing values or values outside the scale range
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>depth,</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  </span>
