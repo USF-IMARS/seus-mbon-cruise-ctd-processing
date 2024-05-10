@@ -7,7 +7,7 @@ params:
   # cruise_id: WS1207
   cruise_id: WS22072  # NOTE: this must = WS22072 for prerender to work
 ---
-# WS22072 `r params$cruise_id`
+# WS22072
 
 ```{R}
 #| code-summary: setup
@@ -91,7 +91,7 @@ ctd_load <- function(data, other_params = NULL) {
     as.ctd(
       salinity    = data$sea_water_salinity,
       temperature = data$sea_water_temperature,
-      pressure    = data$sea_water_pressure,
+      pressure    = data$depth,
       station     = data$station
     )
   
@@ -209,7 +209,7 @@ for (i in seq(ctd_FK)){
   # print(class(cast))
   # clean cast 
   trimmed_cast <- ctdTrim(cast)
-  decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)
+  decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
   
   # convert to df
   cast_df <- as.data.frame(decimated_cast@data)
