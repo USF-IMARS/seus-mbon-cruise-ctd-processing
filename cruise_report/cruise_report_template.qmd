@@ -4,7 +4,7 @@ format: html
 code-fold: true
 editor: source
 params: 
-  # cruise_id: WS1207
+  # cruise_id: WS15208
   cruise_id: WS22072  # NOTE: this must = WS22072 for prerender to work
 ---
 # WS22072
@@ -32,44 +32,47 @@ cruise_df <- read_csv(fpath, show_col_types = FALSE, col_types = cols(station = 
 
 ```{R}
 #| code-summary: plot depth & pressure vs time elapsed
-plots <- list()
-
-for (station_name in unique(cruise_df$station)) {
-  subset_df <- filter(cruise_df, station == station_name)
-  plots[[station_name]] <- ggplot(subset_df, aes(x = time_elapsed)) +
-    geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
-    geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
-    ggtitle(glue("{station_name}")) +
+tryCatch({
+  plots <- list()
+  
+  for (station_name in unique(cruise_df$station)) {
+    subset_df <- filter(cruise_df, station == station_name)
+    plots[[station_name]] <- ggplot(subset_df, aes(x = time_elapsed)) +
+      geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
+      geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
+      ggtitle(glue("{station_name}")) +
+      theme(
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank()
+      )  # Remove individual axis titles and text
+  }
+  
+  # drop nulls
+  plots <- purrr::compact(plots)
+  
+  # Combine all plots into a grid
+  combined_plot <- wrap_plots(plots) + 
+    plot_layout(ncol = 4) +  # Adjust ncol to set number of columns in the grid
+    plot_annotation(
+      title = "Depth (blue) and Pressure (red)",
+      subtitle = "Each panel represents a different station",
+      caption = "Time Elapsed (x-axis) vs Depth & Pressure (y-axis)"
+    ) +
     theme(
-      axis.title.x = element_blank(),
-      axis.title.y = element_blank(),
-      axis.text.x = element_blank(),
-      axis.text.y = element_blank(),
-      axis.ticks.x = element_blank(),
-      axis.ticks.y = element_blank()
-    )  # Remove individual axis titles and text
-}
-
-# drop nulls
-plots <- purrr::compact(plots)
-
-# Combine all plots into a grid
-combined_plot <- wrap_plots(plots) + 
-  plot_layout(ncol = 4) +  # Adjust ncol to set number of columns in the grid
-  plot_annotation(
-    title = "Depth (blue) and Pressure (red)",
-    subtitle = "Each panel represents a different station",
-    caption = "Time Elapsed (x-axis) vs Depth & Pressure (y-axis)"
-  ) +
-  theme(
-    plot.tag = element_text(size = 12, face = "bold"),
-    plot.tag.position = "topleft",
-    axis.title.x = element_text(margin = margin(t = 10)),
-    axis.title.y = element_text(margin = margin(r = 10))
-  )
-
-print(combined_plot)
-
+      plot.tag = element_text(size = 12, face = "bold"),
+      plot.tag.position = "topleft",
+      axis.title.x = element_text(margin = margin(t = 10)),
+      axis.title.y = element_text(margin = margin(r = 10))
+    )
+  
+  print(combined_plot)
+}, error = function(er){
+  print(er)
+});
 ```
 
 ```{R}
@@ -91,7 +94,7 @@ ctd_load <- function(data, other_params = NULL) {
     as.ctd(
       salinity    = data$sea_water_salinity,
       temperature = data$sea_water_temperature,
-      pressure    = data$depth,
+      pressure    = data$sea_water_pressure,
       station     = data$station
     )
   
@@ -116,8 +119,10 @@ ctd_load <- function(data, other_params = NULL) {
 other_params <- c(
   "cruise_id", "station", "time", "time_elapsed", 
   "latitude", "longitude", "sea_water_electrical_conductivity", 
-  "CDOM", "dissolved_oxygen"," oxygen_saturation", "chlorophyll_concentration", 
-  "chlorophyll_fluorescence", "photosynthetically_available_radiation", "beam_attenuation","beam_transmission"
+  "CDOM", "dissolved_oxygen","oxygen_saturation", "chlorophyll_concentration", 
+  "chlorophyll_fluorescence", "photosynthetically_available_radiation", 
+  "beam_attenuation","beam_transmission", "depth", "sea_water_sigma_t",
+  "descent_rate", "sound_velocity"
 )
 
 # Split data by station and create data list
@@ -156,7 +161,7 @@ for (i in seq(ctd_FK)){
 
 
 ```{R}
-#| code-summary: plotting other parameters for each cast in the first list 
+#| code-summary: plotting other physical parameters for each cast
 #| message: false
 #| warning: false
 
@@ -178,9 +183,91 @@ for (i in seq(ctd_FK)){
     oce::plot(
       x = ctdDecimate(ctdTrim(cast)),
       which = c(
-        "chlorophyll_concentration", "sea_water_electrical_conductivity",
-        "CDOM", "dissolved_oxygen", "photosynthetically_available_radiation",
-        "beam_attenuation"
+        "sea_water_electrical_conductivity",
+        "descent_rate", "sound_velocity",
+        "sea_water_sigma_t"
+      ),
+      main = ""  # No main title for individual subplots
+    )
+
+    # Place a single overall title at the top of the plot frame
+    mtext(overall_title, side = 3, line = 1, outer = TRUE, cex = 1.5)
+
+    # Reset outer margins to default
+    par(oma = c(0, 0, 0, 0))
+
+  }, error = function(e) {
+    print(e$message)  # Print any errors that occur during plotting
+  })
+}
+```
+```{R}
+#| code-summary: plotting other nutrient parameters for each cast
+#| message: false
+#| warning: false
+
+# Loop through each CTD cast
+for (i in seq(ctd_FK)){
+  cast <- ctd_FK[[i]]  # Assuming each sublist contains only one relevant CTD object
+  tryCatch({
+    # Extract metadata for station name and cruise ID
+    station_name <- cast@metadata$station[1]
+    cruise_id <- cast@data$cruise_id[1]
+
+    # Generate a title with station name and cruise ID
+    overall_title <- glue::glue("Station: {station_name}, Cruise ID: {cruise_id}")
+
+    # Set margins: increase the outer margin for the title
+    par(oma = c(0, 0, 3, 0))  # Top outer margin increased for title
+
+    # Plotting function with specific parameters
+    oce::plot(
+      x = ctdDecimate(ctdTrim(cast)),
+      which = c(
+        "CDOM", "dissolved_oxygen",
+        "oxygen_saturation",
+        "chlorophyll_concentration", "chlorophyll_fluorescence"
+      ),
+      main = ""  # No main title for individual subplots
+    )
+
+    # Place a single overall title at the top of the plot frame
+    mtext(overall_title, side = 3, line = 1, outer = TRUE, cex = 1.5)
+
+    # Reset outer margins to default
+    par(oma = c(0, 0, 0, 0))
+
+  }, error = function(e) {
+    print(e$message)  # Print any errors that occur during plotting
+  })
+}
+```
+
+```{R}
+#| code-summary: plotting other optical parameters for each cast
+#| message: false
+#| warning: false
+
+# Loop through each CTD cast
+for (i in seq(ctd_FK)){
+  cast <- ctd_FK[[i]]  # Assuming each sublist contains only one relevant CTD object
+  tryCatch({
+    # Extract metadata for station name and cruise ID
+    station_name <- cast@metadata$station[1]
+    cruise_id <- cast@data$cruise_id[1]
+
+    # Generate a title with station name and cruise ID
+    overall_title <- glue::glue("Station: {station_name}, Cruise ID: {cruise_id}")
+
+    # Set margins: increase the outer margin for the title
+    par(oma = c(0, 0, 3, 0))  # Top outer margin increased for title
+
+    # Plotting function with specific parameters
+    oce::plot(
+      x = ctdDecimate(ctdTrim(cast)),
+      which = c(
+        "photosynthetically_available_radiation",
+        "beam_attenuation","beam_transmission"
       ),
       main = ""  # No main title for individual subplots
     )
