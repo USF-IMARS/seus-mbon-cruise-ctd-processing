@@ -122,7 +122,7 @@ other_params <- c(
   "CDOM", "dissolved_oxygen","oxygen_saturation", "chlorophyll_concentration", 
   "chlorophyll_fluorescence", "photosynthetically_available_radiation", 
   "beam_attenuation","beam_transmission", "depth", "sea_water_sigma_t",
-  "descent_rate", "sound_velocity"
+  "descent_rate", "sound_velocity","altimeter"
 )
 
 # Split data by station and create data list
@@ -185,7 +185,7 @@ for (i in seq(ctd_FK)){
       which = c(
         "sea_water_electrical_conductivity",
         "descent_rate", "sound_velocity",
-        "sea_water_sigma_t"
+        "sea_water_sigma_t","altimeter"
       ),
       main = ""  # No main title for individual subplots
     )
