@@ -1,7 +1,10 @@
 project:
   type: website
   pre-render: R/pre_render.R
-
+  render:
+    - "*.qmd"
+    - "!ctd_report/"
+    
 website:
   title: "MBON Cruise CTD Reports"
   navbar:
