@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/ctd_report/ctd_reports.html",
-    "items": []
-  },
-  {
     "listing": "/cruise_report/cruise_reports.html",
     "items": [
       "/cruise_report/cruise_reports/SAV1803.html",
