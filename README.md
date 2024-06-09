@@ -25,7 +25,12 @@ Running `quarto render` will complete several pre-render steps to create the fol
 
 ```
 
-The pre-render steps used to generate the above directory structure  are summarized by  the mermaid chart below.
+The prerender steps that create the directory structure:
+
+1. foreach cruise_id file in `data/raw` create {cruise_id} directories, {cruise_id}.qmd, & `ctd_reports` subdir
+2. foreach cruise_id directory in `cruise_report/` create {ctd_id}.id in `{cruise_id}/ctd_reports`  
+
+The pre-render steps used to generate the above directory structure are summarized by the mermaid chart below.
 
 ```mermaid
 graph TD
