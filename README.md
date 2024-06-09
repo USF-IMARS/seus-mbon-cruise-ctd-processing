@@ -8,6 +8,25 @@ CTD processing &amp; reporting for the SEUS MBON research cruise data
 4. view the site: `quarto preview .`
 5. publish to github pages: `quarto publish`
 
+# generated report structure
+Running `quarto render` will complete several pre-render steps to create the following directory structure:
+
+```tree
+└── cruise_report/
+    ├── cruise_report_template.qmd
+    ├── ctd_report_template.qmd
+    └── cruise_reports/
+        ├── {cruise_id}/
+        │   ├── {cruise_id}.qmd  <- generate_cruise_reports --  cruise_report_template
+        │   └── ctd_reports/  
+        │       ├── {ctd_id}.qmd <- generate_ctd_reports -- ctd_report_template
+        │       └── ...
+        └── ... 
+
+```
+
+The pre-render steps used to generate the above directory structure  are summarized by  the mermaid chart below.
+
 ```mermaid
 graph TD
 
