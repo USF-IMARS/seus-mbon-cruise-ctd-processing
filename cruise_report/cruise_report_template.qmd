@@ -4,7 +4,7 @@ format: html
 code-fold: true
 editor: source
 params: 
-  # cruise_id: WS15208
+  # cruise_id: WS18285
   cruise_id: WS22072  # NOTE: this must = WS22072 for prerender to work
 ---
 # WS22072
@@ -24,11 +24,12 @@ librarian::shelf(
 ```{R}
 ctd_dir <- here("data/01_raw/combined_fl_keys_data")
 fpath <- here(glue(
-  "{ctd_dir}/{params$cruise_id}_fl_keys_ctd.csv"
+  "{ctd_dir}/{params$cruise_id}_ctd_comb.csv"
 ))
 
 cruise_df <- read_csv(fpath, show_col_types = FALSE, col_types = cols(station = col_character()))
 ```
+
 
 ```{R}
 #| code-summary: plot depth & pressure vs time elapsed
@@ -293,6 +294,7 @@ for (i in seq(ctd_FK)){
 combined_df <- data.frame()
 for (i in seq(ctd_FK)){
   cast <- ctd_FK[[i]]  # 1 is selecting only the first sublist
+  
   # print(class(cast))
   # clean cast 
   trimmed_cast <- ctdTrim(cast)
