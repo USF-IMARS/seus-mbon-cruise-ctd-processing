@@ -293,29 +293,34 @@ for (i in seq(ctd_FK)){
 
 combined_df <- data.frame()
 for (i in seq(ctd_FK)){
-  cast <- ctd_FK[[i]]  # 1 is selecting only the first sublist
+  tryCatch({
+    cast <- ctd_FK[[i]]  # 1 is selecting only the first sublist
+    
+    # print(class(cast))
+    # clean cast 
+    trimmed_cast <- ctdTrim(cast)
+    decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
+    
+    # convert to df
+    cast_df <- as.data.frame(decimated_cast@data)
+    
+    # Add metadata
+    # assumes station ID and cruise ID the same for all & just uses 1st one
+    cast_df <- mutate(
+      cast_df,
+      station = cast@data$station[1],
+      cruise_id = cast@data$cruise_id[1]
+    )
   
-  # print(class(cast))
-  # clean cast 
-  trimmed_cast <- ctdTrim(cast)
-  decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
-  
-  # convert to df
-  cast_df <- as.data.frame(decimated_cast@data)
-  
-  # Add metadata
-  # assumes station ID and cruise ID the same for all & just uses 1st one
-  cast_df <- mutate(
-    cast_df,
-    station = cast@data$station[1],
-    cruise_id = cast@data$cruise_id[1]
-  )
-
-  # drop NA rows left by cleaning
-  cast_df <- subset(cast_df, !is.na(scan))
-  
-  # Append the data to the combined dataframe
-  combined_df <- rbind(combined_df, cast_df)
+    # drop NA rows left by cleaning
+    cast_df <- subset(cast_df, !is.na(scan))
+    
+    # Append the data to the combined dataframe
+    combined_df <- rbind(combined_df, cast_df)
+  }, error = function(e){
+    print(glue("error in cast {cast@metadata$station[1]}"))
+    print(e)
+  })
 }
 # Save to CSV
 file_path <- here(glue("data/cleaned/{cruise_id}.csv"))
