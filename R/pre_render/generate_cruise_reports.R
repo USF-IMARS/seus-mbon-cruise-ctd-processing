@@ -2,8 +2,13 @@
 REPORT_TEMPLATE = "cruise_report/cruise_report_template.qmd"
 REPORTS_DIR = "cruise_report/cruise_reports"
 
-library(whisker)
-library(glue)
+if (!nzchar(system.file(package = "librarian"))) {
+  install.packages("librarian")
+}
+librarian::shelf(
+  glue,
+  whisker  
+)
 
 # Proceed if rendering the whole project, exit otherwise
 if (!nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
