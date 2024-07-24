@@ -21,7 +21,7 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 
 # === iterate through the data structure 
 # Set the root directory where the folders are located
-folder <- "data/01_raw/combined_fl_keys_data"
+folder <- "data/01_raw/cleaned_ctd_data"
 
 files <- list.files(folder, full.names = TRUE)
 
