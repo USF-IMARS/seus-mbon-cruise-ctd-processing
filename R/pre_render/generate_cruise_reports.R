@@ -26,7 +26,7 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 
 # === iterate through the data structure 
 # Set the root directory where the folders are located
-folder <- "data/01_raw/cleaned_ctd_data"
+folder <- "data/01_raw/raw_ctd_data"
 
 files <- list.files(folder, full.names = TRUE)
 
@@ -34,7 +34,7 @@ files <- list.files(folder, full.names = TRUE)
 for (file in files) {
   # Print the folder name and the filename
   # print(paste("Folder:", folder, "File   :", basename(file)))
-  cruise_id <- sub("_.*", "", basename(file))
+  cruise_id <- sub(".csv", "", basename(file))
   params = list(
     cruise_id = cruise_id
   )
