@@ -7,6 +7,8 @@ if (!nzchar(system.file(package = "librarian"))) {
 }
 librarian::shelf(
   glue,
+  here,
+  readr,
   whisker  
 )
 
@@ -29,30 +31,42 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 
 # === iterate through the data structure 
 # Set the root directory where the folders are located
-root_dir <- "data/01_raw/"
+root_dir <- "cruise_report/cruise_reports/"
 
-# List all the subdirectories within the root directory
-folders <- list.dirs(root_dir, full.names = TRUE, recursive = FALSE)
+# List all the subdirectories within the cruise
+files <- list.files(root_dir, pattern=".*qmd", full.names = TRUE, recursive = FALSE)
 
-# Loop through each folder (cruise)
-for (folder in folders) {
-  # List all files within the current folder
-  files <- list.files(folder, full.names = TRUE)
-
-  # Loop through each file in the current folder (station)
-  for (file in files) {
-    # Print the folder name and the filename
-    # print(paste("Folder:", folder, "File   :", basename(file)))
-    cruise_id <- basename(folder)
-    station_id <- sub("^[^_]*_([^.]*)\\..*$", "\\1", basename(file))
+# Loop through each file in the current folder (station)
+for (file in files) {
+  # Print the folder name and the filename
+  print(paste("File   :", basename(file)))
+  cruise_id <- sub("\\.qmd$", "", basename(file))
+  
+  # load cruise data
+  ctd_dir <- here("data/01_raw/raw_ctd_data")
+  fpath <- here(glue(
+    "{ctd_dir}/{cruise_id}.csv"
+  ))
+  
+  cruise_df <- readr::read_csv(
+    fpath, 
+    show_col_types = FALSE, 
+    col_types = readr::cols(station = col_character())
+  )
+  for (station_id in unique(cruise_df$station)) {
     params = list(
       cruise_id = cruise_id,
       station_id = station_id
     )
     print(glue("=== creating template for '{cruise_id} {station_id}' ==="))
+    cruise_dir <- file.path(REPORTS_DIR, cruise_id)
+    dir.create(cruise_dir, showWarnings=FALSE)
     writeLines(
       whisker.render(templ, params),
-      file.path(REPORTS_DIR, glue("{cruise_id}_{station_id}.qmd"))
+      glue("{cruise_dir}/{station_id}.qmd")
     )
   }
 }
+
+
+  
