@@ -1,6 +1,6 @@
 project:
   type: website
-  pre-render: R/pre_render.R
+  pre-render: R/pre_render/pre_render.R
   render:
     - "*.qmd"
     - "!ctd_report/"
