@@ -6,8 +6,8 @@ format: html
 code-fold: true
 editor: source
 params: 
-  cruise_id: WS15320
-  station_id: stn9_5
+  cruise_id: WS15320  # must be WS15320 for generate_ctd_reports to work
+  station_id: MR
 ---
 
 # Cruise `r params$cruise_id` `r params$station_id`
@@ -26,50 +26,29 @@ librarian::shelf(
 )
 
 source(here("R/ctd_load.R"))
+
 ```
 
-```{R}
-ctd_dir <- here("data/01_raw")
-fpath <- here(glue(
-  "data/01_raw/{params$cruise_id}/{params$cruise_id}_{params$station_id}.csv"
-))
-# WS23061 <-
-#   ctd_dir %>%
-#   fs::dir_ls(regexp = "{params$cruise_id}") %>%
-#   read_csv(show_col_types = FALSE)
+```{R, load data}
+# cruise_df <- cruise_load(params$cruise_id)
+ctd <-ctd_load(params$cruise_id, params$station_id)
 
-ctd_station_df <- read_csv(fpath, show_col_types = FALSE)
 ```
 
 ## use OCE package to load ctd
-
-```{R}
-#| code-summary: load data file
-# test_data <- 
-#   ctd_station_df %>%
-#   nest(.by = station) %>%
-#   slice(1:2) %>%
-#   tidyr::unnest(data) 
-
-# ctd <- ctd_load(
-#   fpath, 
-#   other_params = c("chlorophyll_fluorescence", "dissolved_oxygen"))
-```
-
 ```{R}
 #| code-summary: plot scans
-# plotScan(ctd)
+plotScan(ctd)
 
 ```
 
 ## Without using oce package:
 
 ```{R}
-#| code-summary: load data file
-```
-
-```{R}
 #| code-summary: plot data using ctd_plotting.R
+
+ctd_station_df <- ctd_load_df(params$cruise_id, params$station_id)
+
 source(here("R/ctd_plotting.R"))
   salinity <-
     ctd_plotting(

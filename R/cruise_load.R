@@ -8,5 +8,7 @@ cruise_load <- function(cruise_id){
     "{ctd_dir}/{cruise_id}.csv"
   ))
   
-  cruise_df <- read_csv(fpath, show_col_types = FALSE, col_types = cols(station = col_character()))
+  cruise_df <- read_csv(
+    fpath, show_col_types = FALSE, col_types = cols(station = col_character())
+  )
 }
