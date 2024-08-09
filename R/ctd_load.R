@@ -1,4 +1,5 @@
 library(here)
+library(dplyr)
 source(here("R/cruise_load.R"))
 
 ##%######################################################%##
@@ -22,7 +23,7 @@ source(here("R/cruise_load.R"))
 #' @author Tylar Murray
 #' @author Mostafa Soliman
 ctd_load <- function(cruiseID, stationID, params_other = NULL, verbose = TRUE) {
-  ctd_raw <- ctd_load_df(cruiseID, stationID)
+  cruiseData <- ctd_load_df(cruiseID, stationID)
   
   if(!("time_elapsed" %in% names(cruiseData))){
     print("columns in cruise data:")
@@ -94,5 +95,5 @@ ctd_load <- function(cruiseID, stationID, params_other = NULL, verbose = TRUE) {
 
 ctd_load_df <- function(cruiseID, stationID){
   # loads station dataframe
-  return filter(load_cruise(cruiseID), station == stationID)
+  return(filter(cruise_load(cruiseID), station == stationID))
 }
