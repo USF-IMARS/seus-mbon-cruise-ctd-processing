@@ -4,8 +4,9 @@ CTD processing &amp; reporting for the SEUS MBON research cruise data
 # Usage 
 1. clone this repository
 2. put data into `data/01_raw/raw_ctd_data`
-3. build the site: `quarto render .` NOTE: You may need to run this twice; the first might just error.
-4. view the site: `quarto preview .`
+3. build the site: `quarto render --no-cache`
+    * NOTE: you can run with cache, but this may not generate the `data/cleaned/*.csv` files
+4. view the site: `quarto preview`
 5. publish to github pages: `quarto publish`
 
 # generated report structure
