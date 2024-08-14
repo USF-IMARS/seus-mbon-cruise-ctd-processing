@@ -34,7 +34,11 @@ files <- list.files(folder, full.names = TRUE)
 for (file in files) {
   # Print the folder name and the filename
   # print(paste("Folder:", folder, "File   :", basename(file)))
-  cruise_id <- sub(".csv", "", basename(file))
+  cruise_id <- sub("_ctd_comb", "", 
+    sub(".csv", "", 
+      basename(file)
+    )
+  )
   params = list(
     cruise_id = cruise_id
   )
