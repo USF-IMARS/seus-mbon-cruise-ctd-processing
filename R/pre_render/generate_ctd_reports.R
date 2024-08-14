@@ -45,7 +45,7 @@ for (file in files) {
   # load cruise data
   ctd_dir <- here("data/01_raw/raw_ctd_data")
   fpath <- here(glue(
-    "{ctd_dir}/{cruise_id}.csv"
+    "{ctd_dir}/{cruise_id}_ctd_comb.csv"
   ))
   
   cruise_df <- readr::read_csv(
@@ -59,6 +59,7 @@ for (file in files) {
       station_id = station_id
     )
     print(glue("=== creating template for '{cruise_id} {station_id}' ==="))
+    station_id <- sub("/", "_", station_id)
     cruise_dir <- file.path(REPORTS_DIR, cruise_id)
     dir.create(cruise_dir, showWarnings=FALSE)
     writeLines(
