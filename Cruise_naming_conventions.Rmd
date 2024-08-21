@@ -1,0 +1,330 @@
+---
+title: "checking_Stations"
+author: "Mostafa Soliman"
+date: "2024-08-14"
+output: html_document
+---
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the directory path containing the CSV files
+directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned"
+
+# List all CSV files in the directory
+csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Initialize an empty data frame to store the results
+station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
+
+# Iterate through each file and count unique stations
+for (file in csv_files) {
+  # Read the CSV file
+  data <- read.csv(file, stringsAsFactors = FALSE)
+  
+  # Check if the 'station' column exists
+  if ("station" %in% colnames(data)) {
+    unique_stations <- n_distinct(data$station)
+  } else {
+    unique_stations <- NA
+    warning(paste("No 'station' column found in file:", basename(file)))
+  }
+  
+  # Append the result to the data frame
+  station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+}
+
+# Display the result
+print(station_counts)
+
+
+
+```
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the directory path for the combined files
+directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
+
+# List all CSV files in the directory
+csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Initialize an empty data frame to store the results
+station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
+
+# Iterate through each file and count unique stations
+for (file in csv_files) {
+  # Read the CSV file
+  data <- read.csv(file, stringsAsFactors = FALSE)
+  
+  # Check if the 'station' column exists
+  if ("station" %in% colnames(data)) {
+    unique_stations <- n_distinct(data$station)
+  } else {
+    unique_stations <- NA
+    warning(paste("No 'station' column found in file:", basename(file)))
+  }
+  
+  # Append the result to the data frame
+  station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+}
+
+# Display the result
+print(station_counts)
+
+```
+
+
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the directory path for the cleaned files
+directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+
+# List all CSV files in the directory
+csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Initialize an empty data frame to store the results
+station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
+
+# Iterate through each file and count unique stations
+for (file in csv_files) {
+  # Read the CSV file
+  data <- read.csv(file, stringsAsFactors = FALSE)
+  
+  # Check if the 'station' column exists
+  if ("station" %in% colnames(data)) {
+    unique_stations <- n_distinct(data$station)
+  } else {
+    unique_stations <- NA
+    warning(paste("No 'station' column found in file:", basename(file)))
+  }
+  
+  # Append the result to the data frame
+  station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+}
+
+# Display the result
+print(station_counts)
+
+```
+
+
+
+
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the path to the specific CSV file
+file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data/WS23061_ctd_comb.csv"
+
+# Read the CSV file
+data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+# Check unique station names
+unique_stations <- unique(data$station)
+print(unique_stations)
+
+```
+```{r}
+# Step 2: Function to standardize station names
+standardize_station_name <- function(station_name) {
+  # Remove leading periods and zeros, but preserve the decimal structure
+  clean_name <- gsub("^0+\\.|^\\.|^0+", "", station_name)
+  
+  # Remove any remaining leading zeros (while preserving decimals)
+  clean_name <- sub("^0+", "", clean_name)
+  
+  # Replace underscores with periods
+  clean_name <- gsub("_", ".", clean_name)
+  
+  return(clean_name)
+}
+
+# Apply the function to the station names
+data$station <- sapply(data$station, standardize_station_name)
+
+# Define the output directory
+output_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+
+# Get the original file name and append "_cleaned"
+original_file_name <- basename(file_path)
+cleaned_file_name <- sub("\\.csv$", "_cleaned.csv", original_file_name)
+
+# Define the output file path with the new name
+output_file_path <- file.path(output_dir, cleaned_file_name)
+
+# Create the directory if it doesn't exist
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Save the cleaned data with the new file name
+write.csv(data, output_file_path, row.names = FALSE)
+
+# Confirm the file has been saved
+cat("Cleaned data has been saved to:", output_file_path)
+```
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the path to the directory containing the CSV files
+input_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
+output_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+
+# Create the output directory if it doesn't exist
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir, recursive = TRUE)
+}
+
+# Get a list of all CSV files in the input directory
+csv_files <- list.files(input_dir, pattern = "\\.csv$", full.names = TRUE)
+
+# Function to standardize station names
+standardize_station_name <- function(station_name) {
+  # Remove leading periods and zeros, but preserve the decimal structure
+  clean_name <- gsub("^0+\\.|^\\.|^0+", "", station_name)
+  
+  # Remove any remaining leading zeros (while preserving decimals)
+  clean_name <- sub("^0+", "", clean_name)
+  
+  # Replace underscores with periods
+  clean_name <- gsub("_", ".", clean_name)
+  
+  return(clean_name)
+}
+
+# Loop through each file, process, and save
+for (file_path in csv_files) {
+  # Read the CSV file
+  data <- read.csv(file_path, stringsAsFactors = FALSE)
+  
+  # Apply the function to the station names
+  data$station <- sapply(data$station, standardize_station_name)
+  
+  # Get the original file name without changing it
+  original_file_name <- basename(file_path)
+  
+  # Define the output file path with the original name
+  output_file_path <- file.path(output_dir, original_file_name)
+  
+  # Save the cleaned data with the original file name
+  write.csv(data, output_file_path, row.names = FALSE)
+  
+  # Confirm the file has been saved
+  cat("Cleaned data has been saved to:", output_file_path, "\n")
+}
+
+```
+
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the paths to the directories
+original_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
+cleaned_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+
+# Get a list of all CSV files in both directories
+original_files <- list.files(original_dir, pattern = "\\.csv$", full.names = TRUE)
+cleaned_files <- list.files(cleaned_dir, pattern = "\\.csv$", full.names = TRUE)
+
+# Function to count unique stations in a file
+count_unique_stations <- function(file_path) {
+  data <- read.csv(file_path, stringsAsFactors = FALSE)
+  return(length(unique(data$station)))
+}
+
+# Create a data frame to store the results
+results <- data.frame(
+  File = character(),
+  Original_Station_Count = integer(),
+  Cleaned_Station_Count = integer(),
+  stringsAsFactors = FALSE
+)
+
+# Loop through the files and count stations before and after cleaning
+for (original_file in original_files) {
+  # Get the corresponding cleaned file name
+  cleaned_file_name <- sub("\\.csv$", "_cleaned.csv", basename(original_file))
+  cleaned_file_path <- file.path(cleaned_dir, cleaned_file_name)
+  
+  # Check if the cleaned file exists
+  if (cleaned_file_path %in% cleaned_files) {
+    # Count stations in the original and cleaned files
+    original_station_count <- count_unique_stations(original_file)
+    cleaned_station_count <- count_unique_stations(cleaned_file_path)
+    
+    # Add the results to the data frame
+    results <- rbind(results, data.frame(
+      File = basename(original_file),
+      Original_Station_Count = original_station_count,
+      Cleaned_Station_Count = cleaned_station_count
+    ))
+  }
+}
+
+# Display the results
+print(results)
+
+
+
+```
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the paths to the directories
+original_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
+cleaned_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+
+# Function to count unique stations in all files within a directory
+count_stations_in_directory <- function(directory_path) {
+  # List all CSV files in the directory
+  csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+  
+  # Initialize an empty data frame to store the results
+  station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
+  
+  # Iterate through each file and count unique stations
+  for (file in csv_files) {
+    # Read the CSV file
+    data <- read.csv(file, stringsAsFactors = FALSE)
+    
+    # Check if the 'station' column exists
+    if ("station" %in% colnames(data)) {
+      unique_stations <- n_distinct(data$station)
+    } else {
+      unique_stations <- NA
+      warning(paste("No 'station' column found in file:", basename(file)))
+    }
+    
+    # Append the result to the data frame
+    station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+  }
+  
+  return(station_counts)
+}
+
+# Count stations in original and cleaned directories
+original_station_counts <- count_stations_in_directory(original_dir)
+cleaned_station_counts <- count_stations_in_directory(cleaned_dir)
+
+# Combine the results for comparison
+comparison_results <- merge(
+  original_station_counts, 
+  cleaned_station_counts, 
+  by = "Filename", 
+  suffixes = c("_Original", "_Cleaned")
+)
+
+# Display the comparison results
+print(comparison_results)
+
+
+```
+
