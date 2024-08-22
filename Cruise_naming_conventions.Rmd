@@ -4,6 +4,44 @@ author: "Mostafa Soliman"
 date: "2024-08-14"
 output: html_document
 ---
+
+
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the directory path for the combined files
+directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data"
+
+# List all CSV files in the directory
+csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Initialize an empty data frame to store the results
+station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
+
+# Iterate through each file and count unique stations
+for (file in csv_files) {
+  # Read the CSV file
+  data <- read.csv(file, stringsAsFactors = FALSE)
+  
+  # Check if the 'station' column exists
+  if ("station" %in% colnames(data)) {
+    unique_stations <- n_distinct(data$station)
+  } else {
+    unique_stations <- NA
+    warning(paste("No 'station' column found in file:", basename(file)))
+  }
+  
+  # Append the result to the data frame
+  station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+}
+
+# Display the result
+print(station_counts)
+
+```
+
+
 ```{r}
 # Load necessary library
 library(dplyr)
@@ -37,43 +75,8 @@ for (file in csv_files) {
 # Display the result
 print(station_counts)
 
-
-
 ```
-```{r}
-# Load necessary library
-library(dplyr)
 
-# Define the directory path for the combined files
-directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
-
-# List all CSV files in the directory
-csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
-
-# Initialize an empty data frame to store the results
-station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
-
-# Iterate through each file and count unique stations
-for (file in csv_files) {
-  # Read the CSV file
-  data <- read.csv(file, stringsAsFactors = FALSE)
-  
-  # Check if the 'station' column exists
-  if ("station" %in% colnames(data)) {
-    unique_stations <- n_distinct(data$station)
-  } else {
-    unique_stations <- NA
-    warning(paste("No 'station' column found in file:", basename(file)))
-  }
-  
-  # Append the result to the data frame
-  station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
-}
-
-# Display the result
-print(station_counts)
-
-```
 
 
 ```{r}
@@ -119,16 +122,36 @@ print(station_counts)
 library(dplyr)
 
 # Define the path to the specific CSV file
-file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data/WS23061_ctd_comb.csv"
+file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data/WS1018_ctd_comb.csv"
 
 # Read the CSV file
 data <- read.csv(file_path, stringsAsFactors = FALSE)
 
 # Check unique station names
-unique_stations <- unique(data$station)
-print(unique_stations)
-
+unique_stations_1 <- sort(unique(data$station))
+print(unique_stations_1)
+ sort(length(unique_stations_1))
 ```
+
+```{r}
+# Load necessary library
+library(dplyr)
+
+# Define the path to the specific CSV file
+file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned/WS1018.CSV"
+
+# Read the CSV file
+data <- read.csv(file_path, stringsAsFactors = FALSE)
+
+# Check unique station names
+unique_stations_2 <- unique(data$station)
+print(unique_stations_2)
+(length(unique_stations_2))
+```
+
+
+
+
 ```{r}
 # Step 2: Function to standardize station names
 standardize_station_name <- function(station_name) {
@@ -278,53 +301,183 @@ print(results)
 # Load necessary library
 library(dplyr)
 
-# Define the paths to the directories
-original_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
-cleaned_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+# Define the paths to the files before and after cleaning
+file_before_cleaning <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data/WS0901_ctd_comb.csv"
+file_after_cleaning <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned/WS0901.csv"
 
-# Function to count unique stations in all files within a directory
-count_stations_in_directory <- function(directory_path) {
-  # List all CSV files in the directory
-  csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+# Function to get station names and count from a file
+get_station_info <- function(file_path) {
+  # Read the CSV file
+  data <- read.csv(file_path, stringsAsFactors = FALSE)
   
-  # Initialize an empty data frame to store the results
-  station_counts <- data.frame(Filename = character(), Unique_Stations = numeric(), stringsAsFactors = FALSE)
-  
-  # Iterate through each file and count unique stations
-  for (file in csv_files) {
-    # Read the CSV file
-    data <- read.csv(file, stringsAsFactors = FALSE)
-    
-    # Check if the 'station' column exists
-    if ("station" %in% colnames(data)) {
-      unique_stations <- n_distinct(data$station)
-    } else {
-      unique_stations <- NA
-      warning(paste("No 'station' column found in file:", basename(file)))
-    }
-    
-    # Append the result to the data frame
-    station_counts <- rbind(station_counts, data.frame(Filename = basename(file), Unique_Stations = unique_stations))
+  # Check if the 'station' column exists
+  if ("station" %in% colnames(data)) {
+    unique_stations <- unique(data$station)
+    station_count <- length(unique_stations)
+    return(list(station_count = station_count, unique_stations = unique_stations))
+  } else {
+    warning(paste("No 'station' column found in file:", basename(file_path)))
+    return(NULL)
   }
-  
-  return(station_counts)
 }
 
-# Count stations in original and cleaned directories
-original_station_counts <- count_stations_in_directory(original_dir)
-cleaned_station_counts <- count_stations_in_directory(cleaned_dir)
+# Get station information before cleaning
+before_cleaning_info <- get_station_info(file_before_cleaning)
 
-# Combine the results for comparison
-comparison_results <- merge(
-  original_station_counts, 
-  cleaned_station_counts, 
-  by = "Filename", 
-  suffixes = c("_Original", "_Cleaned")
-)
+# Get station information after cleaning
+after_cleaning_info <- get_station_info(file_after_cleaning)
 
-# Display the comparison results
-print(comparison_results)
+# Display the results
+cat("Before Cleaning:\n")
+cat("Number of Unique Stations:", before_cleaning_info$station_count, "\n")
+cat("Station Names:\n")
+print(before_cleaning_info$unique_stations)
 
+cat("\nAfter Cleaning:\n")
+cat("Number of Unique Stations:", after_cleaning_info$station_count, "\n")
+cat("Station Names:\n")
+print(after_cleaning_info$unique_stations)
+
+```
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(sf)
+library(akima)
+library(raster)
+library(dplyr)
+library(tidyr)
+library(ggspatial)
+library(readxl)
+
+# Set the path to your nutrient data file
+data_path <- "C:/Users/mostafaawada/Box/mbon_imars_cruises/WSMasterSampleLog.xlsx"
+
+# Load the data from the "All Depths" sheet and ensure it's in a tibble format
+data <- as_tibble(read_excel(data_path, sheet = "All Depths"))
+
+# Select relevant columns and filter the data for the nutrients of interest
+nutrient_data <- data %>%
+  dplyr::select(CruiseID, Latitude, Longitude, Depth, Nitrate, Nitrite, Phosphate, Silicate, Ammonium) %>%
+  filter(!is.na(Nitrate) | !is.na(Nitrite) | !is.na(Phosphate) | !is.na(Silicate) | !is.na(Ammonium))
+
+# Create a list of nutrient parameters to be plotted
+nutrients <- c("Nitrate", "Nitrite", "Phosphate", "Silicate", "Ammonium")
+
+# Reshape the data to long format for faceting
+long_nutrient_data <- nutrient_data %>%
+  pivot_longer(cols = all_of(nutrients), names_to = "Nutrient", values_to = "Concentration")
+
+# Create plots for each cruise, faceted by nutrient
+plots <- long_nutrient_data %>%
+  ggplot(aes(x = Longitude, y = Latitude, fill = Concentration)) +
+  geom_tile() +
+  facet_wrap(~ Nutrient, scales = "free") +
+  coord_fixed() +
+  scale_fill_viridis_c(option = "C") +
+  theme_minimal() +
+  labs(title = "Nutrient Concentrations by Cruise",
+       fill = "Concentration (µM)",
+       x = "Longitude", y = "Latitude") +
+  theme(strip.text = element_text(size = 10))
+
+# Print the plots for each cruise
+print(plots)
+
+
+```
+
+```{r}
+# Function to interpolate and plot nutrient data only
+plot_interpolated_layer <- function(data, nutrient_column, cruise_id) {
+  data_cruise <- data %>% filter(Cruise == cruise_id, !is.na(.data[[nutrient_column]]))
+
+  if (nrow(data_cruise) > 3) {
+    interpolated <- akima::interp(x = data_cruise$`Longitude Decimal`, 
+                                  y = data_cruise$`Latitude Decimal`, 
+                                  z = data_cruise[[nutrient_column]], 
+                                  xo = seq(min(data_cruise$`Longitude Decimal`), max(data_cruise$`Longitude Decimal`), length = 100), 
+                                  yo = seq(min(data_cruise$`Latitude Decimal`), max(data_cruise$`Latitude Decimal`), length = 100),
+                                  duplicate = "mean")
+
+    interp_data <- as.data.frame(interpolated)
+    names(interp_data) <- c("Longitude", "Latitude", "Z")
+
+    ggplot() +
+      geom_raster(data = interp_data, aes(x = Longitude, y = Latitude, fill = Z), interpolate = TRUE) +
+      scale_fill_viridis_c(option = "magma", name = paste(nutrient_column, "(µM)")) +
+      geom_polygon(data = florida_map, aes(x = long, y = lat, group = group), fill = "grey90", color = "black") +
+      labs(title = paste("Interpolated", nutrient_column, "Layer - Cruise", cruise_id),
+           x = "Longitude", y = "Latitude") +
+      theme_minimal() +
+      coord_sf(xlim = c(-85.5, -79.5), ylim = c(23, 27), expand = FALSE)
+  } else {
+    ggplot() + labs(title = paste("Not enough data points to interpolate for", nutrient_column))
+  }
+}
+
+# Test with one nutrient and cruise ID (e.g., "PO4  (uM)", "WS1418")
+plot_interpolated_layer(nutrient_data_depth_0, "PO4  (uM)", "WS1418")
+
+```
+
+# creating code to calculate the oxygen saturation 
+
+```{r}
+# Load necessary libraries
+library(dplyr)
+library(readr)
+
+# Define the directory containing the cruise files
+directory_path <- "C:/Users/mostafaawada/Desktop/CTD_data_codes/data/cleaned_cruises"
+
+# List all CSV files in the directory
+cruise_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Print the list of files to ensure they are correctly listed
+print(cruise_files)
+
+```
+```{r}
+# Loop through each file to read and inspect the data
+for (file in cruise_files) {
+  # Read the data
+  cruise_data <- read_csv(file, show_col_types = FALSE)
+  
+  # Display the file name to track progress
+  cat("Inspecting file:", file, "\n")
+  
+  # Display the first few rows of the data to get an initial look
+  head(cruise_data)
+  
+  # Check the structure of the data to see the column names and data types
+  str(cruise_data)
+  
+  # Get a summary of the data to understand its distribution
+  summary(cruise_data)
+  
+  # Pause the loop to inspect the output before continuing
+  readline(prompt = "Press [Enter] to continue to the next file")
+}
+
+```
+```{r}
+# Loop through each file to calculate and save oxygen saturation percentage
+for (file in cruise_files) {
+  # Read the data
+  cruise_data <- read_csv(file, show_col_types = FALSE)
+  
+  # Calculate Oxygen Saturation Percentage for each station and depth
+  cruise_data <- cruise_data %>%
+    group_by(station, depth) %>%
+    mutate(Oxygen_saturation_percentage = (dissolved_oxygen / oxygen_saturation) * 100) %>%
+    ungroup()
+  
+  # Save the updated dataset back to the same file
+  write_csv(cruise_data, file)
+  
+  cat("Oxygen saturation percentage calculated and saved for file:", file, "\n")
+}
 
 ```
 
