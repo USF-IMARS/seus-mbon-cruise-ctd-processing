@@ -4,6 +4,10 @@ CTD processing &amp; reporting for the SEUS MBON research cruise data
 # Usage 
 1. clone this repository
 2. put data into `data/01_raw/raw_ctd_data`
+   * raw "mostafa/combined_data_updated" with original names 
+   *     "mostafa/raw_ctd_data_renamed" - stations renamed to align between cruises 
+   *     "mostafa/cleaned_Cruises" - after oce cleaning 
+      * see Cruise_naming_conventions.Rmd
 3. build the site: `quarto render --no-cache`
     * NOTE: you can run with cache, but this may not generate the `data/cleaned/*.csv` files
 4. view the site: `quarto preview`
