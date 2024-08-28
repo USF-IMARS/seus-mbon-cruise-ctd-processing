@@ -3,14 +3,12 @@ project:
   pre-render: R/pre_render/pre_render.R
   render:
     - "*.qmd"
-    - "!ctd_report/"
-    
+
 website:
   title: "MBON Cruise CTD Reports"
   navbar:
     left:
       - index.qmd
-      # - ctd_report/ctd_reports.qmd
       - cruise_report/cruise_reports.qmd
     
 format:

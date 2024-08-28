@@ -6,6 +6,9 @@ editor: source
 params: 
   # cruise_id: WS18285
   cruise_id: WS22072  # NOTE: this must = WS22072 for prerender to work
+listing:
+  contents: ctd_report/ctd_reports/WS22072
+  type: grid
 ---
 # WS22072
 
