@@ -12,7 +12,8 @@ website:
       - index.qmd
       # - ctd_report/ctd_reports.qmd
       - cruise_report/cruise_reports.qmd
-    
+      - href: https://github.com/USF-IMARS/dep-wq-data-report
+        text: Source Code on GitHub
 format:
   html:
     theme: cosmo
