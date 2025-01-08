@@ -9,6 +9,8 @@ params:
   station_id: stn9_5
 ---
 
+Cleaned CTD data can be downloaded from [this box.com folder](https://usf.box.com/s/dvoi1ve0jn3apbdlad114uhn0pvmjool).
+
 ```{R}
 #| code-summary: setup
 
