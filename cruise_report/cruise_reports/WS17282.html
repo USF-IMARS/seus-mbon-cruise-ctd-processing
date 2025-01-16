@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.54">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MBON Cruise CTD Reports – ws17282</title>
+<title>ws17282 – MBON Cruise CTD Reports</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -79,7 +79,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -102,31 +109,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MBON Cruise CTD Reports</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">SEUS MBON Cruise Data</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">SEUS MBON Cruise Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../cruise_report/cruise_reports.html" rel="" target="">
- <span class="menu-text">Cruise Reports</span></a>
+    <a class="nav-link" href="../../cruise_report/cruise_reports.html"> 
+<span class="menu-text">Cruise Reports</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/USF-IMARS/dep-wq-data-report"> 
+<span class="menu-text">Source Code on GitHub</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -148,10 +159,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+
 <section id="ws17282" class="level1">
 <h1>WS17282</h1>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-1_420a6138e77fcd327db9ef9a68ec0692">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>setup</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">nzchar</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"librarian"</span>))) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"librarian"</span>)</span>
@@ -163,68 +175,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-2_3be40deb3e3a49b855d2fbb2a17a0a43">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ctd_dir <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data/01_raw/combined_fl_keys_data"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fpath <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="fu">glue</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"{ctd_dir}/{params$cruise_id}_fl_keys_ctd.csv"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>cruise_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(fpath, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>, <span class="at">col_types =</span> <span class="fu">cols</span>(<span class="at">station =</span> <span class="fu">col_character</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/cruise_load.R"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cruise_df <span class="ot">&lt;-</span> <span class="fu">cruise_load</span>(params<span class="sc">$</span>cruise_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-3_d1283a4267365c2847863af53442a25e">
-<details>
+</div>
+<div class="cell">
+<details class="code-fold">
 <summary>plot depth &amp; pressure vs time elapsed</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (station_name <span class="cf">in</span> <span class="fu">unique</span>(cruise_df<span class="sc">$</span>station)) {</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    subset_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(cruise_df, station <span class="sc">==</span> station_name)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    plots[[station_name]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(subset_df, <span class="fu">aes</span>(<span class="at">x =</span> time_elapsed)) <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> depth), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Plot depth in blue</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> sea_water_pressure), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  <span class="co"># Plot sea water pressure in red</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"{station_name}"</span>)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      )  <span class="co"># Remove individual axis titles and text</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop nulls</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  plots <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">compact</span>(plots)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine all plots into a grid</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  combined_plot <span class="ot">&lt;-</span> <span class="fu">wrap_plots</span>(plots) <span class="sc">+</span> </span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="co"># Adjust ncol to set number of columns in the grid</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_annotation</span>(</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Depth (blue) and Pressure (red)"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Each panel represents a different station"</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Time Elapsed (x-axis) vs Depth &amp; Pressure (y-axis)"</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.tag =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.tag.position =</span> <span class="st">"topleft"</span>,</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>))</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(combined_plot)</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(er){</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(er)</span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>});</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  plots <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (station_name <span class="cf">in</span> <span class="fu">unique</span>(cruise_df<span class="sc">$</span>station)) {</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    subset_df <span class="ot">&lt;-</span> <span class="fu">filter</span>(cruise_df, station <span class="sc">==</span> station_name)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    plots[[station_name]] <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(subset_df, <span class="fu">aes</span>(<span class="at">x =</span> time_elapsed)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> depth), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Plot depth in blue</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> sea_water_pressure), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  <span class="co"># Plot sea water pressure in red</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggtitle</span>(<span class="fu">glue</span>(<span class="st">"{station_name}"</span>)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>      )  <span class="co"># Remove individual axis titles and text</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop nulls</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  plots <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">compact</span>(plots)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine all plots into a grid</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  combined_plot <span class="ot">&lt;-</span> <span class="fu">wrap_plots</span>(plots) <span class="sc">+</span> </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="co"># Adjust ncol to set number of columns in the grid</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_annotation</span>(</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Depth (blue) and Pressure (red)"</span>,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Each panel represents a different station"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Time Elapsed (x-axis) vs Depth &amp; Pressure (y-axis)"</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.tag =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">plot.tag.position =</span> <span class="st">"topleft"</span>,</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">10</span>)),</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>))</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(combined_plot)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(er){</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(er)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>});</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;error/rlang_error&gt;
 Error in `geom_point()`:
 ! Problem while computing aesthetics.
 ℹ Error occurred in the 1st layer.
-Caused by error in `FUN()`:
+Caused by error:
 ! object 'time_elapsed' not found
 ---
 Backtrace:
@@ -259,65 +273,69 @@ Backtrace:
  28.                       └─rlang (local) FUN(X[[i]], ...)</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-4_5b8756ef3fc3155c81c822b537e6c7ee">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>plot across all stations</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cruise_df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> depth, <span class="at">fill =</span> station)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span>  <span class="co"># This creates the bars</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Depth"</span>, <span class="at">title =</span> <span class="st">"Depth over Time by Station"</span>) <span class="sc">+</span>  <span class="co"># Set labels and title</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Use a minimal theme</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cruise_df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> depth, <span class="at">fill =</span> station)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span>  <span class="co"># This creates the bars</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># geom_text(aes(label = station), vjust = -0.3) +  # This adds labels to each bar, adjust vjust for position</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Depth"</span>, <span class="at">title =</span> <span class="st">"Depth over Time by Station"</span>) <span class="sc">+</span>  <span class="co"># Set labels and title</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Use a minimal theme</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-5_c4391a1f43af9f3e92bbaaf83c744702">
-<details>
+</div>
+<div class="cell">
+<details class="code-fold">
 <summary>create oce.ctd objects from dataframes</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create csv into ctd object</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  test_ctd <span class="ot">&lt;-</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add additional columns to ctd object</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(other_params)) {</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (param_name <span class="cf">in</span> other_params) {</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      test_ctd <span class="ot">&lt;-</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">oceSetData</span>(</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">object =</span> test_ctd,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">name   =</span> param_name,</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">value  =</span> data[[param_name]]</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"{data$station[1]}:</span><span class="sc">\t</span><span class="st">{length(test_ctd@data$scan)} scans"</span>))</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(test_ctd)</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Define other parameters to add</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>other_params <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cruise_id"</span>, <span class="st">"station"</span>, <span class="st">"time"</span>, <span class="st">"time_elapsed"</span>, </span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"sea_water_electrical_conductivity"</span>, </span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CDOM"</span>, <span class="st">"dissolved_oxygen"</span>,<span class="st">"oxygen_saturation"</span>, <span class="st">"chlorophyll_concentration"</span>, </span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"chlorophyll_fluorescence"</span>, <span class="st">"photosynthetically_available_radiation"</span>, </span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"beam_attenuation"</span>,<span class="st">"beam_transmission"</span>, <span class="st">"depth"</span>, <span class="st">"sea_water_sigma_t"</span>,</span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"descent_rate"</span>, <span class="st">"sound_velocity"</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by station and create data list</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>ctd_FK <span class="ot">&lt;-</span> cruise_df <span class="sc">%&gt;%</span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>station) <span class="sc">%&gt;%</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">ctd_load</span>(.x, <span class="at">other_params =</span> other_params)) <span class="co"># ~ is a lambda(x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ctd_load <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">other_params =</span> <span class="cn">NULL</span>) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create csv into ctd object</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  test_ctd <span class="ot">&lt;-</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.ctd</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">salinity    =</span> data<span class="sc">$</span>sea_water_salinity,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">temperature =</span> data<span class="sc">$</span>sea_water_temperature,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">pressure    =</span> data<span class="sc">$</span>sea_water_pressure,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">station     =</span> data<span class="sc">$</span>station</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># add additional columns to ctd object</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(other_params)) {</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (param_name <span class="cf">in</span> other_params) {</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      test_ctd <span class="ot">&lt;-</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">oceSetData</span>(</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">object =</span> test_ctd,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">name   =</span> param_name,</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>          <span class="at">value  =</span> data[[param_name]]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"{data$station[1]}:</span><span class="sc">\t</span><span class="st">{length(test_ctd@data$scan)} scans"</span>))</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(test_ctd)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Define other parameters to add</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>other_params <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>  <span class="st">"cruise_id"</span>, <span class="st">"station"</span>, <span class="st">"time"</span>, <span class="st">"time_elapsed"</span>, </span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  <span class="st">"latitude"</span>, <span class="st">"longitude"</span>, <span class="st">"sea_water_electrical_conductivity"</span>, </span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  <span class="st">"CDOM"</span>, <span class="st">"dissolved_oxygen"</span>,<span class="st">"oxygen_saturation"</span>, <span class="st">"chlorophyll_concentration"</span>, </span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">"chlorophyll_fluorescence"</span>, <span class="st">"photosynthetically_available_radiation"</span>, </span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">"beam_attenuation"</span>,<span class="st">"beam_transmission"</span>, <span class="st">"depth"</span>, <span class="st">"sea_water_sigma_t"</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">"descent_rate"</span>, <span class="st">"sound_velocity"</span>,<span class="st">"altimeter"</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Split data by station and create data list</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>ctd_FK <span class="ot">&lt;-</span> cruise_df <span class="sc">%&gt;%</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>station) <span class="sc">%&gt;%</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">ctd_load</span>(.x, <span class="at">other_params =</span> other_params)) <span class="co"># ~ is a lambda(x)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>1:  1755 scans
@@ -341,13 +359,49 @@ Backtrace:
 23: 1122 scans
 24: 1295 scans
 3:  4900 scans
+30: 1614 scans
+30.5:   2186 scans
+31: 983 scans
+32: 1436 scans
+33: 1437 scans
+34: 711 scans
+39: 1242 scans
+41: 1519 scans
+42: 2091 scans
+45: 1524 scans
+47: 1025 scans
+49: 383 scans
 5:  1197 scans
+50: 817 scans
+51: 749 scans
+53: 3 scans
+54: 259 scans
+55: 497 scans
+56: 772 scans
+57: 1168 scans
+57.1:   1866 scans
+57.2:   779 scans
+57.3:   1174 scans
+58: 1554 scans
+59: 2477 scans
 6:  3324 scans
 6.5:    5446 scans
+60: 2325 scans
+61: 1992 scans
+62: 1738 scans
+63: 1353 scans
+64: 2722 scans
+65: 1736 scans
+66: 1600 scans
+67: 1272 scans
+68: 6 scans
+69: 1443 scans
 7:  1159 scans
+70: 1907 scans
 8:  1287 scans
 9:  4059 scans
 9.5:    6707 scans
+DECK_TST:   101 scans
 EK_IN:  7 scans
 EK_OFF: 3020 scans
 MR: 6846 scans
@@ -356,421 +410,1520 @@ UK_OFF: 2542 scans
 WS: 2308 scans</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-6_f66d2cf91beb9f29f17b6e11e1be12cb">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>plotting scans for each cast in the first list</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(i)</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"=== station: {cast@metadata$station[1]}"</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"# scans: {length(cast@data$scan)}"</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotScan</span>(cast)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(i)</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"=== station: {cast@metadata$station[1]}"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"# scans: {length(cast@data$scan)}"</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotScan</span>(cast)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 1
 # scans: 1755</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 10
 # scans: 1362</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 11
 # scans: 2933</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 12
 # scans: 9813</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 13
 # scans: 1778</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 14
 # scans: 1890</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 15
 # scans: 3059</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 15.5
 # scans: 6654</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 16
 # scans: 4118</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-9.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 17
 # scans: 3437</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-10.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 18
 # scans: 4434</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-11.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 19
 # scans: 456</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-12.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 2
 # scans: 1774</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-13.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 20
 # scans: 1378</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-14.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 21.5
 # scans: 8836</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-15.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 21/LK
 # scans: 5419</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-16.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 22
 # scans: 2002</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-17.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 22.5
 # scans: 8683</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-18.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 23
 # scans: 1122</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-19.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 24
 # scans: 1295</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-20.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-20.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 3
 # scans: 4900</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-21.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-21.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 30
+# scans: 1614</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-22.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 30.5
+# scans: 2186</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-23.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 31
+# scans: 983</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-24.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 32
+# scans: 1436</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-25.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 33
+# scans: 1437</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-26.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 34
+# scans: 711</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-27.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 39
+# scans: 1242</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-28.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 41
+# scans: 1519</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-29.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 42
+# scans: 2091</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-30.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 45
+# scans: 1524</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-31.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 47
+# scans: 1025</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-32.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 49
+# scans: 383</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-33.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 5
 # scans: 1197</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-22.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-34.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 50
+# scans: 817</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-35.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 51
+# scans: 749</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-36.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 53
+# scans: 3</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-37.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 54
+# scans: 259</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-38.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 55
+# scans: 497</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-39.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 56
+# scans: 772</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-40.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 57
+# scans: 1168</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-41.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 57.1
+# scans: 1866</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-42.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 57.2
+# scans: 779</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-43.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 57.3
+# scans: 1174</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-44.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 58
+# scans: 1554</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-45.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 59
+# scans: 2477</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-46.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 6
 # scans: 3324</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-23.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-47.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 6.5
 # scans: 5446</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-24.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-48.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 60
+# scans: 2325</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-49.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 61
+# scans: 1992</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-50.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 62
+# scans: 1738</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-51.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 63
+# scans: 1353</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-52.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 64
+# scans: 2722</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-53.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 65
+# scans: 1736</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-54.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 66
+# scans: 1600</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-55.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 67
+# scans: 1272</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-56.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 68
+# scans: 6</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-57.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 69
+# scans: 1443</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-58.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 7
 # scans: 1159</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-25.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-59.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: 70
+# scans: 1907</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-60.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 8
 # scans: 1287</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-26.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-61.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 9
 # scans: 4059</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-27.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-62.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: 9.5
 # scans: 6707</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-28.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-63.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== station: DECK_TST
+# scans: 101</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-64.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: EK_IN
 # scans: 7</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-29.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-65.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: EK_OFF
 # scans: 3020</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-30.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-66.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: MR
 # scans: 6846</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-31.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-67.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: UK_IN
 # scans: 1020</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-32.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-68.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: UK_OFF
 # scans: 2542</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-33.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-69.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== station: WS
 # scans: 2308</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-6-34.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-6-70.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-7_44ccd96ef97dbefd0a6e36b7b6ffa538">
-<details>
+</div>
+<div class="cell">
+<details class="code-fold">
 <summary>plotting each cast in the first list</summary>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)))</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e){</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
+<span id="cb80-3"><a href="#cb80-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb80-4"><a href="#cb80-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(<span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)))</span>
+<span id="cb80-5"><a href="#cb80-5" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e){</span>
+<span id="cb80-6"><a href="#cb80-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
+<span id="cb80-7"><a href="#cb80-7" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb80-8"><a href="#cb80-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1755' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1362' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2933' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 9813' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1778' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1890' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 3059' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 6654' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-9.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 4118' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-10.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 3437' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-11.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 4434' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-12.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 456' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-13.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1774' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-14.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1378' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-15.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 8836' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-16.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 5419' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-17.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2002' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-18.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 8683' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-19.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1122' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-20.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-20.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1295' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-21.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-21.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 4900' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-22.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-22.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1614' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-23.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-23.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2186' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-24.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-24.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 983' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-25.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-25.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1436' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-26.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-26.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1437' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-27.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-27.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 711' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-28.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-28.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1242' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-29.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-29.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1519' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-30.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-30.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2091' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-31.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-31.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1524' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-32.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-32.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1025' in coercion to 'logical(1)'&gt;</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-7-33.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-33.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-8_9b13ec22f23aa3b052aa9ab3821cdcd0">
-<details>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 383' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-34.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1197' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-35.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 817' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-36.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 749' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-37.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 259' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-38.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 497' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-39.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 772' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-40.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1168' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-41.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1866' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-42.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 779' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-43.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1174' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-44.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1554' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-45.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2477' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-46.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 3324' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-47.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 5446' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-48.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2325' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-49.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1992' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-50.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1738' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-51.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1353' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-52.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2722' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-53.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1736' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-54.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1600' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-55.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1272' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-56.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1443' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-57.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1159' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-58.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1907' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-59.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1287' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-60.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 4059' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-61.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 6707' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-62.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 3020' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-63.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 6846' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-64.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 1020' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-65.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2542' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-7-66.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in !is.null(x@metadata$station) &amp;&amp; !is.na(x@metadata$station): 'length = 2308' in coercion to 'logical(1)'&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
 <summary>plotting other physical parameters for each cast</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
-<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
-<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
-<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
-<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
-<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
-<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sea_water_electrical_conductivity"</span>,</span>
-<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"descent_rate"</span>, <span class="st">"sound_velocity"</span>,</span>
-<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sea_water_sigma_t"</span></span>
-<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
-<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
-<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb44-28"><a href="#cb44-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-29"><a href="#cb44-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
-<span id="cb44-30"><a href="#cb44-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb44-31"><a href="#cb44-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-32"><a href="#cb44-32" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb44-33"><a href="#cb44-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
-<span id="cb44-34"><a href="#cb44-34" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb44-35"><a href="#cb44-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
+<span id="cb147-4"><a href="#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb147-5"><a href="#cb147-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
+<span id="cb147-6"><a href="#cb147-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
+<span id="cb147-7"><a href="#cb147-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
+<span id="cb147-8"><a href="#cb147-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-9"><a href="#cb147-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
+<span id="cb147-10"><a href="#cb147-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
+<span id="cb147-11"><a href="#cb147-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-12"><a href="#cb147-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
+<span id="cb147-13"><a href="#cb147-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
+<span id="cb147-14"><a href="#cb147-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-15"><a href="#cb147-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
+<span id="cb147-16"><a href="#cb147-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
+<span id="cb147-17"><a href="#cb147-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
+<span id="cb147-18"><a href="#cb147-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
+<span id="cb147-19"><a href="#cb147-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sea_water_electrical_conductivity"</span>,</span>
+<span id="cb147-20"><a href="#cb147-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"descent_rate"</span>, <span class="st">"sound_velocity"</span>,</span>
+<span id="cb147-21"><a href="#cb147-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"sea_water_sigma_t"</span>,<span class="st">"altimeter"</span></span>
+<span id="cb147-22"><a href="#cb147-22" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb147-23"><a href="#cb147-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
+<span id="cb147-24"><a href="#cb147-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb147-25"><a href="#cb147-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-26"><a href="#cb147-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
+<span id="cb147-27"><a href="#cb147-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb147-28"><a href="#cb147-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-29"><a href="#cb147-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
+<span id="cb147-30"><a href="#cb147-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb147-31"><a href="#cb147-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-32"><a href="#cb147-32" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb147-33"><a href="#cb147-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
+<span id="cb147-34"><a href="#cb147-34" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb147-35"><a href="#cb147-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-8-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-8-4.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-8-5.png" class="img-fluid" width="672"></p>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "need finite 'xlim' values"</code></pre>
@@ -784,45 +1937,93 @@ WS: 2308 scans</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "need finite 'xlim' values"</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-9_a09db5e0d65bc0e3d6675d93c8df1e87">
-<details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "missing value where TRUE/FALSE needed"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "missing value where TRUE/FALSE needed"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "need finite 'xlim' values"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
 <summary>plotting other nutrient parameters for each cast</summary>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
-<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"CDOM"</span>, <span class="st">"dissolved_oxygen"</span>,</span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"oxygen_saturation"</span>,</span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chlorophyll_concentration"</span>, <span class="st">"chlorophyll_fluorescence"</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb168"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb168-1"><a href="#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
+<span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb168-3"><a href="#cb168-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
+<span id="cb168-4"><a href="#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb168-5"><a href="#cb168-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
+<span id="cb168-6"><a href="#cb168-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
+<span id="cb168-7"><a href="#cb168-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
+<span id="cb168-8"><a href="#cb168-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-9"><a href="#cb168-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
+<span id="cb168-10"><a href="#cb168-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
+<span id="cb168-11"><a href="#cb168-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-12"><a href="#cb168-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
+<span id="cb168-13"><a href="#cb168-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
+<span id="cb168-14"><a href="#cb168-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-15"><a href="#cb168-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
+<span id="cb168-16"><a href="#cb168-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
+<span id="cb168-17"><a href="#cb168-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
+<span id="cb168-18"><a href="#cb168-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
+<span id="cb168-19"><a href="#cb168-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"CDOM"</span>, <span class="st">"dissolved_oxygen"</span>,</span>
+<span id="cb168-20"><a href="#cb168-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"oxygen_saturation"</span>,</span>
+<span id="cb168-21"><a href="#cb168-21" aria-hidden="true" tabindex="-1"></a>        <span class="st">"chlorophyll_concentration"</span>, <span class="st">"chlorophyll_fluorescence"</span></span>
+<span id="cb168-22"><a href="#cb168-22" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb168-23"><a href="#cb168-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
+<span id="cb168-24"><a href="#cb168-24" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb168-25"><a href="#cb168-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-26"><a href="#cb168-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
+<span id="cb168-27"><a href="#cb168-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb168-28"><a href="#cb168-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-29"><a href="#cb168-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
+<span id="cb168-30"><a href="#cb168-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb168-31"><a href="#cb168-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-32"><a href="#cb168-32" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb168-33"><a href="#cb168-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
+<span id="cb168-34"><a href="#cb168-34" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb168-35"><a href="#cb168-35" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
@@ -858,169 +2059,564 @@ WS: 2308 scans</code></pre>
 [1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "plot.new has not been called yet"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
+[1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"
 [1] "In plot,ctd-method() : which=\"CDOMdissolved_oxygenoxygen_saturationchlorophyll_concentrationchlorophyll_fluorescence\" cannot be handled"</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-10_9c0a68975e1906b1589a6d05392ab134">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>plotting other optical parameters for each cast</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
-<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
-<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
-<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
-<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
-<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
-<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
-<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"photosynthetically_available_radiation"</span>,</span>
-<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"beam_attenuation"</span>,<span class="st">"beam_transmission"</span></span>
-<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
-<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
-<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
-<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
-<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
-<span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb51-34"><a href="#cb51-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop through each CTD cast</span></span>
+<span id="cb170-2"><a href="#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb170-3"><a href="#cb170-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># Assuming each sublist contains only one relevant CTD object</span></span>
+<span id="cb170-4"><a href="#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb170-5"><a href="#cb170-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract metadata for station name and cruise ID</span></span>
+<span id="cb170-6"><a href="#cb170-6" aria-hidden="true" tabindex="-1"></a>    station_name <span class="ot">&lt;-</span> cast<span class="sc">@</span>metadata<span class="sc">$</span>station[<span class="dv">1</span>]</span>
+<span id="cb170-7"><a href="#cb170-7" aria-hidden="true" tabindex="-1"></a>    cruise_id <span class="ot">&lt;-</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
+<span id="cb170-8"><a href="#cb170-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-9"><a href="#cb170-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate a title with station name and cruise ID</span></span>
+<span id="cb170-10"><a href="#cb170-10" aria-hidden="true" tabindex="-1"></a>    overall_title <span class="ot">&lt;-</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"Station: {station_name}, Cruise ID: {cruise_id}"</span>)</span>
+<span id="cb170-11"><a href="#cb170-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-12"><a href="#cb170-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set margins: increase the outer margin for the title</span></span>
+<span id="cb170-13"><a href="#cb170-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">0</span>))  <span class="co"># Top outer margin increased for title</span></span>
+<span id="cb170-14"><a href="#cb170-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-15"><a href="#cb170-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plotting function with specific parameters</span></span>
+<span id="cb170-16"><a href="#cb170-16" aria-hidden="true" tabindex="-1"></a>    oce<span class="sc">::</span><span class="fu">plot</span>(</span>
+<span id="cb170-17"><a href="#cb170-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="fu">ctdDecimate</span>(<span class="fu">ctdTrim</span>(cast)),</span>
+<span id="cb170-18"><a href="#cb170-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">which =</span> <span class="fu">c</span>(</span>
+<span id="cb170-19"><a href="#cb170-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">"photosynthetically_available_radiation"</span>,</span>
+<span id="cb170-20"><a href="#cb170-20" aria-hidden="true" tabindex="-1"></a>        <span class="st">"beam_attenuation"</span>,<span class="st">"beam_transmission"</span></span>
+<span id="cb170-21"><a href="#cb170-21" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb170-22"><a href="#cb170-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">""</span>  <span class="co"># No main title for individual subplots</span></span>
+<span id="cb170-23"><a href="#cb170-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb170-24"><a href="#cb170-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-25"><a href="#cb170-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Place a single overall title at the top of the plot frame</span></span>
+<span id="cb170-26"><a href="#cb170-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mtext</span>(overall_title, <span class="at">side =</span> <span class="dv">3</span>, <span class="at">line =</span> <span class="dv">1</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb170-27"><a href="#cb170-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-28"><a href="#cb170-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Reset outer margins to default</span></span>
+<span id="cb170-29"><a href="#cb170-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">par</span>(<span class="at">oma =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb170-30"><a href="#cb170-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-31"><a href="#cb170-31" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb170-32"><a href="#cb170-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e<span class="sc">$</span>message)  <span class="co"># Print any errors that occur during plotting</span></span>
+<span id="cb170-33"><a href="#cb170-33" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb170-34"><a href="#cb170-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-8.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-9.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-9.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-10.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-10.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-11.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-11.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-12.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-12.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-13.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-13.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-14.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-14.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-15.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-15.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-16.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-16.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-17.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-17.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-18.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-18.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-19.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-19.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-20.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-20.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-21.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-21.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-22.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-22.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-23.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-23.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-24.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-24.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-25.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-25.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-26.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-26.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-27.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-27.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-28.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-28.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output-display">
-<p><img src="WS17282_files/figure-html/unnamed-chunk-10-29.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-29.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-30.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-31.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-32.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-33.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-34.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-35.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-36.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-37.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-38.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-39.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-40.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-41.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-42.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-43.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-44.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-45.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-46.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-47.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-48.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-49.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-50.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-51.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-52.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-53.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-54.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-55.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "missing value where TRUE/FALSE needed"</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-56.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-57.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-58.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-59.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-60.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-61.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "missing value where TRUE/FALSE needed"</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17282_files/figure-html/unnamed-chunk-10-62.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "need finite 'xlim' values"</code></pre>
 </div>
 </div>
-<div class="cell" data-hash="WS17282_cache/html/unnamed-chunk-11_f4431f920a7e0f695969953d64952665">
-<details>
+<div class="cell">
+<details class="code-fold">
 <summary>loop through every cast, clean, &amp; save</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># print(class(cast))</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># clean cast </span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  trimmed_cast <span class="ot">&lt;-</span> <span class="fu">ctdTrim</span>(cast)</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  decimated_cast <span class="ot">&lt;-</span> <span class="fu">ctdDecimate</span>(trimmed_cast, <span class="at">p =</span> <span class="fl">0.5</span>)  <span class="co"># binned to 0.5 m</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># convert to df</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  cast_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(decimated_cast<span class="sc">@</span>data)</span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add metadata</span></span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># assumes station ID and cruise ID the same for all &amp; just uses 1st one</span></span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  cast_df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    cast_df,</span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">station =</span> cast<span class="sc">@</span>data<span class="sc">$</span>station[<span class="dv">1</span>],</span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">cruise_id =</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># drop NA rows left by cleaning</span></span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  cast_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(cast_df, <span class="sc">!</span><span class="fu">is.na</span>(scan))</span>
-<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Append the data to the combined dataframe</span></span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a>  combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(combined_df, cast_df)</span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to CSV</span></span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="fu">glue</span>(<span class="st">"data/cleaned/{cruise_id}.csv"</span>))</span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(combined_df, file_path, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb174"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb174-1"><a href="#cb174-1" aria-hidden="true" tabindex="-1"></a>combined_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb174-2"><a href="#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(ctd_FK)){</span>
+<span id="cb174-3"><a href="#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>({</span>
+<span id="cb174-4"><a href="#cb174-4" aria-hidden="true" tabindex="-1"></a>    cast <span class="ot">&lt;-</span> ctd_FK[[i]]  <span class="co"># 1 is selecting only the first sublist</span></span>
+<span id="cb174-5"><a href="#cb174-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb174-6"><a href="#cb174-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(class(cast))</span></span>
+<span id="cb174-7"><a href="#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clean cast </span></span>
+<span id="cb174-8"><a href="#cb174-8" aria-hidden="true" tabindex="-1"></a>    trimmed_cast <span class="ot">&lt;-</span> <span class="fu">ctdTrim</span>(cast)</span>
+<span id="cb174-9"><a href="#cb174-9" aria-hidden="true" tabindex="-1"></a>    decimated_cast <span class="ot">&lt;-</span> <span class="fu">ctdDecimate</span>(trimmed_cast, <span class="at">p =</span> <span class="fl">0.5</span>)  <span class="co"># binned to 0.5 m</span></span>
+<span id="cb174-10"><a href="#cb174-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb174-11"><a href="#cb174-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># convert to df</span></span>
+<span id="cb174-12"><a href="#cb174-12" aria-hidden="true" tabindex="-1"></a>    cast_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(decimated_cast<span class="sc">@</span>data)</span>
+<span id="cb174-13"><a href="#cb174-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb174-14"><a href="#cb174-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add metadata</span></span>
+<span id="cb174-15"><a href="#cb174-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># assumes station ID and cruise ID the same for all &amp; just uses 1st one</span></span>
+<span id="cb174-16"><a href="#cb174-16" aria-hidden="true" tabindex="-1"></a>    cast_df <span class="ot">&lt;-</span> <span class="fu">mutate</span>(</span>
+<span id="cb174-17"><a href="#cb174-17" aria-hidden="true" tabindex="-1"></a>      cast_df,</span>
+<span id="cb174-18"><a href="#cb174-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">station =</span> cast<span class="sc">@</span>data<span class="sc">$</span>station[<span class="dv">1</span>],</span>
+<span id="cb174-19"><a href="#cb174-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">cruise_id =</span> cast<span class="sc">@</span>data<span class="sc">$</span>cruise_id[<span class="dv">1</span>]</span>
+<span id="cb174-20"><a href="#cb174-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb174-21"><a href="#cb174-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb174-22"><a href="#cb174-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># drop NA rows left by cleaning</span></span>
+<span id="cb174-23"><a href="#cb174-23" aria-hidden="true" tabindex="-1"></a>    cast_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(cast_df, <span class="sc">!</span><span class="fu">is.na</span>(scan))</span>
+<span id="cb174-24"><a href="#cb174-24" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb174-25"><a href="#cb174-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Append the data to the combined dataframe</span></span>
+<span id="cb174-26"><a href="#cb174-26" aria-hidden="true" tabindex="-1"></a>    combined_df <span class="ot">&lt;-</span> <span class="fu">rbind</span>(combined_df, cast_df)</span>
+<span id="cb174-27"><a href="#cb174-27" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">error =</span> <span class="cf">function</span>(e){</span>
+<span id="cb174-28"><a href="#cb174-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"error in cast {cast@metadata$station[1]}"</span>))</span>
+<span id="cb174-29"><a href="#cb174-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
+<span id="cb174-30"><a href="#cb174-30" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb174-31"><a href="#cb174-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb174-32"><a href="#cb174-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Save to CSV</span></span>
+<span id="cb174-33"><a href="#cb174-33" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="fu">glue</span>(<span class="st">"data/cleaned/{cruise_id}.csv"</span>))</span>
+<span id="cb174-34"><a href="#cb174-34" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(combined_df, file_path, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1063,18 +2659,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1106,11 +2691,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/USF-IMARS\.github\.io\/seus-mbon-cruise-ctd-processing\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1120,8 +2744,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1133,7 +2766,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1177,6 +2933,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1202,6 +2959,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1262,6 +3045,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
