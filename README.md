@@ -1,5 +1,11 @@
-# seus-mbon-cruise-ctd-processing
-CTD processing &amp; reporting for the SEUS MBON research cruise data
+# CTD SFER / SE US MBON seus-mbon-cruise-ctd-processing
+CTD processing &amp; reporting for the SEUS MBON research cruise data.
+
+"Raw" data comes from https://gcoos5.geos.tamu.edu/erddap.
+The data hosted there has already had some processing done, but this cleans it even further.
+
+After processing the cleaned data will be in `./data/cleaned/`.
+A version of the cleaned data is hosted by USF IMaRS at [here](https://usf.app.box.com/folder/263263938989?s=dvoi1ve0jn3apbdlad114uhn0pvmjool).
 
 # Usage 
 1. clone this repository
