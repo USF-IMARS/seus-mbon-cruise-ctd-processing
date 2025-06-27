@@ -38,6 +38,8 @@ Running `quarto render` will complete several pre-render steps to create the fol
 
 The pre-render steps used to generate the above directory structure  are summarized by  the mermaid chart below.
 
+NOTE: this is out of date. The ctd_reports are not generated or rendered. Everything happens in the cruise_reports.
+
 ```mermaid
 graph TD
 
