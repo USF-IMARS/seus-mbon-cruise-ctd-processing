@@ -3,8 +3,7 @@ project:
   pre-render: R/pre_render/pre_render.R
   render:
     - "*.qmd"
-    - "!ctd_report/"
-    
+
 website:
   title: "MBON Cruise CTD Reports"
   navbar:
@@ -12,7 +11,7 @@ website:
       - index.qmd
       # - ctd_report/ctd_reports.qmd
       - cruise_report/cruise_reports.qmd
-      - href: https://github.com/USF-IMARS/dep-wq-data-report
+      - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing
         text: Source Code on GitHub
 format:
   html:

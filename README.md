@@ -19,65 +19,15 @@ A version of the cleaned data is hosted by USF IMaRS at [here](https://usf.app.b
 4. view the site: `quarto preview`
 5. publish to github pages: `quarto publish`
 
-# generated report structure
-Running `quarto render` will complete several pre-render steps to create the following directory structure:
+# report templates & pre-rendering
+The processing of each cruise data is done using the file `cruise_report/cruise_report_template.qmd`. 
+When running quarto the pre-render step will use this template to make a `.qmd` for each cruise in `cruise_report/cruise_reports`. 
+Then, when each `.qmd` is being rendered, the code in each cruise `.qmd` will be run. 
+The code in these `.qmd` files processes the data.
 
-```tree
-└── cruise_report/
-    ├── cruise_report_template.qmd
-    ├── ctd_report_template.qmd
-    └── cruise_reports/
-        ├── {cruise_id}/
-        │   ├── {cruise_id}.qmd  <- generate_cruise_reports --  cruise_report_template
-        │   └── ctd_reports/  
-        │       ├── {ctd_id}.qmd <- generate_ctd_reports -- ctd_report_template
-        │       └── ...
-        └── ... 
+# workflow
+To work with this repository:
 
-```
-
-The pre-render steps used to generate the above directory structure  are summarized by  the mermaid chart below.
-
-NOTE: this is out of date. The ctd_reports are not generated or rendered. Everything happens in the cruise_reports.
-
-```mermaid
-graph TD
-
-get_cruise_list{{get_cruise_list.R}}
-  --> cruise_list[[cruise_list.csv]]
-
-cruise_list -.->
-prerender_cruise_reports[/prerender_cruise_reports.R\]
-  === foreach_cruise 
-
-%% rendering is implied for every .qmd
-%% cruise_report -.->
-%%   render{{render}}
-%%   --> cruise_report_html[["cruise_(cruise_id)_report.html"]]
-
-subgraph foreach_cruise
-  cruise_report{{"cruise_(cruise_id)_report.qmd"}}
-  prerender_cast_reports[/prerender_cast_reports.R\]
-    === foreach_cast
-end
-
-
-subgraph foreach_cast
-  cast_report{{"ctd_(cruise_id)_(cast_id)_report.qmd"}}
-end
-
-%% subgraph legend
-%% script{{script.R}} 
-%%   -- creates --> file[[file.txt]]
-
-%% file -. depends .->
-%%   report{{report.qmd}}
-
-%% map[/map\]
-
-%% reduce[\reduce/]
-
-%%db[(database.sqlite)]
-
-%% end
-```
+1. edit `cruise_report/cruise_report_template.qmd` as desired.
+    * note that the params in the header can be edited for testing a specific cruise.
+2. `quarto preview` or `quarto publish` to generate the site.
