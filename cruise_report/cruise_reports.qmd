@@ -1,0 +1,9 @@
+---
+title: "Cruise Reports"
+description: "Reports for each Cruise."
+code-fold: true
+listing:
+  contents: cruise_reports
+  type: grid
+---
+

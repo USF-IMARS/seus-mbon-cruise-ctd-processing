@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="USF IMaRS">
 
-<title>SEUS MBON Cruise Data – MBON Cruise CTD Reports</title>
+<title>seus-mbon-cruise-ctd-processing – MBON Cruise CTD Reports</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -125,14 +90,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">SEUS MBON Cruise Data</span></a>
+<span class="menu-text">seus-mbon-cruise-ctd-processing</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="./cruise_report/cruise_reports.qmd"> 
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cruise_report/cruise_reports.html"> 
-<span class="menu-text">Cruise Reports</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="https://github.com/USF-IMARS/dep-wq-data-report"> 
+    <a class="nav-link" href="https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing"> 
 <span class="menu-text">Source Code on GitHub</span></a>
   </li>  
 </ul>
@@ -154,19 +119,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">SEUS MBON Cruise Data</h1>
+<h1 class="title">seus-mbon-cruise-ctd-processing</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>USF IMaRS </p>
-          </div>
-  </div>
     
   
     
@@ -177,111 +136,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>“Raw” data comes from https://gcoos5.geos.tamu.edu/erddap. The data hosted there has already had some processing done, but this cleans it even further.</p>
-<p>After processing the cleaned data will be in <code>./data/cleaned/</code>. A version of the cleaned data is hosted by USF IMaRS at <a href="https://usf.app.box.com/folder/263263938989?s=dvoi1ve0jn3apbdlad114uhn0pvmjool">here</a>.</p>
-<p>The code below is used for fetching the data. Cleaning is done per-cruise, code can be found alongside visualizations in the “Cruise Reports”.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>setup</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">nzchar</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"librarian"</span>))) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"librarian"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quiet =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  librarian, conflicted, ggplot2, tibble, tidyr, readr, purrr, dplyr, stringr,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  forcats, lubridate, glue, fs, magrittr, here, rerddap, cli,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-  These packages will be installed:
-
-  'rerddap'
-
-  It may take some time.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>also installing the dependencies 'hoardr', 'ncdf4'</code></pre>
-</div>
-<details class="code-fold">
-<summary>setup</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conflicts_prefer</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(),</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>[conflicted] Will prefer dplyr::filter over any other package.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[conflicted] Will prefer dplyr::select over any other package.</code></pre>
-</div>
-<details class="code-fold">
-<summary>setup</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># source(here("R", "ctd_download.R"))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>list all cruises</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="st">"https://gcoos5.geos.tamu.edu/erddap/"</span> <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Sys.setenv</span>(<span class="at">RERDDAP_DEFAULT_URL =</span> .)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># search for  all cruise ctd tables in ERDDAP</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>all_cruise_info <span class="ot">&lt;-</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ed_search_adv</span>(</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">query     =</span> <span class="st">"Walton Smith CTD"</span>,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># maxTime   = "2016-01-01T01:00:00Z",</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">page_size =</span> <span class="fl">1e4</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># find unique cruise names</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>all_cruise_ids <span class="ot">&lt;-</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(all_cruise_info<span class="sc">$</span>info<span class="sc">$</span>title, <span class="st">"(WS|SAV|WB|H)</span><span class="sc">\\</span><span class="st">d{3,5}"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>()</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># print info about cruise IDs found</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>cli<span class="sc">::</span><span class="fu">cli_alert_info</span>(</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"{col_green(</span><span class="sc">\"</span><span class="st">Number of files queried</span><span class="sc">\"</span><span class="st">)}: "</span>,</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"{nrow(all_cruise_info$info)} files</span><span class="sc">\n</span><span class="st">"</span>,</span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"{col_blue(</span><span class="sc">\"</span><span class="st">N cruises:</span><span class="sc">\"</span><span class="st">)} {length(all_cruise_ids)}</span><span class="sc">\n\n</span><span class="st">"</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>ℹ Number of files queried: 3542 files
-N cruises: 69</code></pre>
-</div>
-<details class="code-fold">
-<summary>list all cruises</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_cruise_ids)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "WS0603"   "WS0612"   "WS0618"   "WS0623"   "WS0704"   "WS0718"  
- [7] "WS0802"   "WS0807"   "WS0901"   "WS0906"   "WS0914"   "WS0919"  
-[13] "WS0923"   "WS1004"   "WS1007"   "WS1015"   "WS1018"   "WS1102"  
-[19] "WS1106"   "WS1113"   "WS1116"   "WS1202"   "WS1207"   "WS1212"  
-[25] "WS1418"   "WS15103"  "WS15152"  "WS15208"  "WS15264"  "WS15320" 
-[31] "WS16004"  "WS16074"  "WS16207"  "WS16263"  "WS16319"  "WS17030" 
-[37] "WS17086"  "WS17170"  "WS17212"  "WS17282"  "WS18008"  "WS18120" 
-[43] "WS18218"  "WS18285"  "WS18351"  "WS19028"  "WS19119"  "WS19210" 
-[49] "WS19266"  "WS19322"  "WS20006"  "WS20231"  "WS20279"  "WS20342" 
-[55] "WS21032"  "WS21093"  "WS21151"  "WS21212"  "WS21338"  "WS22022" 
-[61] "WS22072"  "WS22141"  "WS22215"  "WS22281"  "WS22337"  "WS23010" 
-[67] "WS23061"  "SAV1803"  "SAV18173"</code></pre>
-</div>
-</div>
-<div class="cell">
-<details class="code-fold">
-<summary>get ready for download</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dir_data_dwnld_save <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"raw"</span>, <span class="st">"ctd"</span>)       <span class="co"># download path</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dir_data_avg_save   <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"processed"</span>, <span class="st">"ctd"</span>) <span class="co"># averaged path</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dir_create</span>(dir_data_avg_save)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<p>This is a Quarto website.</p>
+<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
 
 
 
