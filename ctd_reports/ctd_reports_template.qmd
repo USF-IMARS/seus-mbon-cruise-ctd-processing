@@ -1,0 +1,55 @@
+---
+format: html
+code-fold: true
+editor: source
+params: 
+  cast_id: WS16074_WS16074_WS16074stn2  # NOTE: this must = WS16074_WS16074_WS16074stn2 for prerender to work
+---
+
+```{R}
+#| code-summary: setup
+if (!nzchar(system.file(package = "librarian"))) {
+  install.packages("librarian")
+}
+
+librarian::shelf(
+  quiet = TRUE,
+  readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purrr, tidyr
+)
+```
+
+```{R}
+
+print(glue("=== station: {cast@metadata$station[1]}"))
+print(glue("# scans: {length(cast@data$scan)}"))
+plotScan(cast)
+
+# === plot depth & pressure vs time elapsed
+subset_df <- filter(cruise_df, station == station_name)
+plots[[station_name]] <- ggplot(subset_df, aes(x = time_elapsed)) +
+    geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
+    geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
+    ggtitle(glue("{station_name}"))
+
+
+# === clean & export
+# clean cast 
+trimmed_cast <- ctdTrim(cast)
+decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
+
+# convert to df
+cast_df <- as.data.frame(decimated_cast@data)
+
+# Add metadata
+# assumes station ID and cruise ID the same for all & just uses 1st one
+cast_df <- mutate(
+cast_df,
+station = cast@data$station[1],
+cruise_id = cast@data$cruise_id[1]
+)
+
+# drop NA rows left by cleaning
+cast_df <- subset(cast_df, !is.na(scan))
+
+
+```  
