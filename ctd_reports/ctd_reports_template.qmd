@@ -41,14 +41,14 @@ plotScan(cast)
 
 ## after cleaning
 ```{R}
-# === clean & export
-# clean cast 
+#| code-summary: clean & export
+# === clean cast 
 trimmed_cast <- ctdTrim(cast)
 decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
 
 plotScan(decimated_cast)
 
-
+# === export
 # convert to df
 cast_df <- as.data.frame(decimated_cast@data)
 
@@ -62,5 +62,13 @@ cast_df <- mutate(
 
 # drop NA rows left by cleaning
 cast_df <- subset(cast_df, !is.na(scan))
+
+
+# create folder if doesn't exist
+clean_data_loc <- here::here(glue("data/02_clean/{params$cast_id}.csv"))
+try(fs::dir_create(clean_data_loc))
+
+# save ctd to .csv
+write.csv(cast_df, clean_data_loc)
 
 ```
