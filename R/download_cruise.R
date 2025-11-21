@@ -6,7 +6,7 @@ database <- "https://gcoos5.geos.tamu.edu/erddap/"
 Sys.setenv(RERDDAP_DEFAULT_URL = database)
 
 download_cruise <- function(cruiseID, path, verbose = TRUE) {
-    message(paste("Starting cruise:", cruiseID))
+    message(paste("=== Starting cruise:", cruiseID))
 
     # query cruise ID
     results <- tryCatch(
@@ -37,11 +37,11 @@ download_cruise <- function(cruiseID, path, verbose = TRUE) {
 
         # skip already downloaded files
         if (fs::file_exists(file_path)) {
-            if (verbose) cat("Skipping file file:", filename, "\n--------\n\n")
+            if (verbose) cat("Skipping file file:", filename, "\n")
             next
         }
 
-        if (verbose) cat("Downloading file:", filename, "\n--------\n\n")
+        if (verbose) cat("Downloading file:", filename, "\n")
 
         # get data
         out <- info(filename)
