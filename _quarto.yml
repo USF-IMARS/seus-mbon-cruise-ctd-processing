@@ -15,11 +15,15 @@ website:
       - cruise_report/cruise_reports.qmd
       - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing
         text: Source Code on GitHub
+        
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
+    code-fold: true
+    message: false
+    warning: false
 
 execute:
   cache: true
