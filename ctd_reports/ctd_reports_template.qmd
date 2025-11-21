@@ -29,6 +29,8 @@ source(here::here("R/ctd_load_from_csv.R"))
 cast <- ctd_load_from_csv(here::here(glue::glue(
   "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
 )))
+
+
 ```
 
 ## before cleaning
@@ -65,10 +67,10 @@ cast_df <- subset(cast_df, !is.na(scan))
 
 
 # create folder if doesn't exist
-clean_data_loc <- here::here(glue("data/02_clean/{params$cast_id}.csv"))
+clean_data_loc <- here::here("data/02_clean")
 try(fs::dir_create(clean_data_loc))
 
 # save ctd to .csv
-write.csv(cast_df, clean_data_loc)
+write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"))
 
 ```
