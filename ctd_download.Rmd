@@ -1,0 +1,65 @@
+---
+title: "CTD download from ERDDAP"
+author: "Sebastian DiGeronimo"
+date: "2023-01-10"
+output: html_document
+---
+
+# Steps:
+1. Make sure to download libraries if you don't have
+  i.e. install.packages("purrr")
+2. Check database URL
+3. Change folder location if needed
+  - the code will add cruise specific folders within that location and their 
+    station files
+4. Create folders
+5. Run function on cruise IDs
+
+
+# Load libraries
+```{r setup}
+library("purrr")    # used to loop through lists
+library("rerddap")  # used to access different ERDDAPs
+library("dplyr")    # used to manipulate variables
+library("here")     # used to get relative directory location to a project
+library("glue")
+library("fs")
+```
+
+# Set database
+Once you find an ERDDAP with the data you want, you can change the location here
+```{r set-database}
+# this database contains CTD data from Walton Smith Cruises
+database <- "https://gcoos5.geos.tamu.edu/erddap/"
+Sys.setenv(RERDDAP_DEFAULT_URL = database)
+```
+
+# Set folder location and create vector of cruise IDs
+```{r loc-ids}
+# folder
+loc <- here("data", "raw", "ctd")
+
+```
+
+# Create folder for cruises
+```{r create-dir}
+# create folder if doesn't exist
+here(loc, cruiseID) %>%
+  fs::dir_create()
+```
+
+# Function to query and download CTD data from each cruise
+This takes in cruise IDs and queries the ERDDAP to find data. Next, it will
+download if CTD files don't exist
+```{r query-function}
+source(here("R", "download_cruise.R"))
+```
+
+# Run ctd_downloads function and try each cruise ID for existing data
+```{r}
+source(here("cruise_list.R"))
+for (i in seq(cruiseIDs)) {
+  try(download_cruise(cruiseID[i], loc), silent = TRUE)
+}
+```
+
