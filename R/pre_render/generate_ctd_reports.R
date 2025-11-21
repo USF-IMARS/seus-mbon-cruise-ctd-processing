@@ -27,12 +27,17 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 # Set the root directory where the folders are located
 folder <- "data/01_raw/ctd"
 
-files <- list.files(folder, full.names = TRUE)
+# get list of files in the folder, select only .csv files from within subfolders
+files <- list.files(
+  path = folder,
+  pattern = "\\.csv$",
+  full.names = TRUE,
+  recursive = TRUE
+)
 
 # Loop through each file in the current folder (station)
 for (file in files) {
   # Print the folder name and the filename
-  # print(paste("Folder:", folder, "File   :", basename(file)))
   cast_id <- sub(".csv", "", basename(file))
   params = list(
     cast_id = cast_id
