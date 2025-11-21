@@ -2,7 +2,9 @@ project:
   type: website
   pre-render: R/pre_render/pre_render.R
   render:
-    - "*.qmd"
+    - "index.qmd"
+    - "ctd_reports/ctd_reports/*.qmd"
+    # NOTE: cruise_reports are deprecated & disabled. TODO: rm entirely
 
 website:
   title: "MBON Cruise CTD Reports"
