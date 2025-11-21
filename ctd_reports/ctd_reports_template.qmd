@@ -16,26 +16,38 @@ librarian::shelf(
   quiet = TRUE,
   readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purrr, tidyr
 )
+
+# get cruise ID from splitting cast_id by _
+cruise_id <- sub("_.*", "", params$cast_id)
+# get station ID from filename
+station_id <- sub(glue::glue(".*{cruise_id}"), "", fs::path_file(basename(params$cast_id)))
+
 ```
 
+```{R}
+source(here::here("R/ctd_load_from_csv.R"))
+cast <- ctd_load_from_csv(here::here(glue::glue(
+  "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
+)))
+```
+
+## before cleaning
 ```{R}
 
 print(glue("=== station: {cast@metadata$station[1]}"))
 print(glue("# scans: {length(cast@data$scan)}"))
 plotScan(cast)
+```
 
-# === plot depth & pressure vs time elapsed
-subset_df <- filter(cruise_df, station == station_name)
-plots[[station_name]] <- ggplot(subset_df, aes(x = time_elapsed)) +
-    geom_point(aes(y = depth), color = "blue") +  # Plot depth in blue
-    geom_line(aes(y = sea_water_pressure), color = "red") +  # Plot sea water pressure in red
-    ggtitle(glue("{station_name}"))
-
-
+## after cleaning
+```{R}
 # === clean & export
 # clean cast 
 trimmed_cast <- ctdTrim(cast)
 decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
+
+plotScan(decimated_cast)
+
 
 # convert to df
 cast_df <- as.data.frame(decimated_cast@data)
@@ -43,13 +55,12 @@ cast_df <- as.data.frame(decimated_cast@data)
 # Add metadata
 # assumes station ID and cruise ID the same for all & just uses 1st one
 cast_df <- mutate(
-cast_df,
-station = cast@data$station[1],
-cruise_id = cast@data$cruise_id[1]
+  cast_df,
+  station = station_id,
+  cruise_id = cruise_id
 )
 
 # drop NA rows left by cleaning
 cast_df <- subset(cast_df, !is.na(scan))
 
-
-```  
+```
