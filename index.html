@@ -92,9 +92,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">seus-mbon-cruise-ctd-processing</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="./cruise_report/cruise_reports.qmd"> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">ctd_report/ctd_reports.qmd</span>
+    </span>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing"> 
@@ -136,8 +137,25 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>This website outlines ingestion and processing of CTD data collected from the SEUS MBON Research Cruises in the South Florida region.</p>
+<p>“Raw” CTD casts are ingested from an ERDDAP server and processed using the OCE R library.</p>
+<!-- TODO: add list of unique station names & assure it aligns with Station_Mean_Coords.csv -->
+<!-- 
+TODO: show map of stations using Station_Mean_Coords.csv. Optional: size circles by amount of casts; something like:
+
+```
+  leaflet::addCircleMarkers(
+    stroke = F,
+    fillOpacity = 0.5,
+    radius = ~scale(n_data, center = min(n_data), scale = max(n_data) - min(n_data)) * 20 + 4,
+    data = locs, #filter(locs, bay_segment %in% c("DERM", "AOML")),
+    layerId = ~epchc_station,
+    color = ~color_factor(bay_segment),
+    # TODO: add legend for marker colors
+  ) %>% 
+
+```
+-->
 
 
 
