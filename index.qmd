@@ -2,6 +2,6 @@
 title: "seus-mbon-cruise-ctd-processing"
 ---
 
-This is a Quarto website.
+This website outlines ingestion and processing of CTD data collected from the SEUS MBON Research Cruises in the South Florida region.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+"Raw" CTD casts are ingested from an ERDDAP server and processed using the OCE R library.

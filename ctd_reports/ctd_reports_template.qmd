@@ -44,33 +44,62 @@ plotScan(cast)
 ## after cleaning
 ```{R}
 #| code-summary: clean & export
-# === clean cast 
-trimmed_cast <- ctdTrim(cast)
-decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)  # binned to 0.5 m
+tryCatch({
 
-plotScan(decimated_cast)
+  trimmed_cast <- ctdTrim(cast)
+  decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)
 
-# === export
-# convert to df
-cast_df <- as.data.frame(decimated_cast@data)
+  # plotting can cause the xlim failure
+  plotScan(decimated_cast)
 
-# Add metadata
-# assumes station ID and cruise ID the same for all & just uses 1st one
-cast_df <- mutate(
-  cast_df,
-  station = station_id,
-  cruise_id = cruise_id
-)
+  # === export ===
+  cast_df <- as.data.frame(decimated_cast@data)
 
-# drop NA rows left by cleaning
-cast_df <- subset(cast_df, !is.na(scan))
+  # Add metadata
+  cast_df <- mutate(
+    cast_df,
+    station = station_id,
+    cruise_id = cruise_id
+  )
 
+  # drop NA rows left by cleaning
+  cast_df <- subset(cast_df, !is.na(scan))
 
-# create folder if doesn't exist
-clean_data_loc <- here::here("data/02_clean")
-try(fs::dir_create(clean_data_loc))
+  # create folder if doesn't exist
+  clean_data_loc <- here::here("data/02_clean")
+  try(fs::dir_create(clean_data_loc))
 
-# save ctd to .csv
-write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"))
+  # save ctd to .csv
+  write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"))
+
+}, error = function(e) {
+
+  cat("\n=== CTD PROCESSING ERROR ===\n")
+  cat("Cast ID:", params$cast_id, "\n")
+  cat("Error message:\n", conditionMessage(e), "\n\n")
+
+  # Safely inspect objects that might or might not exist when the error happened
+  if (exists("decimated_cast")) {
+    df <- try(as.data.frame(decimated_cast@data), silent = TRUE)
+    if (!inherits(df, "try-error")) {
+
+      cat("Dataframe columns:\n")
+      print(names(df))
+
+      cat("\nSummary of key columns (scan, pressure, temperature, salinity if present):\n")
+      known_cols <- intersect(c("scan", "pressure", "temp", "temperature", "salinity", "conductivity"), names(df))
+      print(summary(df[known_cols], digits = 3))
+
+      cat("\nHead of dataframe:\n")
+      print(head(df))
+    } else {
+      cat("Could not extract dataframe from decimated_cast.\n")
+    }
+  } else {
+    cat("decimated_cast was never created before the error.\n")
+  }
+
+  cat("\n=== END ERROR DEBUG INFO ===\n\n")
+})
 
 ```
