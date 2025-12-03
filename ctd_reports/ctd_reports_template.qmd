@@ -6,6 +6,8 @@ params:
   cast_id: WS16074_WS16074_WS16074stn2  # NOTE: this must = WS16074_WS16074_WS16074stn2 for prerender to work
 ---
 
+# WS16074_WS16074_WS16074stn2
+
 ```{R}
 #| code-summary: setup
 if (!nzchar(system.file(package = "librarian"))) {
@@ -17,24 +19,37 @@ librarian::shelf(
   readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purrr, tidyr
 )
 
-# get cruise ID from splitting cast_id by _
-cruise_id <- sub("_.*", "", params$cast_id)
-# get station ID from filename
-station_id <- sub(glue::glue(".*{cruise_id}"), "", fs::path_file(basename(params$cast_id)))
-
+source(here("R/get_metadata_from_cast_id.R"))
+metadata <- get_metadata_from_cast_id(params$cast_id)
+station_id <- metadata$station_id
+cruise_id <- metadata$cruise_id
 ```
 
 ```{R}
+#| code-summary: create an oce CTD object
 source(here::here("R/ctd_load_from_csv.R"))
 cast <- ctd_load_from_csv(here::here(glue::glue(
   "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
+
+  # TODO: include other_params (use the 1s from `use (from CTD data)` column and do not include 0s from that column in spreadsheet https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311 )
 )))
 
+# TODO: Include param here that specifies to handle QC flags. This should be done before converting to a OCE object. QC flag columns are listed in [this spreadsheet](https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311) and are not supposed to be included in the oce object. QC param values are : 
+#   1 good
+#   2 +/- 3*std_dev
+#   4 +/- 5*std_dev
+#   9 missing
+# Data column should be set to NA if corresponding QC column has value greater than threshold (recommended threshold is 5*std_dev).
+# Will need to loop through *_qc columns.
 
+# TODO: drop spikes (how? low-pass?).
+
+# TODO: combine replicate sensors (eg temp1 temp2).
 ```
 
 ## before cleaning
 ```{R}
+#| code-summary: Show scans before cleaning.
 
 print(glue("=== station: {cast@metadata$station[1]}"))
 print(glue("# scans: {length(cast@data$scan)}"))
@@ -43,9 +58,9 @@ plotScan(cast)
 
 ## after cleaning
 ```{R}
-#| code-summary: clean & export
+#| code-summary: Clean, export, show scans after cleaning.
 tryCatch({
-
+  
   trimmed_cast <- ctdTrim(cast)
   decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)
 
@@ -101,5 +116,16 @@ tryCatch({
 
   cat("\n=== END ERROR DEBUG INFO ===\n\n")
 })
+```
 
+
+```{R}
+#| code-summary: Plot Final Profile
+tryCatch({
+  oce::plotProfile(decimated_cast)
+  # TODO: plot chl & do (prereq handle other_params in ctd_load_from_csv call above)
+  
+}, error = function(e) {
+  print("decimated cast not found")
+})
 ```

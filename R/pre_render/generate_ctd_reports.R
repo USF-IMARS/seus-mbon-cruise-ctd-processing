@@ -1,4 +1,5 @@
-# creates a report template .qmd for each
+# Uses `ctd_reports/ctd_reports_template.qmd` to create a .qmd report for each CTD cast in the `data/01_raw/` directory.
+
 REPORT_TEMPLATE = "ctd_reports/ctd_reports_template.qmd"
 REPORTS_DIR = "ctd_reports/ctd_reports"
 
@@ -9,6 +10,8 @@ librarian::shelf(
   glue,
   whisker  
 )
+
+# TODO: delete everything in the $REPORTS_DIR to prevent caching issues?
 
 # Proceed if rendering the whole project, exit otherwise
 if (!nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
@@ -42,7 +45,7 @@ for (file in files) {
   params = list(
     cast_id = cast_id
   )
-  print(glue("=== creating template for '{cast_id}' ==="))
+  print(glue("=== creating template for '{cast_id}'"))
   writeLines(
     whisker.render(templ, params),
     file.path(REPORTS_DIR, glue("{cast_id}.qmd"))

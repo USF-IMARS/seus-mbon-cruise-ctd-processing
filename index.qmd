@@ -1,7 +1,26 @@
 ---
-title: "seus-mbon-cruise-ctd-processing"
+title: "SEUS MBON CTD Ingestion & Processing"
 ---
 
 This website outlines ingestion and processing of CTD data collected from the SEUS MBON Research Cruises in the South Florida region.
 
 "Raw" CTD casts are ingested from an ERDDAP server and processed using the OCE R library.
+
+<!-- TODO: add list of unique station names & assure it aligns with Station_Mean_Coords.csv -->
+
+<!-- 
+TODO: show map of stations using Station_Mean_Coords.csv. Optional: size circles by amount of casts; something like:
+
+```
+  leaflet::addCircleMarkers(
+    stroke = F,
+    fillOpacity = 0.5,
+    radius = ~scale(n_data, center = min(n_data), scale = max(n_data) - min(n_data)) * 20 + 4,
+    data = locs, #filter(locs, bay_segment %in% c("DERM", "AOML")),
+    layerId = ~epchc_station,
+    color = ~color_factor(bay_segment),
+    # TODO: add legend for marker colors
+  ) %>% 
+
+```
+-->

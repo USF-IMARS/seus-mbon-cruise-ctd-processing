@@ -3,7 +3,8 @@ project:
   pre-render: R/pre_render/pre_render.R
   render:
     - "index.qmd"
-    - "ctd_reports/ctd_reports/*.qmd"
+    - "ctd_reports/ctd_reports.qmd"  # CTD reports listing page
+    - "ctd_reports/ctd_reports/*.qmd"  # all generated CTD reports
     # NOTE: cruise_reports are deprecated & disabled. TODO: rm entirely
 
 website:
@@ -11,8 +12,8 @@ website:
   navbar:
     left:
       - index.qmd
-      # - ctd_report/ctd_reports.qmd
-      - cruise_report/cruise_reports.qmd
+      - ctd_reports/ctd_reports.qmd
+      #- cruise_report/cruise_reports.qmd
       - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing
         text: Source Code on GitHub
         
