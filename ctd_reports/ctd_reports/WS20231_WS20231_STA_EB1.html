@@ -126,9 +126,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">SEUS MBON CTD Ingestion &amp; Processing</span></a>
   </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="../../ctd_reports/ctd_reports.qmd"> 
-<span class="menu-text"></span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="../../ctd_reports/ctd_reports.html"> 
+<span class="menu-text">CTD Reports</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing"> 
@@ -173,19 +173,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  readr, here, fs, ggplot2, glue, <span class="st">"jiho/castr"</span>, dplyr, oce, patchwork, purrr, tidyr</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># get cast ID from what researcher entered</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># cast_id format : {}_{}_{station_id_entered_by_researcher}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>cast_id <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^[^_]+_[^_]+_"</span>, <span class="st">""</span>, params<span class="sc">$</span>cast_id)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># extract station_id from cast_id by skipping first (1-3) letters and next (4-5) digits and optional _</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>station_id <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"^[A-Za-z]{1,3}[0-9]{4,5}_?"</span>, <span class="st">""</span>, cast_id)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># drop stn, sta from station_id like `stn2`</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>station_id <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"(?i)(stn|sta)_?"</span>, <span class="st">""</span>, station_id)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># get cruise ID from first part of cast_id by _</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>cruise_id <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">"_.*"</span>, <span class="st">""</span>, params<span class="sc">$</span>cast_id)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Deal with `station_id`s changing through time.</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">#       Use mapping from https://github.com/sebastiandig/misc_ideas/blob/main/Rmd/ctd_data_station_check.qmd#L90-L117</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"R/get_metadata_from_cast_id.R"</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>metadata <span class="ot">&lt;-</span> <span class="fu">get_metadata_from_cast_id</span>(params<span class="sc">$</span>cast_id)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>station_id <span class="ot">&lt;-</span> metadata<span class="sc">$</span>station_id</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>cruise_id <span class="ot">&lt;-</span> metadata<span class="sc">$</span>cruise_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
