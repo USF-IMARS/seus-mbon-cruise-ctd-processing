@@ -1,14 +1,16 @@
 ctd_load_from_csv <- function(file, other_params = NULL) {
+  # file <- here::here(glue::glue("data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"))
+  # other_params <- NULL
   cat(basename(file), "\n")
 
   ctd_raw <- readr::read_csv(file, show_col_types = FALSE)
 
   # get station ID from filename
-  station_id <- sub(".*_", "", fs::path_file(basename(file)))
-
-  # get cruise ID from splitting cast_id by _
-  cruise_id <- sub("_.*", "", fs::path_file(basename(file)))
-
+  source(here::here("R/get_metadata_from_cast_id.R"))
+  metadata <- get_metadata_from_cast_id(params$cast_id)
+  station_id <- metadata$station_id
+  cruise_id <- metadata$cruise_id
+  
   # assume lat+lon is same throughout the cast
   lat <- ctd_raw$latitude[[1]]
   lon <- ctd_raw$longitude[[1]]
