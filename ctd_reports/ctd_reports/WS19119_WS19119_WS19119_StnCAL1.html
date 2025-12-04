@@ -150,8 +150,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-cleaning" id="toc-before-cleaning" class="nav-link active" data-scroll-target="#before-cleaning">before cleaning</a></li>
+  <li><a href="#ws19119_ws19119_ws19119_stncal1" id="toc-ws19119_ws19119_ws19119_stncal1" class="nav-link active" data-scroll-target="#ws19119_ws19119_ws19119_stncal1">WS19119_WS19119_WS19119_StnCAL1</a>
+  <ul class="collapse">
+  <li><a href="#before-cleaning" id="toc-before-cleaning" class="nav-link" data-scroll-target="#before-cleaning">before cleaning</a></li>
   <li><a href="#after-cleaning" id="toc-after-cleaning" class="nav-link" data-scroll-target="#after-cleaning">after cleaning</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -161,6 +164,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
+<section id="ws19119_ws19119_ws19119_stncal1" class="level1">
+<h1>WS19119_WS19119_WS19119_StnCAL1</h1>
 <div class="cell">
 <details class="code-fold">
 <summary>setup</summary>
@@ -181,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>create an oce CTD object</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/ctd_load_from_csv.R"</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cast <span class="ot">&lt;-</span> <span class="fu">ctd_load_from_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(glue<span class="sc">::</span><span class="fu">glue</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"</span></span>
@@ -196,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "No additional parameters to add"</code></pre>
 </div>
 <details class="code-fold">
-<summary>Code</summary>
+<summary>create an oce CTD object</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: Include param here that specifies to handle QC flags. This should be done before converting to a OCE object. QC flag columns are listed in [this spreadsheet](https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311) and are not supposed to be included in the oce object. QC param values are : </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   1 good</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   2 +/- 3*std_dev</span></span>
@@ -214,21 +219,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="before-cleaning">before cleaning</h2>
 <div class="cell">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show scans before cleaning.</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"=== station: {cast@metadata$station[1]}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>=== station: StnCAL1.csv</code></pre>
+<pre><code>=== station: CAL1</code></pre>
 </div>
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show scans before cleaning.</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">glue</span>(<span class="st">"# scans: {length(cast@data$scan)}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># scans: 1567</code></pre>
 </div>
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show scans before cleaning.</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotScan</span>(cast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
@@ -244,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="after-cleaning">after cleaning</h2>
 <div class="cell">
 <details class="code-fold">
-<summary>clean &amp; export</summary>
+<summary>Clean, export, show scans after cleaning.</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tryCatch</span>({</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  trimmed_cast <span class="ot">&lt;-</span> <span class="fu">ctdTrim</span>(cast)</span>
@@ -332,6 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
