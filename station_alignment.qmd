@@ -1,0 +1,187 @@
+---
+title: "Station Name Alignment Check"
+format: html
+---
+
+This document checks alignment between station names in `Station_Mean_Coords.csv` and stations found in the raw CTD data files.
+
+```{r}
+#| label: setup
+#| message: false
+library(tidyverse)
+library(gt)
+```
+
+## Load Station Coordinates
+
+```{r}
+#| label: load-coords
+station_coords <- read_csv("data/Station_Mean_Coords.csv", show_col_types = FALSE)
+
+# Display the station coordinates
+station_coords %>%
+  gt() %>%
+  tab_header(title = "Expected Stations from Station_Mean_Coords.csv") %>%
+  fmt_number(columns = c(lat_mean, lon_mean), decimals = 4)
+```
+
+## Extract Station Names from Raw Data Files
+
+```{r}
+#| label: extract-filenames
+# Get all CSV files from data/01_raw directory
+raw_files <- list.files(
+  path = "data/01_raw",
+  pattern = "\\.csv$",
+  recursive = TRUE,
+  full.names = TRUE
+)
+
+# Extract station names from filenames
+# Pattern: {CRUISE_NAME}/{CRUISE_NAME}_{CRUISE_NAME}_{CRUISE_NAME}_{STATION_NAME}.csv
+file_stations <- tibble(
+  filepath = raw_files,
+  filename = basename(filepath)
+) %>%
+  mutate(
+    # Remove .csv extension and split by underscore
+    parts = str_remove(filename, "\\.csv$") %>% str_split("_"),
+    # Extract station name (last part after splitting by underscore)
+    station = map_chr(parts, ~.x[length(.x)]),
+    # Extract cruise name (folder name)
+    cruise = basename(dirname(filepath))
+  ) %>%
+  select(cruise, station, filename, filepath)
+
+# Show unique stations found in files
+file_stations %>%
+  count(station, name = "n_files") %>%
+  arrange(desc(n_files)) %>%
+  gt() %>%
+  tab_header(title = "Stations Found in Raw Data Files") %>%
+  cols_label(
+    station = "Station Name",
+    n_files = "Number of Files"
+  )
+```
+
+## Comparison Analysis
+
+```{r}
+#| label: compare-stations
+# Get unique station names from each source
+coords_stations <- unique(station_coords$station)
+file_stations_unique <- unique(file_stations$station)
+
+# Stations in coords but NOT in files
+missing_from_files <- setdiff(coords_stations, file_stations_unique)
+
+# Stations in files but NOT in coords
+missing_from_coords <- setdiff(file_stations_unique, coords_stations)
+
+# Stations in both (aligned)
+aligned_stations <- intersect(coords_stations, file_stations_unique)
+```
+
+### Summary Statistics
+
+```{r}
+#| label: summary-stats
+tibble(
+  Category = c(
+    "Total stations in Station_Mean_Coords.csv",
+    "Total stations in raw data files",
+    "Stations aligned (in both)",
+    "Stations missing from raw files",
+    "Stations missing from coordinates"
+  ),
+  Count = c(
+    length(coords_stations),
+    length(file_stations_unique),
+    length(aligned_stations),
+    length(missing_from_files),
+    length(missing_from_coords)
+  )
+) %>%
+  gt() %>%
+  tab_header(title = "Station Alignment Summary") %>%
+  tab_style(
+    style = cell_fill(color = "lightgreen"),
+    locations = cells_body(rows = Count == 0 & str_detect(Category, "missing"))
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "lightyellow"),
+    locations = cells_body(rows = Count > 0 & str_detect(Category, "missing"))
+  )
+```
+
+### Stations Missing from Raw Data Files
+
+```{r}
+#| label: missing-from-files
+if (length(missing_from_files) > 0) {
+  tibble(Station = missing_from_files) %>%
+    gt() %>%
+    tab_header(
+      title = "Stations in Coordinates but NOT in Raw Files",
+      subtitle = "These stations have coordinates but no CTD data files"
+    ) %>%
+    tab_style(
+      style = cell_fill(color = "lightyellow"),
+      locations = cells_body()
+    )
+} else {
+  cat("✅ All stations from Station_Mean_Coords.csv have corresponding raw data files!\n")
+}
+```
+
+### Stations Missing from Coordinate File
+
+```{r}
+#| label: missing-from-coords
+if (length(missing_from_coords) > 0) {
+  # Show which cruises these stations appear in
+  file_stations %>%
+    filter(station %in% missing_from_coords) %>%
+    count(station, cruise) %>%
+    arrange(station, cruise) %>%
+    gt() %>%
+    tab_header(
+      title = "Stations in Raw Files but NOT in Coordinates",
+      subtitle = "These stations have CTD data but no coordinate reference"
+    ) %>%
+    cols_label(
+      station = "Station Name",
+      cruise = "Cruise",
+      n = "Number of Files"
+    ) %>%
+    tab_style(
+      style = cell_fill(color = "lightcoral"),
+      locations = cells_body()
+    )
+} else {
+  cat("✅ All stations from raw data files have entries in Station_Mean_Coords.csv!\n")
+}
+```
+
+### Files by Cruise and Station
+
+```{r}
+#| label: files-by-cruise
+file_stations %>%
+  count(cruise, station) %>%
+  pivot_wider(names_from = cruise, values_from = n, values_fill = 0) %>%
+  arrange(station) %>%
+  gt() %>%
+  tab_header(title = "CTD Files per Station by Cruise") %>%
+  cols_label(station = "Station") %>%
+  tab_style(
+    style = cell_fill(color = "lightblue"),
+    locations = cells_body(columns = -station, rows = everything())
+  ) %>%
+  data_color(
+    columns = -station,
+    palette = "Blues",
+    domain = c(0, NA)
+  )
+```
