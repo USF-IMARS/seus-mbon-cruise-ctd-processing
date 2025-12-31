@@ -1,6 +1,6 @@
 ---
 title: "CTD Reports"
-description: "Details for each CTD cast"
+description: "Click a CTD Cast for Data Cleaning Details"
 code-fold: true
 listing:
   contents: ctd_reports

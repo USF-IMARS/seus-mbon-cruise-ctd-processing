@@ -3,6 +3,7 @@ project:
   pre-render: R/pre_render/pre_render.R
   render:
     - "index.qmd"
+    - "station_alignment.qmd"
     - "ctd_reports/ctd_reports.qmd"  # CTD reports listing page
     - "ctd_reports/ctd_reports/*.qmd"  # all generated CTD reports
     # NOTE: cruise_reports are deprecated & disabled. TODO: rm entirely
