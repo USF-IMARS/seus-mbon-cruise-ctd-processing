@@ -12,7 +12,8 @@ website:
   title: "MBON Cruise CTD Reports"
   navbar:
     left:
-      - index.qmd
+      # - index.qmd
+      - station_alignment.qmd
       - ctd_reports/ctd_reports.qmd
       #- cruise_report/cruise_reports.qmd
       - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing

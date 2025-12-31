@@ -5,4 +5,5 @@ code-fold: true
 listing:
   contents: ctd_reports
   type: grid
+  fields: [title, image]
 ---
