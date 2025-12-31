@@ -6,7 +6,7 @@ format: html
 This document checks alignment between station names in `Station_Mean_Coords.csv` and stations found in the raw CTD data files.
 
 ```{r}
-#| label: setup
+#| code-summary: setup
 #| message: false
 library(tidyverse)
 library(DT)
@@ -15,26 +15,26 @@ library(DT)
 ## Load Station Coordinates
 
 ```{r}
-#| label: load-coords
+#| code-summary: load-coords
 station_coords <- read_csv("data/Station_Mean_Coords.csv", show_col_types = FALSE)
 
-# Display the station coordinates
-station_coords %>%
-  datatable(
-    caption = "Expected Stations from Station_Mean_Coords.csv",
-    options = list(
-      pageLength = 10,
-      scrollY = "400px",
-      scrollCollapse = TRUE
-    )
-  ) %>%
-  formatRound(columns = c("lat_mean", "lon_mean"), digits = 4)
+# # Display the station coordinates
+# station_coords %>%
+#   datatable(
+#     caption = "Expected Stations from Station_Mean_Coords.csv",
+#     options = list(
+#       pageLength = 10,
+#       scrollY = "400px",
+#       scrollCollapse = TRUE
+#     )
+#   ) %>%
+#   formatRound(columns = c("lat_mean", "lon_mean"), digits = 4)
 ```
 
 ## Extract Station Names from Raw Data Files
 
 ```{r}
-#| label: extract-filenames
+#| code-summary: extract-filenames
 # Get all CSV files from data/01_raw directory
 raw_files <- list.files(
   path = "data/01_raw",
@@ -59,25 +59,26 @@ file_stations <- tibble(
   ) %>%
   select(cruise, station, filename, filepath)
 
-# Show unique stations found in files
-file_stations %>%
-  count(station, name = "n_files") %>%
-  arrange(desc(n_files)) %>%
-  datatable(
-    caption = "Stations Found in Raw Data Files",
-    colnames = c("Station Name", "Number of Files"),
-    options = list(
-      pageLength = 10,
-      scrollY = "400px",
-      scrollCollapse = TRUE
-    )
-  )
+# # Show unique stations found in files
+# file_stations %>%
+#   count(station, name = "n_files") %>%
+#   arrange(desc(n_files)) %>%
+#   datatable(
+#     caption = "Stations Found in Raw Data Files",
+#     colnames = c("Station Name", "Number of Files"),
+#     options = list(
+#       pageLength = 10,
+#       scrollY = "400px",
+#       scrollCollapse = TRUE
+#     )
+#   )
 ```
+
 
 ## Comparison Analysis
 
 ```{r}
-#| label: compare-stations
+#| code-summary: compare-stations
 # Get unique station names from each source
 coords_stations <- unique(station_coords$station)
 file_stations_unique <- unique(file_stations$station)
@@ -95,7 +96,7 @@ aligned_stations <- intersect(coords_stations, file_stations_unique)
 ### Summary Statistics
 
 ```{r}
-#| label: summary-stats
+#| code-summary: summary-stats
 tibble(
   Category = c(
     "Total stations in Station_Mean_Coords.csv",
@@ -132,7 +133,7 @@ tibble(
 ### Stations Missing from Raw Data Files
 
 ```{r}
-#| label: missing-from-files
+#| code-summary: missing-from-files
 if (length(missing_from_files) > 0) {
   tibble(Station = missing_from_files) %>%
     datatable(
@@ -152,7 +153,7 @@ if (length(missing_from_files) > 0) {
 ### Stations Missing from Coordinate File
 
 ```{r}
-#| label: missing-from-coords
+#| code-summary: missing-from-coords
 if (length(missing_from_coords) > 0) {
   # Show which cruises these stations appear in
   file_stations %>%
@@ -177,7 +178,7 @@ if (length(missing_from_coords) > 0) {
 ### Files by Cruise and Station
 
 ```{r}
-#| label: files-by-cruise
+#| code-summary: files-by-cruise
 # Create the pivot table
 heatmap_data <- file_stations %>%
   count(cruise, station) %>%
