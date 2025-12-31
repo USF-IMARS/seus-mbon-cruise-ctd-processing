@@ -9,7 +9,7 @@ This document checks alignment between station names in `Station_Mean_Coords.csv
 #| label: setup
 #| message: false
 library(tidyverse)
-library(gt)
+library(DT)
 ```
 
 ## Load Station Coordinates
@@ -20,9 +20,15 @@ station_coords <- read_csv("data/Station_Mean_Coords.csv", show_col_types = FALS
 
 # Display the station coordinates
 station_coords %>%
-  gt() %>%
-  tab_header(title = "Expected Stations from Station_Mean_Coords.csv") %>%
-  fmt_number(columns = c(lat_mean, lon_mean), decimals = 4)
+  datatable(
+    caption = "Expected Stations from Station_Mean_Coords.csv",
+    options = list(
+      pageLength = 10,
+      scrollY = "400px",
+      scrollCollapse = TRUE
+    )
+  ) %>%
+  formatRound(columns = c("lat_mean", "lon_mean"), digits = 4)
 ```
 
 ## Extract Station Names from Raw Data Files
@@ -57,11 +63,14 @@ file_stations <- tibble(
 file_stations %>%
   count(station, name = "n_files") %>%
   arrange(desc(n_files)) %>%
-  gt() %>%
-  tab_header(title = "Stations Found in Raw Data Files") %>%
-  cols_label(
-    station = "Station Name",
-    n_files = "Number of Files"
+  datatable(
+    caption = "Stations Found in Raw Data Files",
+    colnames = c("Station Name", "Number of Files"),
+    options = list(
+      pageLength = 10,
+      scrollY = "400px",
+      scrollCollapse = TRUE
+    )
   )
 ```
 
@@ -103,15 +112,20 @@ tibble(
     length(missing_from_coords)
   )
 ) %>%
-  gt() %>%
-  tab_header(title = "Station Alignment Summary") %>%
-  tab_style(
-    style = cell_fill(color = "lightgreen"),
-    locations = cells_body(rows = Count == 0 & str_detect(Category, "missing"))
+  datatable(
+    caption = "Station Alignment Summary",
+    options = list(
+      dom = 't',
+      ordering = FALSE
+    )
   ) %>%
-  tab_style(
-    style = cell_fill(color = "lightyellow"),
-    locations = cells_body(rows = Count > 0 & str_detect(Category, "missing"))
+  formatStyle(
+    'Count',
+    target = 'row',
+    backgroundColor = styleEqual(
+      c(0, 0),
+      c('lightgreen', 'lightgreen')
+    )
   )
 ```
 
@@ -121,15 +135,15 @@ tibble(
 #| label: missing-from-files
 if (length(missing_from_files) > 0) {
   tibble(Station = missing_from_files) %>%
-    gt() %>%
-    tab_header(
-      title = "Stations in Coordinates but NOT in Raw Files",
-      subtitle = "These stations have coordinates but no CTD data files"
+    datatable(
+      caption = "Stations in Coordinates but NOT in Raw Files - These stations have coordinates but no CTD data files",
+      options = list(
+        pageLength = 10,
+        scrollY = "300px",
+        scrollCollapse = TRUE
+      )
     ) %>%
-    tab_style(
-      style = cell_fill(color = "lightyellow"),
-      locations = cells_body()
-    )
+    formatStyle(columns = 1, backgroundColor = 'lightyellow')
 } else {
   cat("✅ All stations from Station_Mean_Coords.csv have corresponding raw data files!\n")
 }
@@ -145,20 +159,16 @@ if (length(missing_from_coords) > 0) {
     filter(station %in% missing_from_coords) %>%
     count(station, cruise) %>%
     arrange(station, cruise) %>%
-    gt() %>%
-    tab_header(
-      title = "Stations in Raw Files but NOT in Coordinates",
-      subtitle = "These stations have CTD data but no coordinate reference"
+    datatable(
+      caption = "Stations in Raw Files but NOT in Coordinates - These stations have CTD data but no coordinate reference",
+      colnames = c("Station Name", "Cruise", "Number of Files"),
+      options = list(
+        pageLength = 10,
+        scrollY = "400px",
+        scrollCollapse = TRUE
+      )
     ) %>%
-    cols_label(
-      station = "Station Name",
-      cruise = "Cruise",
-      n = "Number of Files"
-    ) %>%
-    tab_style(
-      style = cell_fill(color = "lightcoral"),
-      locations = cells_body()
-    )
+    formatStyle(columns = 1:3, backgroundColor = 'lightcoral')
 } else {
   cat("✅ All stations from raw data files have entries in Station_Mean_Coords.csv!\n")
 }
@@ -172,16 +182,13 @@ file_stations %>%
   count(cruise, station) %>%
   pivot_wider(names_from = cruise, values_from = n, values_fill = 0) %>%
   arrange(station) %>%
-  gt() %>%
-  tab_header(title = "CTD Files per Station by Cruise") %>%
-  cols_label(station = "Station") %>%
-  tab_style(
-    style = cell_fill(color = "lightblue"),
-    locations = cells_body(columns = -station, rows = everything())
-  ) %>%
-  data_color(
-    columns = -station,
-    palette = "Blues",
-    domain = c(0, NA)
+  datatable(
+    caption = "CTD Files per Station by Cruise",
+    options = list(
+      pageLength = 15,
+      scrollY = "500px",
+      scrollCollapse = TRUE,
+      scrollX = TRUE
+    )
   )
 ```
