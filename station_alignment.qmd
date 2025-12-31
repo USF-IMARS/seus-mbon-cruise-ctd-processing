@@ -178,17 +178,65 @@ if (length(missing_from_coords) > 0) {
 
 ```{r}
 #| label: files-by-cruise
-file_stations %>%
+# Create the pivot table
+heatmap_data <- file_stations %>%
   count(cruise, station) %>%
   pivot_wider(names_from = cruise, values_from = n, values_fill = 0) %>%
-  arrange(station) %>%
+  # Convert counts to binary (0 or 1)
+  mutate(across(-station, ~as.integer(. > 0))) %>%
+  arrange(station)
+
+# Get the number of columns (excluding station column)
+n_cols <- ncol(heatmap_data)
+
+heatmap_data %>%
   datatable(
-    caption = "CTD Files per Station by Cruise",
+    caption = "CTD Files per Station by Cruise (Presence/Absence)",
     options = list(
-      pageLength = 15,
+      pageLength = 20,
       scrollY = "500px",
       scrollCollapse = TRUE,
-      scrollX = TRUE
-    )
+      scrollX = TRUE,
+      dom = 'tip',
+      columnDefs = list(
+        list(className = 'dt-center', targets = 1:(n_cols - 1))
+      )
+    ),
+    class = 'compact stripe'
+  ) %>%
+  formatStyle(
+    columns = 2:n_cols,
+    backgroundColor = styleEqual(c(0, 1), c('white', '#4682b4')),
+    color = styleEqual(c(0, 1), c('#cccccc', 'white'))
   )
+```
+
+```{css}
+#| echo: false
+/* Rotate cruise column headers 45 degrees */
+.dataTables_wrapper table thead th:not(:first-child) {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: left;
+  vertical-align: bottom;
+  padding: 5px 3px !important;
+  height: 120px;
+  white-space: nowrap;
+}
+
+/* Make table more compact */
+.compact td, .compact th {
+  padding: 2px 4px !important;
+  font-size: 11px;
+}
+
+.compact tbody td:not(:first-child) {
+  text-align: center !important;
+  font-weight: bold;
+}
+
+/* Keep table layout fixed for consistent column widths */
+.compact table {
+  table-layout: auto !important;
+}
 ```
