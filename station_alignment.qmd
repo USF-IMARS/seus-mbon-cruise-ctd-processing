@@ -12,7 +12,7 @@ library(tidyverse)
 library(DT)
 ```
 
-## Load Station Coordinates
+## Load Station Coordinates & Standard Names
 
 ```{r}
 #| code-summary: load-coords
@@ -34,7 +34,7 @@ station_coords <- read_csv("data/Station_Mean_Coords.csv", show_col_types = FALS
 ## Extract Station Names from Raw Data Files
 
 ```{r}
-#| code-summary: extract-filenames
+#| code-summary: extract stations from from raw file names
 # Get all CSV files from data/01_raw directory
 raw_files <- list.files(
   path = "data/01_raw",
@@ -74,6 +74,87 @@ file_stations <- tibble(
 #   )
 ```
 
+## Align Columns
+```{r}
+#| code-summary: align filenames to standard
+
+source("R/align_raw_station_name.R")
+
+# Create output directory if it doesn't exist
+output_dir <- "data/02_renamed"
+
+# Delete directory if it exists, then recreate it empty
+if (dir.exists(output_dir)) {
+    unlink(output_dir, recursive = TRUE)
+}
+dir.create(output_dir, recursive = TRUE)
+
+# Apply standardization to each file
+file_stations_aligned <- file_stations %>%
+    mutate(
+        station_standard = map_chr(station, align_raw_station_name),
+        # Create new standardized filename
+        filename_standard = str_replace(filename, paste0("_", station, "\\.csv$"), paste0("_", station_standard, ".csv")),
+        # Create new standardized filepath in data/02_renamed
+        filepath_standard = file.path(output_dir, filename_standard),
+        # Check if rename is needed
+        needs_rename = station != station_standard
+    )
+
+# Summary of changes
+rename_summary <- file_stations_aligned %>%
+    summarise(
+        total_files = n(),
+        files_needing_rename = sum(needs_rename),
+        files_already_aligned = sum(!needs_rename)
+    )
+
+cat("Total files:", rename_summary$total_files, "\n")
+cat("Files needing rename:", rename_summary$files_needing_rename, "\n")
+cat("Files already aligned:", rename_summary$files_already_aligned, "\n\n")
+
+# Show files that need renaming
+if (rename_summary$files_needing_rename > 0) {
+    file_stations_aligned %>%
+        filter(needs_rename) %>%
+        select(cruise, station, filename_standard, filename, filename_standard) %>%
+        datatable(
+            caption = "Files that need renaming to align with standard station names",
+            colnames = c("Cruise", "Current Station", "Standard Station", "Current Filename", "Standard Filename"),
+            options = list(
+                pageLength = 10,
+                scrollY = "400px",
+                scrollCollapse = TRUE
+            )
+        ) %>%
+        formatStyle(columns = 1:5, backgroundColor = "lightyellow")
+} else {
+    cat("✅ All files are already aligned with standard station names!\n")
+}
+
+# Perform copying of ALL files
+cat("\nCopying ALL files to data/02_renamed...\n")
+file_stations_aligned %>%
+    pwalk(function(filepath, filepath_standard, cruise, needs_rename, ...) {
+        # Copy file
+        file.copy(filepath, filepath_standard, overwrite = TRUE)
+        if (needs_rename) {
+            cat("Copied & renamed:", basename(filepath), "->", basename(filepath_standard), "\n")
+        } else {
+            cat("Copied:", basename(filepath), "\n")
+        }
+    })
+cat("\nCopying complete! Total files copied:", rename_summary$total_files, "\n")
+
+# Update file_stations to use standardized names for subsequent analysis
+file_stations <- file_stations_aligned %>%
+    mutate(
+        station = filename_standard,
+        filename = filename_standard,
+        filepath = filepath_standard
+    ) %>%
+    select(cruise, station, filename, filepath)
+```
 
 ## Comparison Analysis
 
