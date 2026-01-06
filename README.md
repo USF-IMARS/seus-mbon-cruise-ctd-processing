@@ -23,6 +23,11 @@ The data is downloaded from ERDDAP in a pre-render step, then processed by the `
 4. view the site: `quarto preview`
 5. publish to github pages: `quarto publish`
 
+
+## adding a cruise
+The list of cruises is in cruise_list.R.
+To add a cruise, add the ID of the cruise to this file.
+
 ## Details of the pre-render & render workflow
 A few steps happen when the `quarto publish` is run.
 
