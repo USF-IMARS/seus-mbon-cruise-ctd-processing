@@ -19,7 +19,7 @@ if (!nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
 # TODO: do this using `double_param_the_yaml()`
 templ <- readLines(REPORT_TEMPLATE) 
 templ <- gsub(
-  "WS22072", "{{cruise_id}}", templ
+  "WS21093", "{{cruise_id}}", templ
 )
 
 dir.create(REPORTS_DIR, showWarnings=FALSE)

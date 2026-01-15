@@ -4,10 +4,10 @@ format: html
 code-fold: true
 editor: source
 params: 
-  # cruise_id: WS18285
-  cruise_id: WS22072  # NOTE: this must = WS22072 for prerender to work
+  # cruise_id: WS21093
+  cruise_id: WS21093  # NOTE: this must = WS21093 for prerender to work
 ---
-# WS22072
+# WS21093
 
 ```{R}
 #| code-summary: setup
@@ -22,8 +22,8 @@ librarian::shelf(
 ```
 
 ```{R}
-source(here("R/cruise_load.R"))
-cruise_df <- cruise_load(params$cruise_id)
+source(here::here("R/load_cruise_ctds.R"))
+cruise_df <- load_cruise_ctds(params$cruise_id)
 ```
 
 
