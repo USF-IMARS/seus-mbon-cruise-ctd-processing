@@ -44,3 +44,19 @@ To work with this repository:
 1. edit `cruise_report/cruise_report_template.qmd` as desired.
     * note that the params in the header can be edited for testing a specific cruise.
 2. `quarto preview` or `quarto publish` to generate the site.
+
+## Running Tests
+This project uses testthat for unit testing. To run the tests:
+
+```r
+# From R console
+testthat::test_dir("tests/testthat")
+
+# Or using devtools
+devtools::test()
+```
+
+Or from the command line:
+```bash
+Rscript -e 'testthat::test_dir("tests/testthat")'
+```

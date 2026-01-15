@@ -27,6 +27,8 @@ download_cruise <- function(cruiseID, path, verbose = TRUE) {
     here(loc, cruiseID) %>%
         fs::dir_create()
 
+    # TODO: use ctd_datasetid_cruisename_stationname_mapping.csv to get each ctd instead of querying with station name
+    
     # loop through each station for the cruise and download if doesn't exist
     for (j in seq(results$info$dataset_id)) {
         # extract filename from query

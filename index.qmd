@@ -6,8 +6,6 @@ This website outlines ingestion and processing of CTD data collected from the SE
 
 "Raw" CTD casts are ingested from an ERDDAP server and processed using the OCE R library.
 
-<!-- TODO: add list of unique station names & assure it aligns with Station_Mean_Coords.csv -->
-
 <!-- 
 TODO: show map of stations using Station_Mean_Coords.csv. Optional: size circles by amount of casts; something like:
 

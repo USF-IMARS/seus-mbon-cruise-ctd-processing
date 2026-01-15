@@ -1,6 +1,7 @@
 get_metadata_from_cast_id <- function(cast_id){
     # usage: 
     #   metadata <- get_metatdata_from_cast_id("WS16074_WS16074_WS16074stn2")
+    #   cast_id <- metadata$cast_id
     #   cruise_id <- metadata$cruise_id
     #   station_id <- metadata$station_id
     # params:

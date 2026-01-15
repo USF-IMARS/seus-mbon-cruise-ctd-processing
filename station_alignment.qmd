@@ -1,6 +1,11 @@
 ---
 title: "Station Name Alignment Check"
 format: html
+execute:
+  error: true      # FAIL instead of silently skipping
+  freeze: false    # always re-run
+  echo: true
+
 ---
 
 This document checks alignment between station names in `Station_Mean_Coords.csv` and stations found in the raw CTD data files.
@@ -10,6 +15,8 @@ This document checks alignment between station names in `Station_Mean_Coords.csv
 #| message: false
 library(tidyverse)
 library(DT)
+library(here)
+
 ```
 
 ## Load Station Coordinates & Standard Names
@@ -17,6 +24,11 @@ library(DT)
 ```{r}
 #| code-summary: load-coords
 station_coords <- read_csv("data/Station_Mean_Coords.csv", show_col_types = FALSE)
+
+stopifnot(
+  "station column missing" = "station" %in% names(station_coords),
+  "coords empty" = nrow(station_coords) > 0
+)
 
 # # Display the station coordinates
 # station_coords %>%
@@ -43,19 +55,22 @@ raw_files <- list.files(
   full.names = TRUE
 )
 
-# Extract station names from filenames
+# Extract station names from filenames 
 # Pattern: {CRUISE_NAME}/{CRUISE_NAME}_{CRUISE_NAME}_{CRUISE_NAME}_{STATION_NAME}.csv
+source(here::here("R/get_metadata_from_cast_id.R"))
+
 file_stations <- tibble(
   filepath = raw_files,
   filename = basename(filepath)
 ) %>%
   mutate(
-    # Remove .csv extension and split by underscore
-    parts = str_remove(filename, "\\.csv$") %>% str_split("_"),
-    # Extract station name (last part after splitting by underscore)
-    station = map_chr(parts, ~.x[length(.x)]),
-    # Extract cruise name (folder name)
-    cruise = basename(dirname(filepath))
+    # Remove .csv extension to get cast_id
+    cast_id = str_remove(filename, "\\.csv$"),
+    # Extract metadata using the function
+    metadata = map(cast_id, get_metadata_from_cast_id),
+    # Extract cruise and station from metadata
+    cruise = map_chr(metadata, ~.x$cruise_id),
+    station = map_chr(metadata, ~.x$station_id)
   ) %>%
   select(cruise, station, filename, filepath)
 
@@ -78,7 +93,7 @@ file_stations <- tibble(
 ```{r}
 #| code-summary: align filenames to standard
 
-source("R/align_raw_station_name.R")
+source(here::here("R/align_raw_ctd_filename.R"))
 
 # Create output directory if it doesn't exist
 output_dir <- "data/02_renamed"
@@ -92,14 +107,19 @@ dir.create(output_dir, recursive = TRUE)
 # Apply standardization to each file
 file_stations_aligned <- file_stations %>%
     mutate(
-        station_standard = map_chr(station, align_raw_station_name),
-        # Create new standardized filename
-        filename_standard = str_replace(filename, paste0("_", station, "\\.csv$"), paste0("_", station_standard, ".csv")),
+        # Get standardized filename using the function
+        filename_standard = map_chr(filename, align_raw_ctd_filename),
         # Create new standardized filepath in data/02_renamed
         filepath_standard = file.path(output_dir, filename_standard),
         # Check if rename is needed
-        needs_rename = station != station_standard
+        needs_rename = filename != filename_standard
     )
+
+# ---- VALIDATE ----
+stopifnot(
+  "alignment produced NA" =
+    !anyNA(file_stations_aligned$filename_standard)
+)
 
 # Summary of changes
 rename_summary <- file_stations_aligned %>%
@@ -138,18 +158,21 @@ file_stations_aligned %>%
     pwalk(function(filepath, filepath_standard, cruise, needs_rename, ...) {
         # Copy file
         file.copy(filepath, filepath_standard, overwrite = TRUE)
-        if (needs_rename) {
-            cat("Copied & renamed:", basename(filepath), "->", basename(filepath_standard), "\n")
-        } else {
-            cat("Copied:", basename(filepath), "\n")
-        }
+        # if (needs_rename) {
+        #     cat("Copied & renamed:", basename(filepath), "->", basename(filepath_standard), "\n")
+        # } else {
+        #     cat("Copied:", basename(filepath), "\n")
+        # }
     })
 cat("\nCopying complete! Total files copied:", rename_summary$total_files, "\n")
 
 # Update file_stations to use standardized names for subsequent analysis
 file_stations <- file_stations_aligned %>%
     mutate(
-        station = filename_standard,
+        # Extract station name from standardized filename
+        cast_id_standard = str_remove(filename_standard, "\\.csv$"),
+        metadata_standard = map(cast_id_standard, get_metadata_from_cast_id),
+        station = map_chr(metadata_standard, ~.x$station_id),
         filename = filename_standard,
         filepath = filepath_standard
     ) %>%

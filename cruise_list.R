@@ -1,5 +1,7 @@
 # A list of all cruises to be processed
 
+# TODO: modify download_cruise to use ctd_datasetid_cruisename_stationname_mapping.csv instead of this
+
 cruise_list <- c(
     "WS16074", "WS16130", "WS16263", "WS16319", "WS17086", "WS17170",
     "WS17282", "WS18008", "SAV1803", "WS18120", "SAV18173", "WS18218",
