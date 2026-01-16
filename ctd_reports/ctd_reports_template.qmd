@@ -70,8 +70,21 @@ tryCatch({
   plotScan(decimated_cast)
 
   # === export ===
-  cast_df <- as.data.frame(decimated_cast@data)
-
+  # Get the scan numbers that remain after cleaning
+  cleaned_scans <- decimated_cast@data$scan
+  
+  # Load original raw data to keep all columns
+  ctd_raw <- readr::read_csv(here::here(glue::glue(
+    "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
+  )), show_col_types = FALSE)
+  
+  # Filter raw data to only include the cleaned scans
+  cast_df <- ctd_raw %>%
+    filter(!is.na(sea_water_pressure)) %>%  # Remove rows without pressure data
+    mutate(row_num = row_number()) %>%
+    filter(row_num %in% cleaned_scans) %>%
+    select(-row_num)
+  
   # Add metadata
   cast_df <- mutate(
     cast_df,
@@ -79,15 +92,34 @@ tryCatch({
     cruise_id = cruise_id
   )
 
-  # drop NA rows left by cleaning
-  cast_df <- subset(cast_df, !is.na(scan))
+  # Check if there are any rows in the cleaned data
+  if (nrow(cast_df) == 0) {
+    cat("\n=== WARNING: NO DATA AFTER CLEANING ===\n")
+    cat("Cast ID:", params$cast_id, "\n")
+    cat("Station:", station_id, "\n")
+    cat("Cruise:", cruise_id, "\n\n")
+    
+    cat("Raw data rows (with pressure):", sum(!is.na(ctd_raw$sea_water_pressure)), "\n")
+    cat("Cleaned scans to keep:", length(cleaned_scans), "\n")
+    cat("Resulting rows:", nrow(cast_df), "\n\n")
+    
+    cat("Raw data summary:\n")
+    print(summary(ctd_raw[c("sea_water_pressure", "sea_water_temperature", "sea_water_salinity")]))
+    
+    cat("\nCleaned scans (first 20):\n")
+    print(head(cleaned_scans, 20))
+    
+    cat("\n=== CSV FILE NOT CREATED (no data) ===\n\n")
+  } else {
+    # create folder if doesn't exist
+    clean_data_loc <- here::here("data/02_clean")
+    try(fs::dir_create(clean_data_loc))
 
-  # create folder if doesn't exist
-  clean_data_loc <- here::here("data/02_clean")
-  try(fs::dir_create(clean_data_loc))
-
-  # save ctd to .csv
-  write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"))
+    # save ctd to .csv (without row names/indices)
+    write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"), row.names = FALSE)
+    
+    cat("Successfully saved", nrow(cast_df), "rows to", glue("{params$cast_id}.csv"), "\n")
+  }
 
 }, error = function(e) {
 
