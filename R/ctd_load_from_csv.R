@@ -31,24 +31,30 @@ ctd_load_from_csv <- function(file, other_params = NULL) {
       )
     )
 
-  # add additional columns to ctd object
-  if (is.vector(other_params)) { # if vector of parameters names
-    # filter for names occurring in data
-    params_used <- other_params[other_params %in% names(ctd_raw)]
-
-    # add each parameter
-    for (param_name in params_used) {
-      ctd_temp <-
-        oce::oceSetData(
-          object         = ctd_temp,
-          name           = param_name,
-          value          = ctd_raw[[param_name]],
-          originalName   = param_name
-        )
-    }
-  } else {
-    print("No additional parameters to add")
+  # Automatically add all other columns from CSV to ctd object
+  # Identify columns already used in the core CTD object
+  core_columns <- c("sea_water_salinity", "sea_water_temperature", "sea_water_pressure", 
+                    "latitude", "longitude", "time_elapsed")
+  
+  # Get all column names from the raw data
+  all_columns <- names(ctd_raw)
+  
+  # Determine which columns to add (all except core ones)
+  additional_columns <- setdiff(all_columns, core_columns)
+  
+  # Add each additional column to the ctd object
+  for (param_name in additional_columns) {
+    ctd_temp <-
+      oce::oceSetData(
+        object         = ctd_temp,
+        name           = param_name,
+        value          = ctd_raw[[param_name]],
+        originalName   = param_name
+      )
   }
+  
+  cat("Added", length(additional_columns), "additional parameters to CTD object\n")
+  
   return(ctd_temp)
   # ---- end of function ctd_load
 }

@@ -49,25 +49,25 @@ cast <- ctd_load_from_csv(here::here(glue::glue(
 # TODO: combine replicate sensors (eg temp1 temp2).
 ```
 
-## before cleaning
+## Before Cleaning
 ```{R}
-#| code-summary: Show scans before cleaning.
+#| code-summary: Show data before cleaning.
 
 print(glue("=== station: {cast@metadata$station[1]}"))
 print(glue("# scans: {length(cast@data$scan)}"))
-plotScan(cast)
+plot(cast)
 ```
 
 ## after cleaning
 ```{R}
-#| code-summary: Clean, export, show scans after cleaning.
+#| code-summary: Clean, export, show data after cleaning.
 tryCatch({
   
   trimmed_cast <- ctdTrim(cast)
   decimated_cast <- ctdDecimate(trimmed_cast, p = 0.5)
 
   # plotting can cause the xlim failure
-  plotScan(decimated_cast)
+  plot(decimated_cast)
 
   # === export ===
   # Get the scan numbers that remain after cleaning
@@ -154,12 +154,55 @@ tryCatch({
 
 
 ```{R}
-#| code-summary: Plot Final Profile
-tryCatch({
-  oce::plotProfile(decimated_cast)
-  # TODO: plot chl & do (prereq handle other_params in ctd_load_from_csv call above)
-  
-}, error = function(e) {
-  print("decimated cast not found")
-})
+#| code-summary: plotting other physical parameters for each cast
+#| message: false
+#| warning: false
+
+source(here::here("R/ctd_plot_available_params.R"))
+
+# Plotting function with specific parameters
+ctd_plot_available_params(
+  decimated_cast,
+  c(
+    "sea_water_electrical_conductivity",
+    "descent_rate", "sound_velocity",
+    "sea_water_sigma_t","altimeter"
+  )
+)
+
+
+```
+
+
+```{R}
+#| code-summary: plotting other nutrient parameters for each cast
+#| message: false
+#| warning: false
+
+source(here::here("R/ctd_plot_available_params.R"))
+
+ctd_plot_available_params(
+  decimated_cast,
+   c(
+    "CDOM", "dissolved_oxygen",
+    "oxygen_saturation",
+    "chlorophyll_concentration", "chlorophyll_fluorescence"
+  )
+)
+
+```
+
+
+```{R}
+#| code-summary: plotting other optical parameters for each cast
+source(here::here("R/ctd_plot_available_params.R"))
+
+ctd_plot_available_params(
+    decimated_cast,
+    c(
+      "photosynthetically_available_radiation",
+      "beam_attenuation","beam_transmission"
+    )
+  )
+
 ```
