@@ -286,8 +286,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  clean_data_loc <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/02_clean"</span>)</span>
 <span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">try</span>(fs<span class="sc">::</span><span class="fu">dir_create</span>(clean_data_loc))</span>
 <span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save ctd to .csv</span></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(cast_df, <span class="fu">glue</span>(<span class="st">"{clean_data_loc}/{params$cast_id}.csv"</span>))</span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># save ctd to .csv (without row names/indices)</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write.csv</span>(cast_df, <span class="fu">glue</span>(<span class="st">"{clean_data_loc}/{params$cast_id}.csv"</span>), <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>}, <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
 <span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
