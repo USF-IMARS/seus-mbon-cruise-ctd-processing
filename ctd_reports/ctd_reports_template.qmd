@@ -23,14 +23,6 @@ librarian::shelf(
   readr, here, fs, ggplot2, glue, "jiho/castr", dplyr, oce, patchwork, purrr, tidyr
 )
 
-# set up a hook to allow rendering to stop if an error is detected
-continue_render <<- TRUE
-knitr::opts_hooks$set(eval = function(options) {
-  options$eval <- options$eval && continue_render
-  options
-})
-
-
 source(here("R/get_metadata_from_cast_id.R"))
 metadata <- get_metadata_from_cast_id(params$cast_id)
 station_id <- metadata$station_id
@@ -156,7 +148,6 @@ tryCatch({
     }
   } else {
     cat("decimated_cast was never created before the error.\n")
-    continue_render <<- FALSE
   }
 
   cat("\n=== END ERROR DEBUG INFO ===\n\n")
