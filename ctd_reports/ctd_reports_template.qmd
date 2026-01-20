@@ -3,12 +3,12 @@ format: html
 code-fold: true
 editor: source
 params: 
-  cast_id: WS16074_WS16074_WS16074_2  # NOTE: this must = WS16074_WS16074_WS16074stn2 for prerender to work
+  cast_id: WS0603_WS0603_WS0603_CAL2  # NOTE: this must = WS0603_WS0603_WS0603_CAL2 for prerender to work
   # cast_id: SAV1803_SAV1803_SAV1803_12
   # cast_id: WS18120_WS18120_WS18120DeckTest27042018_CM
 ---
 
-# WS16074_WS16074_WS16074stn2
+# WS0603_WS0603_WS0603_CAL2
 
 --------------------------------------------------
 

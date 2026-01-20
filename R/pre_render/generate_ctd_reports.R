@@ -21,7 +21,7 @@ if (!nzchar(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"))) {
 # create the template
 templ <- readLines(REPORT_TEMPLATE) 
 templ <- gsub(
-  "WS16074_WS16074_WS16074stn2", "{{cast_id}}", templ
+  "WS0603_WS0603_WS0603_CAL2", "{{cast_id}}", templ
 )
 
 dir.create(REPORTS_DIR, showWarnings=FALSE)
