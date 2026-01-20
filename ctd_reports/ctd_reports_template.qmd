@@ -160,17 +160,27 @@ tryCatch({
 #| message: false
 #| warning: false
 
-source(here::here("R/ctd_plot_available_params.R"))
+tryCatch({
+  source(here::here("R/ctd_plot_available_params.R"))
 
-# Plotting function with specific parameters
-ctd_plot_available_params(
-  decimated_cast,
-  c(
-    "sea_water_electrical_conductivity",
-    "descent_rate", "sound_velocity",
-    "sea_water_sigma_t","altimeter"
+  # Plotting function with specific parameters
+  ctd_plot_available_params(
+    decimated_cast,
+    c(
+      "sea_water_electrical_conductivity",
+      "descent_rate", "sound_velocity",
+      "sea_water_sigma_t","altimeter"
+    )
   )
-)
+}, error = function(e) {
+  cat("\n=== ERROR: Physical Parameters Plot ===\n")
+  cat("Cast ID:", params$cast_id, "\n")
+  cat("Error:", conditionMessage(e), "\n")
+  if (exists("decimated_cast")) {
+    cat("Available parameters:", paste(names(decimated_cast@data), collapse=", "), "\n")
+  }
+  cat("========================================\n\n")
+})
 
 
 ```
@@ -181,30 +191,51 @@ ctd_plot_available_params(
 #| message: false
 #| warning: false
 
-source(here::here("R/ctd_plot_available_params.R"))
+tryCatch({
+  source(here::here("R/ctd_plot_available_params.R"))
 
-ctd_plot_available_params(
-  decimated_cast,
-   c(
-    "CDOM", "dissolved_oxygen",
-    "oxygen_saturation",
-    "chlorophyll_concentration", "chlorophyll_fluorescence"
+  ctd_plot_available_params(
+    decimated_cast,
+     c(
+      "CDOM", "dissolved_oxygen",
+      "oxygen_saturation",
+      "chlorophyll_concentration", "chlorophyll_fluorescence"
+    )
   )
-)
+}, error = function(e) {
+  cat("\n=== ERROR: Nutrient Parameters Plot ===\n")
+  cat("Cast ID:", params$cast_id, "\n")
+  cat("Error:", conditionMessage(e), "\n")
+  if (exists("decimated_cast")) {
+    cat("Available parameters:", paste(names(decimated_cast@data), collapse=", "), "\n")
+  }
+  cat("========================================\n\n")
+})
 
 ```
 
 
 ```{R}
 #| code-summary: plotting other optical parameters for each cast
-source(here::here("R/ctd_plot_available_params.R"))
 
-ctd_plot_available_params(
-    decimated_cast,
-    c(
-      "photosynthetically_available_radiation",
-      "beam_attenuation","beam_transmission"
+tryCatch({
+  source(here::here("R/ctd_plot_available_params.R"))
+
+  ctd_plot_available_params(
+      decimated_cast,
+      c(
+        "photosynthetically_available_radiation",
+        "beam_attenuation","beam_transmission"
+      )
     )
-  )
+}, error = function(e) {
+  cat("\n=== ERROR: Optical Parameters Plot ===\n")
+  cat("Cast ID:", params$cast_id, "\n")
+  cat("Error:", conditionMessage(e), "\n")
+  if (exists("decimated_cast")) {
+    cat("Available parameters:", paste(names(decimated_cast@data), collapse=", "), "\n")
+  }
+  cat("========================================\n\n")
+})
 
 ```
