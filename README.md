@@ -11,8 +11,6 @@ Processing methods are documented in `Chrissy_2009_SeaBird CTD Processing Manual
 After processing the cleaned data will be in `./data/cleaned/`.
 A version of the cleaned data is hosted by USF IMaRS at [here](https://usf.app.box.com/folder/263263938989?s=dvoi1ve0jn3apbdlad114uhn0pvmjool).
 
-NOTE: The list of cruises to be processed is manually maintained in this repo in the file `cruise_list.R`. To add a cruise to the processing, add its ID to that file.
-
 # Usage 
 Data ingestion is completed through rendering of a research notebooks into a quarto website.
 The data is downloaded from ERDDAP in a pre-render step, then processed by the `.qmd` research notebooks.
@@ -25,8 +23,15 @@ The data is downloaded from ERDDAP in a pre-render step, then processed by the `
 
 
 ## adding a cruise
-The list of cruises is in cruise_list.R.
-To add a cruise, add the ID of the cruise to this file.
+The list of CTD casts is in [`/data/ctd_datasetid_cruisename_stationname_mapping.csv`](https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing/blob/main/data/ctd_datasetid_cruisename_stationname_mapping.csv).
+To add a cruise, add rows with the ERDDAP `dataset_id`s for each cruise station CTD cast.
+
+### CTD Station ID Alignment
+Each cast has a `cast_id` (or ERDDAP `dataset_id`), which contains a `cruise_id` and a `station` ID.
+Sometimes the `station_id` from the upstream data publishers does not match `station_id` standard names determined by the FRESCA project.
+To handle this issue a ID mapping is applied. 
+The mapping can be found in the file [`/data/ctd_datasetid_cruisename_stationname_mapping.csv`](https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing/blob/main/data/ctd_datasetid_cruisename_stationname_mapping.csv).
+If a station ID is not aligned properly: edit the `.csv` file, clear any cached files, and re-run the processing.
 
 ## Details of the pre-render & render workflow
 A few steps happen when the `quarto publish` is run.
