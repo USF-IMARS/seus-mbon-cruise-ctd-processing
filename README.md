@@ -8,7 +8,7 @@ The settings file (`.psa`) is not (yet) included here.
 Other SBEDataProcessing modules may be used. 
 Processing methods are documented in `Chrissy_2009_SeaBird CTD Processing Manual.pdf`.
 
-After processing the cleaned data will be in `./data/cleaned/`.
+After processing the cleaned data will be in `../seus-mbon-cruise-ctd-data/cleaned/`.
 A version of the cleaned data is hosted by USF IMaRS at [here](https://usf.app.box.com/folder/263263938989?s=dvoi1ve0jn3apbdlad114uhn0pvmjool).
 
 # Usage 
@@ -17,9 +17,15 @@ The data is downloaded from ERDDAP in a pre-render step, then processed by the `
 
 1. clone this repository
 3. build the site: `quarto render --no-cache`
-    * NOTE: you can run with cache, but this may not generate the `data/cleaned/*.csv` files
+    * NOTE: you can run with cache, but this may not generate the `../seus-mbon-cruise-ctd-data/cleaned/*.csv` files
 4. view the site: `quarto preview`
-5. publish to github pages: `quarto publish`
+5. publish to github pages: 
+
+```bash
+export QUARTO_USE_FILE_FOR_PROJECT_OUTPUT_FILES="quarto_file_output_list.txt"
+export QUARTO_USE_FILE_FOR_PROJECT_INPUT_FILES="quarto_file_input_list.txt"
+quarto publish
+```
 
 
 ## adding a cruise

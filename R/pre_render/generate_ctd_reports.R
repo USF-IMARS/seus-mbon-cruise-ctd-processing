@@ -28,7 +28,7 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 
 # === iterate through the data structure 
 # Set the root directory where the folders are located
-folder <- "data/01_raw/ctd"
+folder <- "data/01_raw"
 
 # get list of files in the folder, select only .csv files from within subfolders
 files <- list.files(

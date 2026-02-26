@@ -11,6 +11,7 @@ project:
     
     - "cruise_reports/cruise_reports*.qmd" # reports for each cruise
     - "cruise_reports/cruise_reports.qmd" # listing page
+    - jobs=1
 
 website:
   title: "MBON Cruise CTD Reports"

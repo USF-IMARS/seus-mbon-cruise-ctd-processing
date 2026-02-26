@@ -11,7 +11,7 @@ output: html_document
 library(dplyr)
 
 # Define the directory path for the combined files
-directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data"
+directory_path <- "data/01_raw/raw_ctd_data"
 
 # List all CSV files in the directory
 csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
@@ -47,7 +47,7 @@ print(station_counts)
 library(dplyr)
 
 # Define the directory path containing the CSV files
-directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned"
+directory_path <- "data/cleaned"
 
 # List all CSV files in the directory
 csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
@@ -84,7 +84,7 @@ print(station_counts)
 library(dplyr)
 
 # Define the directory path for the cleaned files
-directory_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+directory_path <- "data/01_raw/Cruises_with Right_convention_names"
 
 # List all CSV files in the directory
 csv_files <- list.files(path = directory_path, pattern = "\\.csv$", full.names = TRUE)
@@ -122,7 +122,7 @@ print(station_counts)
 library(dplyr)
 
 # Define the path to the specific CSV file
-file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data/WS1018_ctd_comb.csv"
+file_path <- "data/01_raw/raw_ctd_data/WS1018_ctd_comb.csv"
 
 # Read the CSV file
 data <- read.csv(file_path, stringsAsFactors = FALSE)
@@ -138,7 +138,7 @@ print(unique_stations_1)
 library(dplyr)
 
 # Define the path to the specific CSV file
-file_path <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned/WS1018.CSV"
+file_path <- "data/cleaned/WS1018.CSV"
 
 # Read the CSV file
 data <- read.csv(file_path, stringsAsFactors = FALSE)
@@ -171,7 +171,7 @@ standardize_station_name <- function(station_name) {
 data$station <- sapply(data$station, standardize_station_name)
 
 # Define the output directory
-output_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+output_dir <- "data/01_raw/Cruises_with Right_convention_names"
 
 # Get the original file name and append "_cleaned"
 original_file_name <- basename(file_path)
@@ -196,8 +196,8 @@ cat("Cleaned data has been saved to:", output_file_path)
 library(dplyr)
 
 # Define the path to the directory containing the CSV files
-input_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
-output_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+input_dir <- "data/01_raw/combined_fl_keys_data"
+output_dir <- "data/01_raw/Cruises_with Right_convention_names"
 
 # Create the output directory if it doesn't exist
 if (!dir.exists(output_dir)) {
@@ -249,8 +249,8 @@ for (file_path in csv_files) {
 library(dplyr)
 
 # Define the paths to the directories
-original_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/combined_fl_keys_data"
-cleaned_dir <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/Cruises_with Right_convention_names"
+original_dir <- "data/01_raw/combined_fl_keys_data"
+cleaned_dir <- "data/01_raw/Cruises_with Right_convention_names"
 
 # Get a list of all CSV files in both directories
 original_files <- list.files(original_dir, pattern = "\\.csv$", full.names = TRUE)
@@ -302,8 +302,8 @@ print(results)
 library(dplyr)
 
 # Define the paths to the files before and after cleaning
-file_before_cleaning <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/01_raw/raw_ctd_data/WS0901_ctd_comb.csv"
-file_after_cleaning <- "C:/Users/mostafaawada/Documents/seus-mbon-cruise-ctd-processing/data/cleaned/WS0901.csv"
+file_before_cleaning <- "data/01_raw/raw_ctd_data/WS0901_ctd_comb.csv"
+file_after_cleaning <- "data/cleaned/WS0901.csv"
 
 # Function to get station names and count from a file
 get_station_info <- function(file_path) {

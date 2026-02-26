@@ -31,6 +31,10 @@ ctd_load_from_csv <- function(file, other_params = NULL) {
       )
     )
 
+  
+  # TODO: When including other_params use the 1s from `use (from CTD data)` column and do not include 0s from that column in spreadsheet https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311 )
+  
+  
   # Automatically add all other columns from CSV to ctd object
   # Identify columns already used in the core CTD object
   core_columns <- c("sea_water_salinity", "sea_water_temperature", "sea_water_pressure", 

@@ -27,16 +27,15 @@ source(here("R/get_metadata_from_cast_id.R"))
 metadata <- get_metadata_from_cast_id(params$cast_id)
 station_id <- metadata$station_id
 cruise_id <- metadata$cruise_id
+dataFile <- here::here(glue::glue(
+  "data/01_raw/{params$cast_id}.csv"
+))
 ```
 
 ```{R}
 #| code-summary: create an oce CTD object
 source(here::here("R/ctd_load_from_csv.R"))
-cast <- ctd_load_from_csv(here::here(glue::glue(
-  "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
-
-  # TODO: include other_params (use the 1s from `use (from CTD data)` column and do not include 0s from that column in spreadsheet https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311 )
-)))
+cast <- ctd_load_from_csv(dataFile)
 
 # TODO: Include param here that specifies to handle QC flags. This should be done before converting to a OCE object. QC flag columns are listed in [this spreadsheet](https://docs.google.com/spreadsheets/d/1uCxEmJRqErU-HCQiRQ1FpyiIqtNaGgMSBI0WvrtwBRU/edit?gid=137286311#gid=137286311) and are not supposed to be included in the oce object. QC param values are : 
 #   1 good
@@ -76,9 +75,7 @@ tryCatch({
   cleaned_scans <- decimated_cast@data$scan
   
   # Load original raw data to keep all columns
-  ctd_raw <- readr::read_csv(here::here(glue::glue(
-    "data/01_raw/ctd/{cruise_id}/{params$cast_id}.csv"
-  )), show_col_types = FALSE)
+  ctd_raw <- readr::read_csv(dataFile, show_col_types = FALSE)
   
   # Filter raw data to only include the cleaned scans
   cast_df <- ctd_raw %>%
@@ -155,10 +152,19 @@ tryCatch({
 ```
 
 
+--------
+
+# NOTE: The following plots have been disabled.
+To avoid an oversized website, the following plots have been disabled using `eval:false`.
+GitHub pages' free hosting limits websites to 2GB in size; including these plots pushes this website over that limit.
+To view the outputs you can run the following code locally.
+
+
 ```{R}
 #| code-summary: plot other physical parameters for each cast
 #| message: false
 #| warning: false
+#| eval: false
 
 tryCatch({
   source(here::here("R/ctd_plot_available_params.R"))
@@ -190,6 +196,7 @@ tryCatch({
 #| code-summary: plotting other nutrient parameters for each cast
 #| message: false
 #| warning: false
+#| eval: false
 
 tryCatch({
   source(here::here("R/ctd_plot_available_params.R"))
@@ -217,6 +224,7 @@ tryCatch({
 
 ```{R}
 #| code-summary: plotting other optical parameters for each cast
+#| eval: false
 
 tryCatch({
   source(here::here("R/ctd_plot_available_params.R"))
