@@ -1,0 +1,347 @@
+---
+title: "Station Name Alignment Check"
+format: html
+execute:
+  error: true      # FAIL instead of silently skipping
+  freeze: false    # always re-run
+  echo: true
+
+---
+
+This document checks alignment between station names in `Station_Mean_Coords.csv` and stations found in the raw CTD data files.
+
+```{r}
+#| code-summary: setup
+#| message: false
+library(tidyverse)
+library(DT)
+library(here)
+
+```
+
+## Load Station Coordinates & Standard Names
+
+```{r}
+#| code-summary: load-coords
+station_coords <- read_csv("dataStation_Mean_Coords.csv", show_col_types = FALSE)
+
+stopifnot(
+  "station column missing" = "station" %in% names(station_coords),
+  "coords empty" = nrow(station_coords) > 0
+)
+
+# # Display the station coordinates
+# station_coords %>%
+#   datatable(
+#     caption = "Expected Stations from Station_Mean_Coords.csv",
+#     options = list(
+#       pageLength = 10,
+#       scrollY = "400px",
+#       scrollCollapse = TRUE
+#     )
+#   ) %>%
+#   formatRound(columns = c("lat_mean", "lon_mean"), digits = 4)
+```
+
+## Extract Station Names from Raw Data Files
+
+```{r}
+#| code-summary: extract stations from from raw file names
+# Get all CSV files from data/01_raw directory
+raw_files <- list.files(
+  path = "data/01_raw",
+  pattern = "\\.csv$",
+  recursive = TRUE,
+  full.names = TRUE
+)
+
+# Extract station names from filenames 
+# Pattern: {CRUISE_NAME}/{CRUISE_NAME}_{CRUISE_NAME}_{CRUISE_NAME}_{STATION_NAME}.csv
+source(here::here("R/get_metadata_from_cast_id.R"))
+
+file_stations <- tibble(
+  filepath = raw_files,
+  filename = basename(filepath)
+) %>%
+  mutate(
+    # Remove .csv extension to get cast_id
+    cast_id = str_remove(filename, "\\.csv$"),
+    # Extract metadata using the function
+    metadata = map(cast_id, get_metadata_from_cast_id),
+    # Extract cruise and station from metadata
+    cruise = map_chr(metadata, ~.x$cruise_id),
+    station = map_chr(metadata, ~.x$station_id)
+  ) %>%
+  select(cruise, station, filename, filepath)
+
+# # Show unique stations found in files
+# file_stations %>%
+#   count(station, name = "n_files") %>%
+#   arrange(desc(n_files)) %>%
+#   datatable(
+#     caption = "Stations Found in Raw Data Files",
+#     colnames = c("Station Name", "Number of Files"),
+#     options = list(
+#       pageLength = 10,
+#       scrollY = "400px",
+#       scrollCollapse = TRUE
+#     )
+#   )
+```
+
+## Align Columns
+```{r}
+#| code-summary: align filenames to standard
+
+source(here::here("R/align_raw_ctd_filename.R"))
+
+# Create output directory if it doesn't exist
+output_dir <- "data02_renamed"
+
+# Delete directory if it exists, then recreate it empty
+if (dir.exists(output_dir)) {
+    unlink(output_dir, recursive = TRUE)
+}
+dir.create(output_dir, recursive = TRUE)
+
+# Apply standardization to each file
+file_stations_aligned <- file_stations %>%
+    mutate(
+        # Get standardized filename using the function
+        filename_standard = map_chr(filename, align_raw_ctd_filename),
+        # Create new standardized filepath in data02_renamed
+        filepath_standard = file.path(output_dir, filename_standard),
+        # Check if rename is needed
+        needs_rename = filename != filename_standard
+    )
+
+# ---- VALIDATE ----
+stopifnot(
+  "alignment produced NA" =
+    !anyNA(file_stations_aligned$filename_standard)
+)
+
+# Summary of changes
+rename_summary <- file_stations_aligned %>%
+    summarise(
+        total_files = n(),
+        files_needing_rename = sum(needs_rename),
+        files_already_aligned = sum(!needs_rename)
+    )
+
+cat("Total files:", rename_summary$total_files, "\n")
+cat("Files needing rename:", rename_summary$files_needing_rename, "\n")
+cat("Files already aligned:", rename_summary$files_already_aligned, "\n\n")
+
+# Show files that need renaming
+if (rename_summary$files_needing_rename > 0) {
+    file_stations_aligned %>%
+        filter(needs_rename) %>%
+        select(cruise, station, filename_standard, filename, filename_standard) %>%
+        datatable(
+            caption = "Files that need renaming to align with standard station names",
+            colnames = c("Cruise", "Current Station", "Standard Station", "Current Filename", "Standard Filename"),
+            options = list(
+                pageLength = 10,
+                scrollY = "400px",
+                scrollCollapse = TRUE
+            )
+        ) %>%
+        formatStyle(columns = 1:5, backgroundColor = "lightyellow")
+} else {
+    cat("✅ All files are already aligned with standard station names!\n")
+}
+
+# Perform copying of ALL files
+cat("\nCopying ALL files to data02_renamed...\n")
+file_stations_aligned %>%
+    pwalk(function(filepath, filepath_standard, cruise, needs_rename, ...) {
+        # Copy file
+        file.copy(filepath, filepath_standard, overwrite = TRUE)
+        # if (needs_rename) {
+        #     cat("Copied & renamed:", basename(filepath), "->", basename(filepath_standard), "\n")
+        # } else {
+        #     cat("Copied:", basename(filepath), "\n")
+        # }
+    })
+cat("\nCopying complete! Total files copied:", rename_summary$total_files, "\n")
+
+# Update file_stations to use standardized names for subsequent analysis
+file_stations <- file_stations_aligned %>%
+    mutate(
+        # Extract station name from standardized filename
+        cast_id_standard = str_remove(filename_standard, "\\.csv$"),
+        metadata_standard = map(cast_id_standard, get_metadata_from_cast_id),
+        station = map_chr(metadata_standard, ~.x$station_id),
+        filename = filename_standard,
+        filepath = filepath_standard
+    ) %>%
+    select(cruise, station, filename, filepath)
+```
+
+## Comparison Analysis
+
+```{r}
+#| code-summary: compare-stations
+# Get unique station names from each source
+coords_stations <- unique(station_coords$station)
+file_stations_unique <- unique(file_stations$station)
+
+# Stations in coords but NOT in files
+missing_from_files <- setdiff(coords_stations, file_stations_unique)
+
+# Stations in files but NOT in coords
+missing_from_coords <- setdiff(file_stations_unique, coords_stations)
+
+# Stations in both (aligned)
+aligned_stations <- intersect(coords_stations, file_stations_unique)
+```
+
+### Summary Statistics
+
+```{r}
+#| code-summary: summary-stats
+tibble(
+  Category = c(
+    "Total stations in Station_Mean_Coords.csv",
+    "Total stations in raw data files",
+    "Stations aligned (in both)",
+    "Stations missing from raw files",
+    "Stations missing from coordinates"
+  ),
+  Count = c(
+    length(coords_stations),
+    length(file_stations_unique),
+    length(aligned_stations),
+    length(missing_from_files),
+    length(missing_from_coords)
+  )
+) %>%
+  datatable(
+    caption = "Station Alignment Summary",
+    options = list(
+      dom = 't',
+      ordering = FALSE
+    )
+  ) %>%
+  formatStyle(
+    'Count',
+    target = 'row',
+    backgroundColor = styleEqual(
+      c(0, 0),
+      c('lightgreen', 'lightgreen')
+    )
+  )
+```
+
+### Stations Missing from Raw Data Files
+
+```{r}
+#| code-summary: missing-from-files
+if (length(missing_from_files) > 0) {
+  tibble(Station = missing_from_files) %>%
+    datatable(
+      caption = "Stations in Coordinates but NOT in Raw Files - These stations have coordinates but no CTD data files",
+      options = list(
+        pageLength = 10,
+        scrollY = "300px",
+        scrollCollapse = TRUE
+      )
+    ) %>%
+    formatStyle(columns = 1, backgroundColor = 'lightyellow')
+} else {
+  cat("✅ All stations from Station_Mean_Coords.csv have corresponding raw data files!\n")
+}
+```
+
+### Stations Missing from Coordinate File
+
+```{r}
+#| code-summary: missing-from-coords
+if (length(missing_from_coords) > 0) {
+  # Show which cruises these stations appear in
+  file_stations %>%
+    filter(station %in% missing_from_coords) %>%
+    count(station, cruise) %>%
+    arrange(station, cruise) %>%
+    datatable(
+      caption = "Stations in Raw Files but NOT in Coordinates - These stations have CTD data but no coordinate reference",
+      colnames = c("Station Name", "Cruise", "Number of Files"),
+      options = list(
+        pageLength = 10,
+        scrollY = "400px",
+        scrollCollapse = TRUE
+      )
+    ) %>%
+    formatStyle(columns = 1:3, backgroundColor = 'lightcoral')
+} else {
+  cat("✅ All stations from raw data files have entries in Station_Mean_Coords.csv!\n")
+}
+```
+
+### Files by Cruise and Station
+
+```{r}
+#| code-summary: files-by-cruise
+# Create the pivot table
+heatmap_data <- file_stations %>%
+  count(cruise, station) %>%
+  pivot_wider(names_from = cruise, values_from = n, values_fill = 0) %>%
+  # Convert counts to binary (0 or 1)
+  mutate(across(-station, ~as.integer(. > 0))) %>%
+  arrange(station)
+
+# Get the number of columns (excluding station column)
+n_cols <- ncol(heatmap_data)
+
+heatmap_data %>%
+  datatable(
+    caption = "CTD Files per Station by Cruise (Presence/Absence)",
+    options = list(
+      pageLength = 20,
+      scrollY = "500px",
+      scrollCollapse = TRUE,
+      scrollX = TRUE,
+      dom = 'tip',
+      columnDefs = list(
+        list(className = 'dt-center', targets = 1:(n_cols - 1))
+      )
+    ),
+    class = 'compact stripe'
+  ) %>%
+  formatStyle(
+    columns = 2:n_cols,
+    backgroundColor = styleEqual(c(0, 1), c('white', '#4682b4')),
+    color = styleEqual(c(0, 1), c('#cccccc', 'white'))
+  )
+```
+
+```{css}
+#| echo: false
+/* Rotate cruise column headers 45 degrees */
+.dataTables_wrapper table thead th:not(:first-child) {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-align: left;
+  vertical-align: bottom;
+  padding: 5px 3px !important;
+  height: 120px;
+  white-space: nowrap;
+}
+
+/* Make table more compact */
+.compact td, .compact th {
+  padding: 2px 4px !important;
+  font-size: 11px;
+}
+
+.compact tbody td:not(:first-child) {
+  text-align: center !important;
+  font-weight: bold;
+}
+
+/* Keep table layout fixed for consistent column widths */
+.compact table {
+  table-layout: auto !important;
+}
+```
