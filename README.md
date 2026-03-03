@@ -49,6 +49,7 @@ A few steps happen when the `quarto publish` is run.
 
 In this workflow, you will primarily be editing the `ctd_reports/ctd_reports_template.qmd` file.
 
+
 # workflow
 To work with this repository:
 
@@ -70,4 +71,12 @@ devtools::test()
 Or from the command line:
 ```bash
 Rscript -e 'testthat::test_dir("tests/testthat")'
+```
+
+## Clear Cache (make clean)
+```bash
+mkdir backupFiles
+mv data backupFiles/.
+mv ctd_reports/ctd_reports/ backupFiles/.
+mv cruise_report/cruise_reports/ backupFiles/.
 ```
