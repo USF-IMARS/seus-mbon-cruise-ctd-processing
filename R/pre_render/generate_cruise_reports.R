@@ -28,17 +28,16 @@ dir.create(REPORTS_DIR, showWarnings=FALSE)
 # Set the root directory where the folders are located
 folder <- "data/01_raw/raw_ctd_data"
 
-files <- list.files(folder, full.names = TRUE)
+
+# get unique values of `cruise_id` column from ctd_datasetid_cruisename_stationname_mapping.csv
+mapping_df <- read.csv("data/ctd_datasetid_cruisename_stationname_mapping.csv")
+cruise_ids <- unique(mapping_df$cruise_id)
+
 
 # Loop through each file in the current folder (station)
-for (file in files) {
+for (cruise_id in cruise_ids) {
   # Print the folder name and the filename
   # print(paste("Folder:", folder, "File   :", basename(file)))
-  cruise_id <- sub("_ctd_comb", "", 
-    sub(".csv", "", 
-      basename(file)
-    )
-  )
   params = list(
     cruise_id = cruise_id
   )
