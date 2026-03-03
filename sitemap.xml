@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://USF-IMARS.github.io/seus-mbon-cruise-ctd-processing/cruise_report/cruise_reports.html</loc>
+    <lastmod>2025-11-21T20:20:19.565Z</lastmod>
+  </url>
+  <url>
     <loc>https://USF-IMARS.github.io/seus-mbon-cruise-ctd-processing/index.html</loc>
     <lastmod>2026-01-14T20:15:13.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://USF-IMARS.github.io/seus-mbon-cruise-ctd-processing/cruise_report/cruise_report_template.html</loc>
+    <lastmod>2026-03-03T20:47:46.445Z</lastmod>
   </url>
 </urlset>
