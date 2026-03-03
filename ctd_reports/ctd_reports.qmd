@@ -1,0 +1,9 @@
+---
+title: "CTD Reports"
+description: "Click a CTD Cast for Data Cleaning Details"
+code-fold: true
+listing:
+  contents: ctd_reports
+  type: grid
+  fields: [title, image]
+---
