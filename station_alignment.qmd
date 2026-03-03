@@ -8,6 +8,8 @@ execute:
 
 ---
 
+# NOTE: this file is no longer used. GCOOS is now doing station alignment.
+
 This document checks alignment between station names in `Station_Mean_Coords.csv` and stations found in the raw CTD data files.
 
 ```{r}
