@@ -99,14 +99,15 @@ leaflet(station_locations) %>%
 
 
 ```{R, create interpolated surface maps}
-createSurfaceMap <- function(df, var_name){
+createSurfaceMap <- function(df, var_name, legend_min, legend_max){
   # additional: parameters
-  # model = "Sph" Try "Exp" (exponential) or "Gau" (Gaussian) if the variogram fit looks off
+  # model = try "Sph" (spherical), "Exp" (exponential) or "Gau" (Gaussian) to get the best variogram fit
   MODEL <- "Exp"
-  # length.out = 200 Increase for a finer grid (slower), decrease for speed
+  # length.out Increase for a finer grid (slower), decrease for speed
+  LENGTH_OUT = 300
   # bbox_ext = 0.1 Adjust padding around your data extent (in degrees)
   #A nugget = 0 Set to a small positive value if data has measurement error
-  
+
   # get average value of var_name for 0-5 meters in df
   df <- df %>%
     filter(depth >= 0 & depth <= 5) %>%
@@ -133,8 +134,8 @@ createSurfaceMap <- function(df, var_name){
 
   # --- 2. Create interpolation grid ---
   bbox_ext  <- 0.1
-  lon_range <- seq(bbox(df_sp)[1,1] - bbox_ext, bbox(df_sp)[1,2] + bbox_ext, length.out = 200)
-  lat_range <- seq(bbox(df_sp)[2,1] - bbox_ext, bbox(df_sp)[2,2] + bbox_ext, length.out = 200)
+  lon_range <- seq(bbox(df_sp)[1,1] - bbox_ext, bbox(df_sp)[1,2] + bbox_ext, length.out = LENGTH_OUT)
+  lat_range <- seq(bbox(df_sp)[2,1] - bbox_ext, bbox(df_sp)[2,2] + bbox_ext, length.out = LENGTH_OUT)
 
   grid <- expand.grid(longitude = lon_range, latitude = lat_range)
   coordinates(grid) <- ~longitude + latitude
@@ -162,7 +163,12 @@ createSurfaceMap <- function(df, var_name){
   )
 
   # --- 4. Perform Ordinary Kriging ---
-  krig_result <- krige(mean_value ~ 1, locations = df_sp, newdata = grid, model = vgm_fit)
+  krig_result <- suppressWarnings(krige(
+    mean_value ~ 1, 
+    locations = df_sp, 
+    newdata = grid, 
+    model = vgm_fit
+  ))
 
   # --- 5. Convert to data frame and clip to convex hull ---
   krig_df <- as.data.frame(krig_result)
@@ -183,10 +189,6 @@ createSurfaceMap <- function(df, var_name){
   # --- 6. Plot surface map ---
 librarian::shelf(quiet = TRUE, ggplot2, viridis, sf, ggspatial, rnaturalearth, rnaturalearthdata)
 
-# --- Hardcoded legend limits ---
-legend_min <- 20   # <-- set your min here
-legend_max <- 30   # <-- set your max here
-
 # --- Basemap ---
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
@@ -194,16 +196,21 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
     ggplot() +
       # Kriged surface
       geom_raster(data = krig_df, aes(x = longitude, y = latitude, fill = predicted), interpolate = TRUE) +
-      # Sample points
-      geom_point(data = df, aes(x = longitude, y = latitude),
-                shape = 21, fill = "white", color = "black", size = 2.5) +
+      geom_point(data = df, aes(x = longitude, y = latitude, fill = mean_value),
+                 shape = 21, color = "black", size = 2.5) +
+      scale_fill_viridis_c(
+        option = "plasma",
+        name   = "Value",
+        limits = c(legend_min, legend_max),
+        oob    = scales::squish
+      ) +
       # Basemap
       geom_sf(data = world, fill = "gray85", color = "gray50", linewidth = 0.3) +
 
       # Colorscale with hardcoded limits
       scale_fill_viridis_c(
         option  = "plasma",
-        name    = "Predicted\nValue",
+        name    = "Value",
         limits  = c(legend_min, legend_max),
         oob     = scales::squish   # squish values outside limits into the color range
       ) +
@@ -219,11 +226,15 @@ world <- ne_countries(scale = "medium", returnclass = "sf")
         title = paste("Kriging Surface:", var_name),
         x = "Longitude", y = "Latitude"
       ) +
-      theme_minimal(base_size = 13)
+      theme_minimal(base_size = 13) +
+      theme(axis.text.x = element_text(angle = 45, hjust = 1))
   )
 }
 
-createSurfaceMap(cruise_df, "sea_water_temperature")
+createSurfaceMap(cruise_df, "sea_water_temperature", 15, 30)
+createSurfaceMap(cruise_df, "chlorophyll_fluorescence", 0.02, 0.1)
+createSurfaceMap(cruise_df, "oxygen_saturation", 4, 7)
+createSurfaceMap(cruise_df, "sea_water_salinity", 30, 40)
 
 ```
 
