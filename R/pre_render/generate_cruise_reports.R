@@ -1,6 +1,6 @@
 # creates a report template .qmd for each
-REPORT_TEMPLATE = "cruise_report/cruise_report_template.qmd"
-REPORTS_DIR = "cruise_report/cruise_reports"
+REPORT_TEMPLATE = "cruise_reports/cruise_report_template.qmd"
+REPORTS_DIR = "cruise_reports/cruise_reports"
 
 if (!nzchar(system.file(package = "librarian"))) {
   install.packages("librarian")

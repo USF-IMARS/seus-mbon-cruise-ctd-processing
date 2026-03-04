@@ -7,16 +7,15 @@ project:
     - "ctd_reports/ctd_reports/*.qmd"  # reports for each CTD cast
     - "ctd_reports/ctd_reports.qmd"  # CTD reports listing page
     
-    - "cruise_reports/cruise_reports*.qmd" # reports for each cruise
+    - "cruise_reports/cruise_reports/*.qmd" # reports for each cruise
     - "cruise_reports/cruise_reports.qmd" # listing page
+    
     - jobs=1
 
 website:
   title: "MBON Cruise CTD Reports"
   navbar:
     left:
-      # - index.qmd
-      - station_alignment.qmd
       - ctd_reports/ctd_reports.qmd
       - cruise_report/cruise_reports.qmd
       - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing
