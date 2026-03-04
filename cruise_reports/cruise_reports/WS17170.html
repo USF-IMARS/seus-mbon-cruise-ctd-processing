@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ws17170 – MBON Cruise CTD Reports</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fed2927b5d71da76dad1d9df0395c5a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../../site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MBON Cruise CTD Reports</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../ctd_reports/ctd_reports.qmd"> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">cruise_report/cruise_reports.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing"> 
+<span class="menu-text">Source Code on GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ws17170" id="toc-ws17170" class="nav-link active" data-scroll-target="#ws17170">WS17170</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="ws17170" class="level1">
+<h1>WS17170</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>setup</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">nzchar</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"librarian"</span>))) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"librarian"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quiet =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  readr, here, fs, ggplot2, glue, <span class="st">"jiho/castr"</span>, dplyr, oce, patchwork, purrr, tidyr</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/load_cruise_ctds.R"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cruise_df <span class="ot">&lt;-</span> <span class="fu">load_cruise_ctds</span>(params<span class="sc">$</span>cruise_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loaded 22 files for cruise WS17170 
+Total rows: 445 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>plot across all stations</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cruise_df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> sea_water_temperature, <span class="at">color =</span> station)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Temperature (°C)"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Temperature over Time by Station"</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b85df9a7588571671606" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-b85df9a7588571671606">{"x":{"data":[{"x":[1497944721,1497944721,1497944721],"y":[28.874199999999998,28.874600000000001,28.874700000000001],"text":["time: 2017-06-20 07:45:21<br />sea_water_temperature: 28.8742<br />station: 10","time: 2017-06-20 07:45:21<br />sea_water_temperature: 28.8746<br />station: 10","time: 2017-06-20 07:45:21<br />sea_water_temperature: 28.8747<br />station: 10"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"10","legendgroup":"10","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261,1497972261],"y":[28.251000000000001,28.250599999999999,28.251300000000001,28.2515,28.249099999999999,28.251000000000001,28.2502,28.25,28.248000000000001,28.246099999999998,28.2469,28.248100000000001,28.248999999999999,28.2498,28.2498,28.241800000000001,28.242999999999999,28.2455,28.245799999999999,28.244399999999999,28.243600000000001],"text":["time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2510<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2506<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2513<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2515<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2491<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2510<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2502<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2500<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2480<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2461<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2469<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2481<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2490<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2498<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2498<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2418<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2430<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2455<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2458<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2444<br />station: 21LK","time: 2017-06-20 15:24:21<br />sea_water_temperature: 28.2436<br />station: 21LK"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(236,130,57,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(236,130,57,1)"}},"hoveron":"points","name":"21LK","legendgroup":"21LK","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556,1498139556],"y":[28.807600000000001,28.814499999999999,28.814699999999998,28.813600000000001,28.813800000000001,28.813300000000002,28.812999999999999,28.812899999999999,28.812799999999999,28.814499999999999,28.8141,28.8139,28.814499999999999,28.815000000000001,28.814499999999999,28.814699999999998,28.814299999999999,28.814499999999999,28.8142,28.813800000000001,28.813400000000001,28.813600000000001,28.813600000000001,28.813800000000001,28.813400000000001,28.813199999999998,28.813400000000001,28.813400000000001,28.813400000000001,28.813199999999998,28.8125,28.8125,28.8127,28.812100000000001,28.812100000000001,28.812000000000001,28.811800000000002,28.812000000000001,28.811199999999999,28.8108,28.810400000000001,28.810400000000001,28.809000000000001,28.809000000000001,28.8095,28.809899999999999,28.811299999999999,28.811199999999999,28.812200000000001,28.812100000000001,28.812100000000001,28.812200000000001,28.812200000000001,28.8123,28.8123,28.8123,28.812000000000001,28.811900000000001,28.811699999999998,28.811499999999999,28.812200000000001,28.8125,28.811699999999998,28.811299999999999,28.810500000000001,28.810500000000001,28.807600000000001,28.807099999999998,28.807300000000001,28.8066,28.806899999999999,28.806699999999999,28.807099999999998,28.807099999999998,28.807099999999998,28.807400000000001,28.807300000000001,28.806699999999999,28.806799999999999,28.806899999999999,28.806899999999999,28.807400000000001,28.8078,28.807700000000001,28.8078,28.8078,28.807700000000001,28.808,28.807400000000001,28.807500000000001,28.807099999999998,28.807099999999998,28.8066,28.806799999999999,28.8065,28.806000000000001,28.805599999999998,28.806000000000001,28.805099999999999,28.805399999999999,28.8047,28.8047,28.804099999999998,28.802299999999999,28.804099999999998,28.805800000000001,28.805399999999999,28.803699999999999,28.8032,28.8034,28.804500000000001,28.805099999999999,28.805199999999999,28.805099999999999,28.803799999999999,28.8034,28.802800000000001],"text":["time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8076<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8145<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8147<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8136<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8138<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8133<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8130<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8129<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8128<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8145<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8141<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8139<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8145<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8150<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8145<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8147<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8143<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8145<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8142<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8138<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8134<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8136<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8136<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8138<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8134<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8132<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8134<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8134<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8134<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8132<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8125<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8125<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8127<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8121<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8121<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8120<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8118<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8120<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8112<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8108<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8104<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8104<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8090<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8090<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8095<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8099<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8113<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8112<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8122<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8121<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8121<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8122<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8122<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8123<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8123<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8123<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8120<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8119<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8117<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8115<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8122<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8125<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8117<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8113<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8105<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8105<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8076<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8073<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8066<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8069<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8067<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8074<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8073<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8067<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8068<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8069<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8069<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8074<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8078<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8077<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8078<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8078<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8077<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8080<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8074<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8075<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8071<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8066<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8068<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8065<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8060<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8056<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8060<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8051<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8054<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8047<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8047<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8041<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8023<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8041<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8058<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8054<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8037<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8032<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8034<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8045<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8051<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8052<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8051<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8038<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8034<br />station: 30","time: 2017-06-22 13:52:36<br />sea_water_temperature: 28.8028<br />station: 30"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(219,142,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(219,142,0,1)"}},"hoveron":"points","name":"30","legendgroup":"30","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007,1498126007],"y":[29.023199999999999,29.035299999999999,29.035900000000002,29.0365,29.036300000000001,29.036999999999999,29.036999999999999,29.0379,29.038,29.0398,29.0396,29.036200000000001,29.037400000000002,29.035900000000002,29.0304,29.031099999999999,29.0305,29.0291,29.026700000000002,29.0351,29.034099999999999,29.034300000000002,29.032499999999999,29.032800000000002,29.032499999999999,29.0334,29.034199999999998,29.032699999999998,29.032399999999999,29.037800000000001,29.038399999999999,29.0395,29.039200000000001,29.0397,29.039300000000001],"text":["time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0232<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0353<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0359<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0365<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0363<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0370<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0370<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0379<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0380<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0398<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0396<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0362<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0374<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0359<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0304<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0311<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0305<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0291<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0267<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0351<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0341<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0343<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0325<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0328<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0325<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0334<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0342<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0327<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0324<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0378<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0384<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0395<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0392<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0397<br />station: 31","time: 2017-06-22 10:06:47<br />sea_water_temperature: 29.0393<br />station: 31"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,152,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(199,152,0,1)"}},"hoveron":"points","name":"31","legendgroup":"31","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283,1498119283],"y":[29.121300000000002,29.120799999999999,29.117000000000001,29.122199999999999,29.120799999999999,29.122800000000002,29.121200000000002,29.122199999999999,29.123899999999999,29.1267,29.125599999999999,29.127300000000002,29.127099999999999],"text":["time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1213<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1208<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1170<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1222<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1208<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1228<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1212<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1222<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1239<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1267<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1256<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1273<br />station: 33","time: 2017-06-22 08:14:43<br />sea_water_temperature: 29.1271<br />station: 33"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(174,162,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(174,162,0,1)"}},"hoveron":"points","name":"33","legendgroup":"33","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498105750,1498105750,1498105750],"y":[29.412099999999999,29.412400000000002,29.403500000000001],"text":["time: 2017-06-22 04:29:10<br />sea_water_temperature: 29.4121<br />station: 41","time: 2017-06-22 04:29:10<br />sea_water_temperature: 29.4124<br />station: 41","time: 2017-06-22 04:29:10<br />sea_water_temperature: 29.4035<br />station: 41"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(143,170,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(143,170,0,1)"}},"hoveron":"points","name":"41","legendgroup":"41","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090,1498097090],"y":[29.350300000000001,29.3492,29.358699999999999,29.363299999999999,29.364799999999999,29.364999999999998,29.359000000000002,29.363700000000001,29.364100000000001,29.363700000000001,29.364100000000001,29.362400000000001,29.365400000000001,29.367799999999999,29.3672,29.366],"text":["time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3503<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3492<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3587<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3633<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3648<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3650<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3590<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3637<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3641<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3637<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3641<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3624<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3654<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3678<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3672<br />station: 45","time: 2017-06-22 02:04:50<br />sea_water_temperature: 29.3660<br />station: 45"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(100,178,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(100,178,0,1)"}},"hoveron":"points","name":"45","legendgroup":"45","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498091708,1498091708],"y":[29.778099999999998,29.782499999999999],"text":["time: 2017-06-22 00:35:08<br />sea_water_temperature: 29.7781<br />station: 49","time: 2017-06-22 00:35:08<br />sea_water_temperature: 29.7825<br />station: 49"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,184,27,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,184,27,1)"}},"hoveron":"points","name":"49","legendgroup":"49","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498086414,1498086414],"y":[29.5748,29.581099999999999],"text":["time: 2017-06-21 23:06:54<br />sea_water_temperature: 29.5748<br />station: 51","time: 2017-06-21 23:06:54<br />sea_water_temperature: 29.5811<br />station: 51"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,189,92,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,189,92,1)"}},"hoveron":"points","name":"51","legendgroup":"51","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498084357,1498084357],"y":[29.572600000000001,29.5871],"text":["time: 2017-06-21 22:32:37<br />sea_water_temperature: 29.5726<br />station: 53","time: 2017-06-21 22:32:37<br />sea_water_temperature: 29.5871<br />station: 53"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,192,133,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,192,133,1)"}},"hoveron":"points","name":"53","legendgroup":"53","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498076944],"y":[29.750599999999999],"text":"time: 2017-06-21 20:29:04<br />sea_water_temperature: 29.7506<br />station: 56","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,167,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,193,167,1)"}},"hoveron":"points","name":"56","legendgroup":"56","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498075336],"y":[29.600300000000001],"text":"time: 2017-06-21 20:02:16<br />sea_water_temperature: 29.6003<br />station: 57","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"57","legendgroup":"57","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498072556,1498072556,1498072556,1498072556,1498072556,1498072556,1498072556,1498072556],"y":[29.373899999999999,29.374300000000002,29.374300000000002,29.374500000000001,29.375399999999999,29.376000000000001,29.374700000000001,29.375],"text":["time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3739<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3743<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3743<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3745<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3754<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3760<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3747<br />station: 57.1","time: 2017-06-21 19:15:56<br />sea_water_temperature: 29.3750<br />station: 57.1"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,222,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,222,1)"}},"hoveron":"points","name":"57.1","legendgroup":"57.1","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709,1498066709],"y":[29.303100000000001,29.309000000000001,29.309999999999999,29.305499999999999,29.307500000000001,29.305499999999999,29.301200000000001,29.2973,29.295999999999999,29.295999999999999,29.295100000000001,29.293800000000001,29.294,29.291599999999999,29.291699999999999,29.291599999999999,29.292899999999999,29.292899999999999,29.2926,29.286799999999999,29.286200000000001,29.286000000000001,29.2864,29.287500000000001,29.289000000000001,29.289899999999999,29.289899999999999,29.2897,29.287800000000001,29.284099999999999,29.282900000000001],"text":["time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3031<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3090<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3100<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3055<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3075<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3055<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.3012<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2973<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2960<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2960<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2951<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2938<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2940<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2916<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2917<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2916<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2929<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2929<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2926<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2868<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2862<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2860<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2864<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2875<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2890<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2899<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2899<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2897<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2878<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2841<br />station: 57.2","time: 2017-06-21 17:38:29<br />sea_water_temperature: 29.2829<br />station: 57.2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,178,243,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,178,243,1)"}},"hoveron":"points","name":"57.2","legendgroup":"57.2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047,1498060047],"y":[29.184699999999999,29.186399999999999,29.1843,29.187100000000001,29.188600000000001,29.190000000000001,29.191099999999999,29.189599999999999,29.187000000000001,29.1858,29.186599999999999,29.186399999999999,29.183599999999998,29.1843,29.180599999999998,29.177099999999999,29.1738,29.173400000000001,29.171700000000001,29.1721,29.1754,29.178799999999999,29.174700000000001,29.176200000000001,29.175999999999998,29.1738,29.172599999999999,29.1723,29.174299999999999,29.171700000000001,29.171700000000001,29.170500000000001,29.165900000000001,29.167200000000001,29.165600000000001,29.164999999999999],"text":["time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1847<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1864<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1843<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1871<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1886<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1900<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1911<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1896<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1870<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1858<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1866<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1864<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1836<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1843<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1806<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1771<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1738<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1734<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1717<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1721<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1754<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1788<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1747<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1762<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1760<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1738<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1726<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1723<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1743<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1717<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1717<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1705<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1659<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1672<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1656<br />station: 57.3","time: 2017-06-21 15:47:27<br />sea_water_temperature: 29.1650<br />station: 57.3"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,166,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,166,255,1)"}},"hoveron":"points","name":"57.3","legendgroup":"57.3","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456,1498054456],"y":[29.107900000000001,29.107600000000001,29.1083,29.108599999999999,29.1082,29.110399999999998,29.111999999999998,29.111499999999999,29.111699999999999,29.111699999999999,29.111699999999999,29.110800000000001,29.1096,29.107900000000001,29.106100000000001,29.106100000000001,29.106400000000001,29.105899999999998,29.105899999999998,29.100899999999999,29.099399999999999,29.096599999999999,29.095300000000002,29.094999999999999,29.094000000000001,29.0946,29.094000000000001,29.090299999999999,29.089400000000001,29.089200000000002,29.093800000000002,29.098700000000001,29.0962,29.091799999999999,29.0886,29.086400000000001,29.086600000000001,29.086600000000001,29.0867,29.087199999999999,29.087,29.0868,29.086600000000001,29.087,29.087,29.087199999999999,29.086200000000002],"text":["time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1079<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1076<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1083<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1086<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1082<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1104<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1120<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1115<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1117<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1117<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1117<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1108<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1096<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1079<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1061<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1061<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1064<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1059<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1059<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.1009<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0994<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0966<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0953<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0950<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0940<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0946<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0940<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0903<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0894<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0892<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0938<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0987<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0962<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0918<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0886<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0864<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0866<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0866<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0867<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0872<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0870<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0868<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0866<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0870<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0870<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0872<br />station: 58","time: 2017-06-21 14:14:16<br />sea_water_temperature: 29.0862<br />station: 58"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(123,150,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(123,150,255,1)"}},"hoveron":"points","name":"58","legendgroup":"58","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504,1498049504],"y":[29.0565,29.057600000000001,29.057500000000001,29.057099999999998,29.057099999999998,29.0532,29.052299999999999,29.0519,29.053799999999999,29.052700000000002,29.0519,29.049700000000001,29.049700000000001],"text":["time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0565<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0576<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0575<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0571<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0571<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0532<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0523<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0519<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0538<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0527<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0519<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0497<br />station: 59","time: 2017-06-21 12:51:44<br />sea_water_temperature: 29.0497<br />station: 59"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(179,133,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(179,133,255,1)"}},"hoveron":"points","name":"59","legendgroup":"59","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498039291],"y":[28.749300000000002],"text":"time: 2017-06-21 10:01:31<br />sea_water_temperature: 28.7493<br />station: 64","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(216,116,253,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(216,116,253,1)"}},"hoveron":"points","name":"64","legendgroup":"64","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1498028841,1498028841,1498028841,1498028841,1498028841,1498028841,1498028841,1498028841],"y":[29.0182,29.019600000000001,29.02,29.0199,29.020600000000002,29.021000000000001,29.021699999999999,29.021899999999999],"text":["time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0182<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0196<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0200<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0199<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0206<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0210<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0217<br />station: 68","time: 2017-06-21 07:07:21<br />sea_water_temperature: 29.0219<br />station: 68"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(239,103,235,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(239,103,235,1)"}},"hoveron":"points","name":"68","legendgroup":"68","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1497931853,1497931853],"y":[29.285599999999999,29.289200000000001],"text":["time: 2017-06-20 04:10:53<br />sea_water_temperature: 29.2856<br />station: 7","time: 2017-06-20 04:10:53<br />sea_water_temperature: 29.2892<br />station: 7"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(253,97,211,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(253,97,211,1)"}},"hoveron":"points","name":"7","legendgroup":"7","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703,1497916703],"y":[28.395199999999999,28.396100000000001,28.396899999999999,28.396699999999999,28.395600000000002,28.395199999999999,28.3965,28.3978,28.3993,28.398900000000001,28.398299999999999,28.397600000000001,28.3996,28.398199999999999,28.397400000000001,28.3978,28.3994,28.400099999999998,28.4026,28.403500000000001,28.402799999999999,28.402999999999999,28.403400000000001,28.4039,28.403400000000001,28.4039,28.4026,28.403400000000001,28.4039,28.401499999999999,28.402799999999999,28.407399999999999,28.407399999999999,28.407,28.4072,28.4072,28.407399999999999,28.407800000000002,28.407599999999999,28.407399999999999,28.407599999999999,28.407399999999999,28.407699999999998,28.408000000000001],"text":["time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3952<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3961<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3969<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3967<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3956<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3952<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3965<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3978<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3993<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3989<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3983<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3976<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3996<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3982<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3974<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3978<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.3994<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4001<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4026<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4035<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4028<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4030<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4034<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4039<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4034<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4039<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4026<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4034<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4039<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4015<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4028<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4074<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4074<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4070<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4072<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4072<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4074<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4078<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4076<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4074<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4076<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4074<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4077<br />station: MR","time: 2017-06-19 23:58:23<br />sea_water_temperature: 28.4080<br />station: MR"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,99,182,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,99,182,1)"}},"hoveron":"points","name":"MR","legendgroup":"MR","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973,1497984973],"y":[28.395399999999999,28.386500000000002,28.386700000000001,28.3873,28.3856,28.386900000000001,28.374099999999999,28.3735,28.371500000000001,28.378900000000002,28.375800000000002,28.3749,28.374700000000001,28.372800000000002,28.367999999999999,28.373000000000001,28.377199999999998,28.370000000000001,28.370200000000001,28.371200000000002,28.372299999999999,28.372399999999999,28.3719,28.359000000000002,28.365200000000002,28.371300000000002,28.360199999999999,28.363499999999998,28.357299999999999,28.345500000000001,28.337700000000002,28.3354,28.335699999999999,28.333300000000001,28.327000000000002,28.326799999999999,28.3093,28.307500000000001,28.295000000000002],"text":["time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3954<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3865<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3867<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3873<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3856<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3869<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3741<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3735<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3715<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3789<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3758<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3749<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3747<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3728<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3680<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3730<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3772<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3700<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3702<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3712<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3723<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3724<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3719<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3590<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3652<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3713<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3602<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3635<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3573<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3455<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3377<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3354<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3357<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3333<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3270<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3268<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3093<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.3075<br />station: WS","time: 2017-06-20 18:56:13<br />sea_water_temperature: 28.2950<br />station: WS"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,107,148,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,107,148,1)"}},"hoveron":"points","name":"WS","legendgroup":"WS","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Temperature over Time by Station","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1497905560.3499999,1498150698.6500001],"tickmode":"array","ticktext":["Jun 20","Jun 21","Jun 22"],"tickvals":[1497916800,1498003200,1498089600],"categoryorder":"array","categoryarray":["Jun 20","Jun 21","Jun 22"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Time","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[28.164765000000003,29.859534999999997],"tickmode":"array","ticktext":["28.5","29.0","29.5"],"tickvals":[28.5,29,29.5],"categoryorder":"array","categoryarray":["28.5","29.0","29.5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"station","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"114a53cda6b8d":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"114a53cda6b8d","visdat":{"114a53cda6b8d":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>interactive map of stations</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get one location per station (taking the first non-NA lat/lon for each station)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>station_locations <span class="ot">&lt;-</span> cruise_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(station) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">latitude =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(latitude)),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">longitude =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(longitude)),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_observations =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_temp =</span> <span class="fu">mean</span>(sea_water_temperature, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(longitude))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create color palette based on temperature</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorNumeric</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"RdYlBu"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">domain =</span> station_locations<span class="sc">$</span>mean_temp,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">reverse =</span> <span class="cn">TRUE</span>  <span class="co"># Red for warm, blue for cold</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(station_locations) <span class="sc">%&gt;%</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span>  <span class="co"># Add default OpenStreetMap tiles</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>longitude,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>latitude,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">8</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#333333"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">pal</span>(mean_temp),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.8</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">1</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Station: &lt;/strong&gt;"</span>, station, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Observations: &lt;/strong&gt;"</span>, n_observations, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Mean Temp: &lt;/strong&gt;"</span>, <span class="fu">round</span>(mean_temp, <span class="dv">2</span>), <span class="st">" °C&lt;br&gt;"</span>,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Lat: &lt;/strong&gt;"</span>, <span class="fu">round</span>(latitude, <span class="dv">4</span>), <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Lon: &lt;/strong&gt;"</span>, <span class="fu">round</span>(longitude, <span class="dv">4</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>station</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"bottomright"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">pal =</span> pal,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="sc">~</span>mean_temp,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Temperature (°C)"</span>,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.8</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addScaleBar</span>(<span class="at">position =</span> <span class="st">"bottomleft"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-39ce936086b8421315bc" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-39ce936086b8421315bc">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[24.7878333333333,24.5475,25.4003333333333,25.7413333333333,25.912,25.7341666666667,25.5836666666667,25.5825,25.4548333333333,25.4546666666667,25.3513333333333,25.3528333333333,25.3538333333333,25.3535,25.3541666666667,25.169,25.1675,25.1683333333333,24.932,24.8176666666667,25.0053333333333,24.4753333333333],[-80.863,-81.4228333333333,-82.209,-81.947,-81.8013333333333,-81.57599999999999,-81.47166666666671,-81.29283333333331,-81.31,-81.2501666666667,-81.2271666666667,-81.2648333333333,-81.3363333333333,-81.492,-81.6555,-81.6538333333333,-81.4908333333333,-81.1806666666667,-81.16849999999999,-80.7585,-80.3788333333333,-81.7163333333333],8,null,null,{"interactive":true,"className":"","stroke":true,"color":"#333333","weight":1,"opacity":0.5,"fill":true,"fillColor":["#E3F4F3","#313695","#CFEAF3","#FFFBB9","#FFE99E","#F98A4F","#FB9D59","#A50026","#E14630","#E0452F","#AF0D26","#DC3D2C","#FB9856","#FEB769","#FEDC8D","#FFEEA5","#FFF7B3","#BAE0ED","#FFFEBD","#FEB96B","#4575B4","#4165AC"],"fillOpacity":0.8},null,null,["<strong>Station: <\/strong>10<br><strong>Observations: <\/strong>3<br><strong>Mean Temp: <\/strong>28.87 °C<br><strong>Lat: <\/strong>24.7878<br><strong>Lon: <\/strong>-80.863","<strong>Station: <\/strong>21LK<br><strong>Observations: <\/strong>21<br><strong>Mean Temp: <\/strong>28.25 °C<br><strong>Lat: <\/strong>24.5475<br><strong>Lon: <\/strong>-81.4228","<strong>Station: <\/strong>30<br><strong>Observations: <\/strong>117<br><strong>Mean Temp: <\/strong>28.81 °C<br><strong>Lat: <\/strong>25.4003<br><strong>Lon: <\/strong>-82.209","<strong>Station: <\/strong>31<br><strong>Observations: <\/strong>35<br><strong>Mean Temp: <\/strong>29.03 °C<br><strong>Lat: <\/strong>25.7413<br><strong>Lon: <\/strong>-81.947","<strong>Station: <\/strong>33<br><strong>Observations: <\/strong>13<br><strong>Mean Temp: <\/strong>29.12 °C<br><strong>Lat: <\/strong>25.912<br><strong>Lon: <\/strong>-81.8013","<strong>Station: <\/strong>41<br><strong>Observations: <\/strong>3<br><strong>Mean Temp: <\/strong>29.41 °C<br><strong>Lat: <\/strong>25.7342<br><strong>Lon: <\/strong>-81.576","<strong>Station: <\/strong>45<br><strong>Observations: <\/strong>16<br><strong>Mean Temp: <\/strong>29.36 °C<br><strong>Lat: <\/strong>25.5837<br><strong>Lon: <\/strong>-81.4717","<strong>Station: <\/strong>49<br><strong>Observations: <\/strong>2<br><strong>Mean Temp: <\/strong>29.78 °C<br><strong>Lat: <\/strong>25.5825<br><strong>Lon: <\/strong>-81.2928","<strong>Station: <\/strong>51<br><strong>Observations: <\/strong>2<br><strong>Mean Temp: <\/strong>29.58 °C<br><strong>Lat: <\/strong>25.4548<br><strong>Lon: <\/strong>-81.31","<strong>Station: <\/strong>53<br><strong>Observations: <\/strong>2<br><strong>Mean Temp: <\/strong>29.58 °C<br><strong>Lat: <\/strong>25.4547<br><strong>Lon: <\/strong>-81.2502","<strong>Station: <\/strong>56<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>29.75 °C<br><strong>Lat: <\/strong>25.3513<br><strong>Lon: <\/strong>-81.2272","<strong>Station: <\/strong>57<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>29.6 °C<br><strong>Lat: <\/strong>25.3528<br><strong>Lon: <\/strong>-81.2648","<strong>Station: <\/strong>57.1<br><strong>Observations: <\/strong>8<br><strong>Mean Temp: <\/strong>29.37 °C<br><strong>Lat: <\/strong>25.3538<br><strong>Lon: <\/strong>-81.3363","<strong>Station: <\/strong>57.2<br><strong>Observations: <\/strong>31<br><strong>Mean Temp: <\/strong>29.29 °C<br><strong>Lat: <\/strong>25.3535<br><strong>Lon: <\/strong>-81.492","<strong>Station: <\/strong>57.3<br><strong>Observations: <\/strong>36<br><strong>Mean Temp: <\/strong>29.18 °C<br><strong>Lat: <\/strong>25.3542<br><strong>Lon: <\/strong>-81.6555","<strong>Station: <\/strong>58<br><strong>Observations: <\/strong>47<br><strong>Mean Temp: <\/strong>29.1 °C<br><strong>Lat: <\/strong>25.169<br><strong>Lon: <\/strong>-81.6538","<strong>Station: <\/strong>59<br><strong>Observations: <\/strong>13<br><strong>Mean Temp: <\/strong>29.05 °C<br><strong>Lat: <\/strong>25.1675<br><strong>Lon: <\/strong>-81.4908","<strong>Station: <\/strong>64<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>28.75 °C<br><strong>Lat: <\/strong>25.1683<br><strong>Lon: <\/strong>-81.1807","<strong>Station: <\/strong>68<br><strong>Observations: <\/strong>8<br><strong>Mean Temp: <\/strong>29.02 °C<br><strong>Lat: <\/strong>24.932<br><strong>Lon: <\/strong>-81.1685","<strong>Station: <\/strong>7<br><strong>Observations: <\/strong>2<br><strong>Mean Temp: <\/strong>29.29 °C<br><strong>Lat: <\/strong>24.8177<br><strong>Lon: <\/strong>-80.7585","<strong>Station: <\/strong>MR<br><strong>Observations: <\/strong>44<br><strong>Mean Temp: <\/strong>28.4 °C<br><strong>Lat: <\/strong>25.0053<br><strong>Lon: <\/strong>-80.3788","<strong>Station: <\/strong>WS<br><strong>Observations: <\/strong>39<br><strong>Mean Temp: <\/strong>28.36 °C<br><strong>Lat: <\/strong>24.4753<br><strong>Lon: <\/strong>-81.7163"],null,["10","21LK","30","31","33","41","45","49","51","53","56","57","57.1","57.2","57.3","58","59","64","68","7","MR","WS"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#313695 , #4575B4 9.92392743273754%, #85BAD8 22.9755933846701%, #CBE9F2 36.0272593366026%, #FDFEC4 49.0789252885352%, #FED586 62.130591240468%, #F98D51 75.1822571924005%, #DC3D2C 88.2339231443331%, #A50026 "],"labels":["28.4","28.6","28.8","29.0","29.2","29.4","29.6"],"na_color":null,"na_label":"NA","opacity":0.8,"position":"bottomright","type":"numeric","title":"Mean Temperature (°C)","extra":{"p_1":0.09923927432737541,"p_n":0.8823392314433306},"layerId":null,"className":"info legend","group":null}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[24.4753333333333,25.912],"lng":[-82.209,-80.3788333333333]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>createSurfaceMap <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var_name, legend_min, legend_max){</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># additional: parameters</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># model = try "Sph" (spherical), "Exp" (exponential) or "Gau" (Gaussian) to get the best variogram fit</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  MODEL <span class="ot">&lt;-</span> <span class="st">"Exp"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># length.out Increase for a finer grid (slower), decrease for speed</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  LENGTH_OUT <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bbox_ext = 0.1 Adjust padding around your data extent (in degrees)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#A nugget = 0 Set to a small positive value if data has measurement error</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get average value of var_name for 0-5 meters in df</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(depth <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> depth <span class="sc">&lt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(station) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_value =</span> <span class="fu">mean</span>(.data[[var_name]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">latitude   =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(latitude)),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">longitude  =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(longitude)),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups    =</span> <span class="st">"drop"</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">quiet =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      sp, gstat, ggplot2, viridis, raster, sf</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 1. Prepare spatial data ---</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    df_sp <span class="ot">&lt;-</span> df</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    df_sp<span class="sc">$</span>latitude  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_sp<span class="sc">$</span>latitude)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    df_sp<span class="sc">$</span>longitude <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_sp<span class="sc">$</span>longitude)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    df_sp <span class="ot">&lt;-</span> df_sp[<span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>mean_value) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>latitude) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>longitude), ]</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coordinates</span>(df_sp) <span class="ot">&lt;-</span> <span class="er">~</span>longitude <span class="sc">+</span> latitude</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">proj4string</span>(df_sp) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +datum=WGS84"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 2. Create interpolation grid ---</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    bbox_ext  <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    lon_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">bbox</span>(df_sp)[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">-</span> bbox_ext, <span class="fu">bbox</span>(df_sp)[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> bbox_ext, <span class="at">length.out =</span> LENGTH_OUT)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    lat_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">bbox</span>(df_sp)[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">-</span> bbox_ext, <span class="fu">bbox</span>(df_sp)[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> bbox_ext, <span class="at">length.out =</span> LENGTH_OUT)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">longitude =</span> lon_range, <span class="at">latitude =</span> lat_range)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coordinates</span>(grid) <span class="ot">&lt;-</span> <span class="er">~</span>longitude <span class="sc">+</span> latitude</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">proj4string</span>(grid) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +datum=WGS84"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gridded</span>(grid) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 3. Fit variogram ---</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    vgm_emp <span class="ot">&lt;-</span> <span class="fu">variogram</span>(mean_value <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> df_sp)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    vgm_fit <span class="ot">&lt;-</span> <span class="fu">fit.variogram</span>(vgm_emp, <span class="at">model =</span> <span class="fu">vgm</span>(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">psill  =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>gamma),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">model  =</span> MODEL,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">range  =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>dist) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">nugget =</span> <span class="fu">min</span>(vgm_emp<span class="sc">$</span>gamma)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    vgm_line <span class="ot">&lt;-</span> <span class="fu">variogramLine</span>(vgm_fit, <span class="at">maxdist =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>dist))</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">data =</span> vgm_emp, <span class="fu">aes</span>(<span class="at">x =</span> dist, <span class="at">y =</span> gamma, <span class="at">size =</span> np), <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">data =</span> vgm_line, <span class="fu">aes</span>(<span class="at">x =</span> dist, <span class="at">y =</span> gamma), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empirical Variogram with Fitted Model"</span>,</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="st">"Distance"</span>, <span class="at">y =</span> <span class="st">"Semivariance"</span>, <span class="at">size =</span> <span class="st">"Num. pairs"</span>) <span class="sc">+</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 4. Perform Ordinary Kriging ---</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    krig_result <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">krige</span>(</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>      mean_value <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">locations =</span> df_sp, </span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>      <span class="at">newdata =</span> grid, </span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> vgm_fit</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 5. Convert to data frame and clip to convex hull ---</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    krig_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(krig_result)</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"var1.pred"</span>] <span class="ot">&lt;-</span> <span class="st">"predicted"</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"var1.var"</span>]  <span class="ot">&lt;-</span> <span class="st">"variance"</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build convex hull from sample points</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    pts_sf  <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>    hull_sf <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(<span class="fu">st_union</span>(pts_sf))</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clip kriged grid to hull</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    krig_sf      <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(krig_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    krig_clipped <span class="ot">&lt;-</span> <span class="fu">st_filter</span>(krig_sf, hull_sf)</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    krig_df      <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">st_drop_geometry</span>(krig_clipped), <span class="fu">st_coordinates</span>(krig_clipped))</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"X"</span>] <span class="ot">&lt;-</span> <span class="st">"longitude"</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"Y"</span>] <span class="ot">&lt;-</span> <span class="st">"latitude"</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 6. Plot surface map ---</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  librarian<span class="sc">::</span><span class="fu">shelf</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>, ggplot2, viridis, sf, ggspatial, rnaturalearth, rnaturalearthdata)</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Basemap ---</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Kriged surface</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_raster</span>(<span class="at">data =</span> krig_df, <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">fill =</span> predicted), <span class="at">interpolate =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">fill =</span> mean_value),</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>                   <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>          <span class="at">option =</span> <span class="st">"plasma"</span>,</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>          <span class="at">name   =</span> <span class="st">"Value"</span>,</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits =</span> <span class="fu">c</span>(legend_min, legend_max),</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>          <span class="at">oob    =</span> scales<span class="sc">::</span>squish</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Basemap</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_sf</span>(<span class="at">data =</span> world, <span class="at">fill =</span> <span class="st">"gray85"</span>, <span class="at">color =</span> <span class="st">"gray50"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Colorscale with hardcoded limits</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>          <span class="at">option  =</span> <span class="st">"plasma"</span>,</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>          <span class="at">name    =</span> <span class="st">"Value"</span>,</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits  =</span> <span class="fu">c</span>(legend_min, legend_max),</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>          <span class="at">oob     =</span> scales<span class="sc">::</span>squish   <span class="co"># squish values outside limits into the color range</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Zoom to data extent with a small buffer</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_sf</span>(</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fu">min</span>(krig_df<span class="sc">$</span>longitude) <span class="sc">-</span> <span class="fl">0.1</span>, <span class="fu">max</span>(krig_df<span class="sc">$</span>longitude) <span class="sc">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(krig_df<span class="sc">$</span>latitude)  <span class="sc">-</span> <span class="fl">0.1</span>, <span class="fu">max</span>(krig_df<span class="sc">$</span>latitude)  <span class="sc">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>          <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>        <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>) <span class="sc">+</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>        <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>, <span class="at">style =</span> <span class="fu">north_arrow_fancy_orienteering</span>()) <span class="sc">+</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Kriging Surface:"</span>, var_name),</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"error generating surface map for {var_name}:"</span>))</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"sea_water_temperature"</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"chlorophyll_fluorescence"</span>, <span class="fl">0.02</span>, <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"oxygen_saturation"</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"sea_water_salinity"</span>, <span class="dv">30</span>, <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS17170_files/figure-html/create interpolated surface maps-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/USF-IMARS\.github\.io\/seus-mbon-cruise-ctd-processing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

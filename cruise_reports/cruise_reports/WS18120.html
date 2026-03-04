@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ws18120 – MBON Cruise CTD Reports</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fed2927b5d71da76dad1d9df0395c5a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.12.0/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
+<link href="../../site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="../../site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
+<script src="../../site_libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="../../site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="../../site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
+<script src="../../site_libs/leaflet-binding-2.2.2/leaflet.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">MBON Cruise CTD Reports</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../ctd_reports/ctd_reports.qmd"> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <span class="nav-link">
+<span class="menu-text">cruise_report/cruise_reports.qmd</span>
+    </span>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing"> 
+<span class="menu-text">Source Code on GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ws18120" id="toc-ws18120" class="nav-link active" data-scroll-target="#ws18120">WS18120</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="ws18120" class="level1">
+<h1>WS18120</h1>
+<div class="cell">
+<details class="code-fold">
+<summary>setup</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">nzchar</span>(<span class="fu">system.file</span>(<span class="at">package =</span> <span class="st">"librarian"</span>))) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"librarian"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">quiet =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  readr, here, fs, ggplot2, glue, <span class="st">"jiho/castr"</span>, dplyr, oce, patchwork, purrr, tidyr</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"R/load_cruise_ctds.R"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>cruise_df <span class="ot">&lt;-</span> <span class="fu">load_cruise_ctds</span>(params<span class="sc">$</span>cruise_id)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loaded 20 files for cruise WS18120 
+Total rows: 925 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>plot across all stations</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cruise_df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> sea_water_temperature, <span class="at">color =</span> station)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.8</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Time"</span>, <span class="at">y =</span> <span class="st">"Temperature (°C)"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Temperature over Time by Station"</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(p)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-93f6b76fe61570f37765" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-93f6b76fe61570f37765">{"x":{"data":[{"x":[1525153082,1525153082,1525153082,1525153082],"y":[27.373000000000001,27.363700000000001,27.364999999999998,27.363900000000001],"text":["time: 2018-05-01 05:38:02<br />sea_water_temperature: 27.3730<br />station: 10","time: 2018-05-01 05:38:02<br />sea_water_temperature: 27.3637<br />station: 10","time: 2018-05-01 05:38:02<br />sea_water_temperature: 27.3650<br />station: 10","time: 2018-05-01 05:38:02<br />sea_water_temperature: 27.3639<br />station: 10"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"10","legendgroup":"10","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222,1525149222],"y":[26.216799999999999,26.2362,26.229199999999999,26.228999999999999,26.229700000000001,26.2303,26.229500000000002,26.231400000000001,26.230599999999999,26.231200000000001,26.232099999999999,26.232299999999999,26.231200000000001,26.229700000000001,26.229700000000001,26.229500000000002,26.229900000000001,26.229900000000001,26.2301,26.2301,26.229900000000001,26.2301,26.229900000000001,26.228999999999999,26.228300000000001,26.229299999999999,26.2319,26.232099999999999,26.231000000000002,26.231200000000001,26.231000000000002,26.231200000000001,26.231400000000001,26.231200000000001,26.231200000000001,26.233699999999999,26.2212,26.2195,26.2163,26.215499999999999,26.214300000000001,26.216799999999999,26.217700000000001,26.2165,26.221399999999999,26.222999999999999,26.224499999999999,26.222300000000001,26.220600000000001,26.218299999999999,26.220300000000002,26.220400000000001,26.219000000000001,26.2195,26.220800000000001,26.217199999999998,26.225899999999999,26.2272,26.226800000000001,26.2272,26.227,26.2272,26.2272,26.226400000000002,26.226800000000001,26.227399999999999,26.227699999999999,26.230799999999999,26.231000000000002,26.231200000000001,26.231400000000001,26.229900000000001,26.229299999999999,26.231200000000001,26.2315,26.229900000000001,26.213000000000001,26.210699999999999,26.2136,26.213200000000001,26.213899999999999,26.215399999999999,26.215800000000002,26.213200000000001,26.209599999999998,26.207599999999999,26.204499999999999,26.1981,26.197600000000001,26.202300000000001,26.203399999999998,26.2014,26.198499999999999,26.211600000000001],"text":["time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2168<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2362<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2292<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2290<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2297<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2303<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2295<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2314<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2306<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2321<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2323<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2297<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2297<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2295<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2301<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2301<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2301<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2290<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2283<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2293<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2319<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2321<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2310<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2310<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2314<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2337<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2212<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2195<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2163<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2155<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2143<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2168<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2177<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2165<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2214<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2230<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2245<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2223<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2206<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2183<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2203<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2204<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2190<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2195<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2208<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2172<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2259<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2272<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2268<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2272<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2270<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2272<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2272<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2264<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2268<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2274<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2277<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2308<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2310<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2314<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2293<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2312<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2315<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2299<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2130<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2107<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2136<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2132<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2139<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2154<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2158<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2132<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2096<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2076<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2045<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.1981<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.1976<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2023<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2034<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2014<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.1985<br />station: 12","time: 2018-05-01 04:33:42<br />sea_water_temperature: 26.2116<br />station: 12"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(234,131,49,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(234,131,49,1)"}},"hoveron":"points","name":"12","legendgroup":"12","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578,1525168578],"y":[26.6281,26.628299999999999,26.632300000000001,26.629999999999999,26.630500000000001,26.631599999999999,26.633099999999999,26.627400000000002,26.6294,26.630500000000001,26.629999999999999,26.629100000000001],"text":["time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6281<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6283<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6323<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6300<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6305<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6316<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6331<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6274<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6294<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6305<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6300<br />station: 16","time: 2018-05-01 09:56:18<br />sea_water_temperature: 26.6291<br />station: 16"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(216,144,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(216,144,0,1)"}},"hoveron":"points","name":"16","legendgroup":"16","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784,1525164784],"y":[25.642299999999999,25.646999999999998,25.6435,25.6432,25.645600000000002,25.6447,25.648299999999999,25.660399999999999,25.6615,25.656099999999999,25.6538,25.6541,25.6525,25.655200000000001,25.651499999999999,25.650500000000001,25.650700000000001,25.650700000000001,25.6523,25.656099999999999,25.656400000000001,25.656400000000001,25.6557,25.6495,25.645600000000002,25.644600000000001,25.6432,25.6432,25.644100000000002,25.6465,25.648499999999999,25.6492,25.6492,25.6495,25.649799999999999,25.6495,25.6492,25.650099999999998,25.6492,25.6495,25.650500000000001,25.6495,25.648900000000001,25.648700000000002,25.648,25.648499999999999,25.6495,25.6494,25.6494,25.649699999999999,25.650099999999998,25.648800000000001,25.649100000000001,25.648199999999999,25.648199999999999,25.648299999999999,25.648499999999999,25.6495,25.6495,25.648499999999999,25.648700000000002,25.648199999999999,25.648800000000001,25.648900000000001,25.648700000000002,25.646999999999998,25.647500000000001,25.647200000000002,25.647500000000001,25.647400000000001,25.646899999999999,25.6463,25.645600000000002,25.645399999999999,25.646899999999999,25.646899999999999,25.647099999999998,25.646799999999999,25.646999999999998,25.647099999999998,25.6477,25.6479,25.6477,25.646699999999999,25.648099999999999,25.648299999999999,25.648900000000001,25.6477,25.6479,25.648099999999999,25.648700000000002,25.648499999999999,25.649000000000001,25.6492,25.6492,25.647400000000001,25.647600000000001,25.647099999999998,25.647300000000001,25.647200000000002,25.6477,25.6479,25.6477,25.6447,25.645199999999999,25.646999999999998,25.646999999999998,25.647500000000001,25.647400000000001,25.647200000000002,25.648199999999999,25.648,25.648199999999999,25.647200000000002,25.646799999999999,25.646699999999999,25.646699999999999,25.6477,25.6479,25.647400000000001,25.646100000000001,25.6465,25.6479,25.648700000000002,25.648900000000001,25.648900000000001,25.650099999999998,25.650099999999998,25.649799999999999,25.6492,25.650700000000001,25.650500000000001,25.6492,25.649999999999999,25.649799999999999,25.6495,25.6492,25.646699999999999,25.646699999999999,25.646999999999998,25.647400000000001,25.647400000000001,25.6479,25.648199999999999,25.648199999999999,25.648700000000002,25.648800000000001,25.648800000000001,25.648499999999999,25.6479,25.6479,25.6478,25.650099999999998,25.650500000000001,25.6511,25.651900000000001,25.651900000000001,25.651399999999999,25.650700000000001,25.650700000000001,25.648800000000001,25.6494,25.648700000000002,25.648299999999999,25.647400000000001,25.647400000000001,25.647400000000001,25.647200000000002,25.647600000000001,25.647400000000001,25.647200000000002,25.646799999999999,25.646799999999999,25.647099999999998,25.646699999999999,25.646000000000001,25.639700000000001,25.629200000000001,25.629200000000001,25.629000000000001,25.4818,25.466100000000001,25.465599999999998,25.4206,25.417400000000001,25.4129,25.395099999999999,25.388300000000001,25.392399999999999,25.374500000000001,25.375599999999999,25.360099999999999,25.325700000000001,25.311599999999999,25.305700000000002,25.262899999999998,25.246099999999998,25.1951,25.174800000000001,25.116800000000001,25.113700000000001,25.082000000000001,25.086500000000001,24.9222,24.917100000000001,24.901199999999999,24.899999999999999,24.8964,24.890599999999999,24.818899999999999,24.8157,24.750800000000002,24.7118,24.590699999999998,24.5824,24.561399999999999,24.535799999999998,24.5335,24.569500000000001,24.543800000000001,24.523199999999999,24.501799999999999,24.163699999999999,24.0792,24.139700000000001,23.980399999999999,23.9374,23.906199999999998,23.898900000000001,23.8813,23.8504,23.829899999999999,23.836500000000001,23.648800000000001,23.630199999999999,23.607399999999998,23.517299999999999,23.383099999999999,23.3828,23.380800000000001,23.376100000000001,23.364999999999998,23.3508,23.330500000000001,23.321200000000001,23.258800000000001,23.210699999999999,23.175799999999999,23.165400000000002,23.159700000000001,23.156300000000002,23.148399999999999,23.1388,23.1218,23.089099999999998,22.937100000000001,22.9038,22.8779,22.8491,22.847300000000001,22.7334,22.6907,22.667300000000001,22.590199999999999,22.558299999999999,22.5505,22.545300000000001,22.5398,22.5381,22.5381,22.537099999999999],"text":["time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6423<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6435<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6432<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6456<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6447<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6483<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6604<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6615<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6561<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6538<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6541<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6525<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6552<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6515<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6505<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6507<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6507<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6523<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6561<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6564<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6564<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6557<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6456<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6446<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6432<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6432<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6441<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6465<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6498<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6501<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6505<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6489<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6480<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6494<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6494<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6497<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6501<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6491<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6483<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6489<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6475<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6475<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6469<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6463<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6456<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6454<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6469<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6469<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6471<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6468<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6471<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6481<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6483<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6489<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6481<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6490<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6476<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6471<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6473<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6447<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6452<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6475<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6480<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6468<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6477<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6461<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6465<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6489<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6489<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6501<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6501<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6498<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6507<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6505<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6500<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6498<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6495<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6492<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6470<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6482<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6485<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6479<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6478<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6501<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6505<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6511<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6519<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6519<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6514<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6507<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6507<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6494<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6487<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6483<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6476<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6474<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6472<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6468<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6468<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6471<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6467<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6460<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6397<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6292<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6292<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.6290<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4818<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4661<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4656<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4206<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4174<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.4129<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3951<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3883<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3924<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3745<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3756<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3601<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3257<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3116<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.3057<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.2629<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.2461<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.1951<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.1748<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.1168<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.1137<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.0820<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 25.0865<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.9222<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.9171<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.9012<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.9000<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.8964<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.8906<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.8189<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.8157<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.7508<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.7118<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5907<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5824<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5614<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5358<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5335<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5695<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5438<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5232<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.5018<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.1637<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.0792<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 24.1397<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.9804<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.9374<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.9062<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.8989<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.8813<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.8504<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.8299<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.8365<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.6488<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.6302<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.6074<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.5173<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3831<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3828<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3808<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3761<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3650<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3508<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3305<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.3212<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.2588<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.2107<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1758<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1654<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1597<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1563<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1484<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1388<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.1218<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 23.0891<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.9371<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.9038<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.8779<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.8491<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.8473<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.7334<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.6907<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.6673<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5902<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5583<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5505<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5453<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5398<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5381<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5381<br />station: 18","time: 2018-05-01 08:53:04<br />sea_water_temperature: 22.5371<br />station: 18"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(192,155,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(192,155,0,1)"}},"hoveron":"points","name":"18","legendgroup":"18","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775,1525095775],"y":[26.431000000000001,26.434999999999999,26.432300000000001,26.4285,26.427800000000001,26.426100000000002,26.432600000000001,26.427600000000002,26.433499999999999,26.4316,26.4346,26.435600000000001,26.435600000000001],"text":["time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4310<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4350<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4323<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4285<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4278<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4261<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4326<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4276<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4335<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4316<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4346<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4356<br />station: 2","time: 2018-04-30 13:42:55<br />sea_water_temperature: 26.4356<br />station: 2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"2","legendgroup":"2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785,1525177785],"y":[26.2788,26.277000000000001,26.276700000000002,26.275300000000001,26.2744,26.273700000000002,26.273599999999998,26.273700000000002,26.274000000000001,26.273900000000001,26.273299999999999,26.274799999999999,26.271100000000001,26.270099999999999,26.268899999999999,26.2666,26.281700000000001,26.281099999999999,26.281700000000001,26.281099999999999,26.281700000000001,26.282399999999999,26.283300000000001,26.282800000000002,26.285699999999999,26.285900000000002,26.284400000000002,26.285299999999999,26.265000000000001,26.2653,26.2624,26.268000000000001,26.264600000000002,26.274799999999999,26.277100000000001,26.279399999999999,26.285499999999999,26.285299999999999,26.286799999999999,26.2864,26.286999999999999,26.287299999999998,26.286100000000001,26.2851,26.290800000000001,26.290800000000001,26.2821,26.283300000000001,26.283300000000001,26.271699999999999,26.230399999999999,26.2361,26.237500000000001,26.235700000000001,26.239000000000001,26.228100000000001,26.232299999999999,26.223500000000001,26.223400000000002,26.222999999999999,26.203399999999998,26.208500000000001,26.1981,26.186699999999998,26.186900000000001,26.186499999999999,26.186900000000001,26.190000000000001,26.1876,26.188700000000001,26.191800000000001,26.192900000000002,26.197800000000001,26.194500000000001,26.194700000000001,26.2088,26.215900000000001,26.204499999999999,26.1981,26.194099999999999,26.160799999999998,26.1568,26.168199999999999,26.170200000000001,26.180299999999999,26.1675,26.174900000000001,26.1782,26.181000000000001,26.111499999999999,26.1113,26.028400000000001,26.0288,26.027899999999999,26.0273,26.027999999999999,25.996700000000001,25.9954,26.011500000000002,25.996500000000001,25.988900000000001,25.9725,25.974399999999999,25.945900000000002,25.944099999999999,25.923100000000002,25.926100000000002,25.858899999999998,25.8627,25.850300000000001,25.8353,25.832599999999999,25.829999999999998,25.801200000000001,25.8001,25.789899999999999,25.790299999999998,25.766200000000001,25.758299999999998,25.743200000000002,25.738199999999999,25.737400000000001,25.737400000000001,25.7347,25.739999999999998,25.736899999999999,25.737100000000002,25.734400000000001,25.729900000000001,25.723099999999999,25.7347,25.731200000000001,25.726199999999999,25.721699999999998,25.7239,25.713999999999999,25.714500000000001,25.715199999999999,25.713799999999999,25.712800000000001,25.712499999999999,25.712299999999999,25.712499999999999,25.713799999999999,25.7134,25.7134,25.712900000000001,25.712299999999999,25.711200000000002,25.710999999999999,25.7118,25.7118,25.7119,25.7119,25.7056,25.703099999999999],"text":["time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2788<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2770<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2767<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2753<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2744<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2737<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2736<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2737<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2740<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2739<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2733<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2748<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2711<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2701<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2689<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2666<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2817<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2811<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2817<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2811<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2817<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2824<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2833<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2828<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2857<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2859<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2844<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2853<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2650<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2653<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2624<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2680<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2646<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2748<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2771<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2794<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2855<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2853<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2868<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2864<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2870<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2873<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2861<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2851<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2908<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2908<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2821<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2833<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2833<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2717<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2304<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2361<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2375<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2357<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2390<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2281<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2323<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2235<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2234<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2230<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2034<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2085<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1981<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1867<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1869<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1865<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1869<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1900<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1876<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1887<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1918<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1929<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1978<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1945<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1947<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2088<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2159<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.2045<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1981<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1941<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1608<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1568<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1682<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1702<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1803<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1675<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1749<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1782<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1810<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1115<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.1113<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0284<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0288<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0279<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0273<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0280<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9967<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9954<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 26.0115<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9965<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9889<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9725<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9744<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9459<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9441<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9231<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.9261<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8589<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8627<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8503<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8353<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8326<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8300<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8012<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.8001<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7899<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7903<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7662<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7583<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7432<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7382<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7374<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7374<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7347<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7400<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7369<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7371<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7344<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7299<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7231<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7347<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7312<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7262<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7217<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7239<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7140<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7145<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7152<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7138<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7128<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7125<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7123<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7125<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7138<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7134<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7134<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7129<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7123<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7112<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7110<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7118<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7118<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7119<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7119<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7056<br />station: 21LK","time: 2018-05-01 12:29:45<br />sea_water_temperature: 25.7031<br />station: 21LK"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(124,174,0,1)"}},"hoveron":"points","name":"21LK","legendgroup":"21LK","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646,1525226646],"y":[25.165600000000001,25.165199999999999,25.167200000000001,25.167200000000001,25.171700000000001,25.159500000000001,25.1584,25.157499999999999,25.119,25.1233,25.153199999999998,25.151900000000001,25.151900000000001,25.153500000000001,25.154699999999998,25.151299999999999,25.1264,25.1327,25.123100000000001,25.112300000000001,25.091200000000001,25.058,25.044699999999999,25.044499999999999,25.0319,25.031300000000002,25.007999999999999,25.013500000000001,24.985199999999999,24.993200000000002,24.974399999999999,24.971299999999999,24.886299999999999,24.8811,24.867699999999999,24.860700000000001,24.857700000000001,24.856200000000001,24.849399999999999,24.8474,24.842400000000001,24.840699999999998,24.835100000000001,24.8263,24.820799999999998,24.816600000000001,24.802199999999999,24.803799999999999,24.798200000000001,24.802600000000002,24.7881,24.786000000000001,24.783899999999999,24.780999999999999,24.769100000000002,24.756399999999999,24.7136,24.6907,24.5686,24.398900000000001,24.148700000000002,24.023099999999999,23.9803,23.932099999999998,23.903500000000001,23.889600000000002,23.852399999999999,23.843800000000002,23.840900000000001,23.8354,23.8309,23.8049,23.782900000000001,23.7789,23.7759,23.7761,23.776399999999999,23.775700000000001,23.759499999999999,23.7563,23.753699999999998,23.751999999999999,23.750599999999999,23.749500000000001,23.735900000000001],"text":["time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1656<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1652<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1672<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1672<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1717<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1595<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1584<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1575<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1190<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1233<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1532<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1519<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1519<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1535<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1547<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1513<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1264<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1327<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1231<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.1123<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0912<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0580<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0447<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0445<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0319<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0313<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0080<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 25.0135<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.9852<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.9932<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.9744<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.9713<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8863<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8811<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8677<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8607<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8577<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8562<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8494<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8474<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8424<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8407<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8351<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8263<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8208<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8166<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8022<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8038<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7982<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.8026<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7881<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7860<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7839<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7810<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7691<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7564<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.7136<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.6907<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.5686<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.3989<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.1487<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 24.0231<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.9803<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.9321<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.9035<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8896<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8524<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8438<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8409<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8354<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8309<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.8049<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7829<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7789<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7759<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7761<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7764<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7757<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7595<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7563<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7537<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7520<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7506<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7495<br />station: 30","time: 2018-05-02 02:04:06<br />sea_water_temperature: 23.7359<br />station: 30"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(57,182,0,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(57,182,0,1)"}},"hoveron":"points","name":"30","legendgroup":"30","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223,1525256223],"y":[25.694600000000001,25.705400000000001,25.703299999999999,25.701599999999999,25.6982,25.697800000000001,25.6996,25.699999999999999,25.699999999999999,25.700299999999999,25.7027,25.703800000000001,25.7042,25.704699999999999,25.7043,25.703800000000001,25.700199999999999],"text":["time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.6946<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7054<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7033<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7016<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.6982<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.6978<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.6996<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7000<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7000<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7003<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7027<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7038<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7042<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7047<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7043<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7038<br />station: 33","time: 2018-05-02 10:17:03<br />sea_water_temperature: 25.7002<br />station: 33"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,187,78,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,187,78,1)"}},"hoveron":"points","name":"33","legendgroup":"33","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525269304,1525269304,1525269304],"y":[26.050000000000001,26.0458,26.0457],"text":["time: 2018-05-02 13:55:04<br />sea_water_temperature: 26.0500<br />station: 41","time: 2018-05-02 13:55:04<br />sea_water_temperature: 26.0458<br />station: 41","time: 2018-05-02 13:55:04<br />sea_water_temperature: 26.0457<br />station: 41"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"41","legendgroup":"41","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116,1525278116],"y":[26.4438,26.4316,26.421800000000001,26.420100000000001,26.423999999999999,26.425599999999999,26.426300000000001,26.400300000000001,26.4054,26.389800000000001,26.397400000000001,26.391100000000002],"text":["time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4438<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4316<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4218<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4201<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4240<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4256<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4263<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4003<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.4054<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.3898<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.3974<br />station: 45","time: 2018-05-02 16:21:56<br />sea_water_temperature: 26.3911<br />station: 45"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,163,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,193,163,1)"}},"hoveron":"points","name":"45","legendgroup":"45","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525298179],"y":[26.4419],"text":"time: 2018-05-02 21:56:19<br />sea_water_temperature: 26.4419<br />station: 54","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"54","legendgroup":"54","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525302733],"y":[26.350300000000001],"text":"time: 2018-05-02 23:12:13<br />sea_water_temperature: 26.3503<br />station: 56","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,224,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,224,1)"}},"hoveron":"points","name":"56","legendgroup":"56","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525311746,1525311746,1525311746,1525311746],"y":[26.668900000000001,26.6707,26.672899999999998,26.6722],"text":["time: 2018-05-03 01:42:26<br />sea_water_temperature: 26.6689<br />station: 57.2","time: 2018-05-03 01:42:26<br />sea_water_temperature: 26.6707<br />station: 57.2","time: 2018-05-03 01:42:26<br />sea_water_temperature: 26.6729<br />station: 57.2","time: 2018-05-03 01:42:26<br />sea_water_temperature: 26.6722<br />station: 57.2"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"57.2","legendgroup":"57.2","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175,1525327175],"y":[26.6296,26.606200000000001,26.6294,26.629799999999999,26.629799999999999,26.628900000000002,26.628499999999999,26.629200000000001,26.629999999999999,26.629999999999999,26.6312,26.630700000000001,26.6294,26.628900000000002,26.630099999999999,26.630099999999999],"text":["time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6296<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6062<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6294<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6298<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6298<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6289<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6285<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6292<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6300<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6300<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6312<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6307<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6294<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6289<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6301<br />station: 59","time: 2018-05-03 05:59:35<br />sea_water_temperature: 26.6301<br />station: 59"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(53,162,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(53,162,255,1)"}},"hoveron":"points","name":"59","legendgroup":"59","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525335155,1525335155,1525335155,1525335155,1525335155],"y":[26.171600000000002,26.171600000000002,26.171500000000002,26.171800000000001,26.172000000000001],"text":["time: 2018-05-03 08:12:35<br />sea_water_temperature: 26.1716<br />station: 62","time: 2018-05-03 08:12:35<br />sea_water_temperature: 26.1716<br />station: 62","time: 2018-05-03 08:12:35<br />sea_water_temperature: 26.1715<br />station: 62","time: 2018-05-03 08:12:35<br />sea_water_temperature: 26.1718<br />station: 62","time: 2018-05-03 08:12:35<br />sea_water_temperature: 26.1720<br />station: 62"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(149,144,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(149,144,255,1)"}},"hoveron":"points","name":"62","legendgroup":"62","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525345820],"y":[25.861000000000001],"text":"time: 2018-05-03 11:10:20<br />sea_water_temperature: 25.8610<br />station: 68","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(199,124,255,1)"}},"hoveron":"points","name":"68","legendgroup":"68","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525142037],"y":[27.568899999999999],"text":"time: 2018-05-01 02:33:57<br />sea_water_temperature: 27.5689<br />station: 7","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"7","legendgroup":"7","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068,1525145068],"y":[26.109100000000002,26.104600000000001,26.099,26.1023,26.106200000000001,26.106999999999999,26.108000000000001,26.1097,26.108499999999999,26.107399999999998,26.105699999999999,26.114000000000001,26.116599999999998,26.116499999999998,26.116900000000001,26.116700000000002,26.116900000000001,26.117599999999999,26.117999999999999,26.118200000000002,26.119499999999999,26.118500000000001,26.117799999999999,26.1173,26.118500000000001,26.1189,26.119299999999999,26.1189,26.119299999999999,26.1189,26.118500000000001,26.1205,26.120899999999999,26.121500000000001,26.121600000000001,26.122,26.1218,26.122,26.122599999999998,26.122499999999999,26.122599999999998,26.1218,26.1205,26.120000000000001,26.120200000000001,26.1203,26.1205,26.1203,26.119800000000001,26.120000000000001,26.119800000000001,26.1205,26.122199999999999,26.122199999999999,26.122199999999999,26.122,26.122199999999999,26.120899999999999,26.119399999999999,26.119599999999998,26.1189,26.120000000000001,26.120699999999999,26.120000000000001,26.119599999999998,26.1251,26.126300000000001,26.125299999999999,26.1218,26.1282,26.128699999999998,26.128499999999999,26.128499999999999,26.128299999999999,26.126300000000001,26.126300000000001,26.125599999999999,26.127300000000002,26.127600000000001,26.127099999999999,26.128,26.127400000000002,26.131399999999999,26.1311,26.130299999999998,26.130500000000001,26.132000000000001,26.1327,26.132999999999999,26.1325,26.132000000000001,26.130500000000001,26.125800000000002],"text":["time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1091<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1046<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.0990<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1023<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1062<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1070<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1080<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1097<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1085<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1074<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1057<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1140<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1166<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1165<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1169<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1167<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1169<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1176<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1180<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1182<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1195<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1185<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1178<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1173<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1185<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1189<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1193<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1189<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1193<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1189<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1185<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1205<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1209<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1215<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1216<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1220<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1218<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1220<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1226<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1225<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1226<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1218<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1205<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1200<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1202<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1203<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1205<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1203<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1198<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1200<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1198<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1205<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1222<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1222<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1222<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1220<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1222<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1209<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1194<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1196<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1189<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1200<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1207<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1200<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1196<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1251<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1263<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1253<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1218<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1282<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1287<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1285<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1285<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1283<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1263<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1263<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1256<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1273<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1276<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1271<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1280<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1274<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1314<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1311<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1303<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1305<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1320<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1327<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1330<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1325<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1320<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1305<br />station: 9","time: 2018-05-01 03:24:28<br />sea_water_temperature: 26.1258<br />station: 9"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,98,219,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(250,98,219,1)"}},"hoveron":"points","name":"9","legendgroup":"9","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437,1525125437],"y":[26.517399999999999,26.517299999999999,26.5167,26.519500000000001,26.519600000000001,26.519300000000001,26.519300000000001,26.519100000000002,26.519100000000002,26.518799999999999,26.5185,26.517700000000001,26.5184,26.518999999999998,26.5198,26.519500000000001,26.519600000000001,26.5185,26.516400000000001,26.517299999999999,26.517800000000001,26.513200000000001,26.513200000000001,26.501799999999999,26.507400000000001,26.507200000000001,26.507100000000001,26.5078,26.5078,26.508500000000002,26.505199999999999,26.506499999999999,26.509399999999999,26.5167,26.517800000000001,26.518000000000001,26.4922,26.486999999999998,26.490500000000001,26.485199999999999,26.484500000000001,26.485800000000001,26.487200000000001,26.4861,26.484300000000001,26.484000000000002,26.482199999999999,26.483000000000001,26.482900000000001,26.4834,26.4834,26.483000000000001,26.482600000000001,26.483000000000001,26.4832,26.4834,26.4834,26.483000000000001],"text":["time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5174<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5173<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5167<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5195<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5196<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5193<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5193<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5191<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5191<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5188<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5185<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5177<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5184<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5190<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5198<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5195<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5196<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5185<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5164<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5173<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5178<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5132<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5132<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5018<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5074<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5072<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5071<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5078<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5078<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5085<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5052<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5065<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5094<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5167<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5178<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.5180<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4922<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4870<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4905<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4852<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4845<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4858<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4872<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4861<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4843<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4840<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4822<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4830<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4829<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4834<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4834<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4830<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4826<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4830<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4832<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4834<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4834<br />station: MR","time: 2018-04-30 21:57:17<br />sea_water_temperature: 26.4830<br />station: MR"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,98,188,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,98,188,1)"}},"hoveron":"points","name":"MR","legendgroup":"MR","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627,1525190627],"y":[26.454999999999998,26.435199999999998,26.4312,26.438800000000001,26.4312,26.4343,26.432700000000001,26.423400000000001,26.423400000000001,26.422699999999999,26.422899999999998,26.423400000000001,26.4283,26.435600000000001,26.438700000000001,26.439399999999999,26.436499999999999,26.439800000000002,26.443200000000001,26.4236,26.422999999999998,26.4192,26.4209,26.4207,26.420500000000001,26.417000000000002,26.415800000000001,26.413399999999999,26.412600000000001,26.4117,26.412299999999998,26.412099999999999,26.411799999999999,26.410499999999999,26.4099,26.410299999999999,26.406500000000001,26.401399999999999,26.4009,26.4024,26.404,26.405899999999999,26.400700000000001,26.400099999999998,26.403199999999998,26.401,26.400500000000001,26.400200000000002,26.390000000000001,26.3889,26.385300000000001,26.386900000000001,26.389800000000001,26.3827,26.3809,26.3811,26.383400000000002,26.3827,26.381499999999999,26.3842,26.3842,26.380700000000001,26.371099999999998,26.371300000000002,26.374500000000001,26.378,26.375800000000002,26.3764,26.356100000000001,26.354199999999999,26.3504,26.3446,26.337900000000001,26.3368,26.334399999999999,26.325399999999998,26.317,26.315899999999999],"text":["time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4550<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4352<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4312<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4388<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4312<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4343<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4327<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4234<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4234<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4227<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4229<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4234<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4283<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4356<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4387<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4394<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4365<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4398<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4432<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4236<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4230<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4192<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4209<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4207<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4205<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4170<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4158<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4134<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4126<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4117<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4123<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4121<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4118<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4105<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4099<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4103<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4065<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4014<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4009<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4024<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4040<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4059<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4007<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4001<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4032<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4010<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4005<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.4002<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3900<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3889<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3853<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3869<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3898<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3827<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3809<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3811<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3834<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3827<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3815<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3842<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3842<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3807<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3711<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3713<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3745<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3780<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3758<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3764<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3561<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3542<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3504<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3446<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3379<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3368<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3344<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3254<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3170<br />station: WS","time: 2018-05-01 16:03:47<br />sea_water_temperature: 26.3159<br />station: WS"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,106,152,1)","opacity":1,"size":6.8031496062992138,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(255,106,152,1)"}},"hoveron":"points","name":"WS","legendgroup":"WS","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":40.840182648401829,"r":7.3059360730593621,"b":37.260273972602747,"l":37.260273972602747},"paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Temperature over Time by Station","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1525083272.75,1525358322.25],"tickmode":"array","ticktext":["May 01","May 02","May 03"],"tickvals":[1525132800,1525219200,1525305600],"categoryorder":"array","categoryarray":["May 01","May 02","May 03"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Time","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[22.285509999999999,27.820489999999999],"tickmode":"array","ticktext":["23","24","25","26","27"],"tickvals":[23,24,25,26,27],"categoryorder":"array","categoryarray":["23","24","25","26","27"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":3.6529680365296811,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Temperature (°C)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"station","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"125caa49a0cd37":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"125caa49a0cd37","visdat":{"125caa49a0cd37":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>interactive map of stations</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Get one location per station (taking the first non-NA lat/lon for each station)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>station_locations <span class="ot">&lt;-</span> cruise_df <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(station) <span class="sc">%&gt;%</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">latitude =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(latitude)),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">longitude =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(longitude)),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_observations =</span> <span class="fu">n</span>(),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_temp =</span> <span class="fu">mean</span>(sea_water_temperature, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(latitude) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(longitude))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create color palette based on temperature</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>pal <span class="ot">&lt;-</span> <span class="fu">colorNumeric</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">palette =</span> <span class="st">"RdYlBu"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">domain =</span> station_locations<span class="sc">$</span>mean_temp,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">reverse =</span> <span class="cn">TRUE</span>  <span class="co"># Red for warm, blue for cold</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Create interactive map</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>(station_locations) <span class="sc">%&gt;%</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addTiles</span>() <span class="sc">%&gt;%</span>  <span class="co"># Add default OpenStreetMap tiles</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">lng =</span> <span class="sc">~</span>longitude,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">lat =</span> <span class="sc">~</span>latitude,</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">8</span>,</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#333333"</span>,</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="sc">~</span><span class="fu">pal</span>(mean_temp),</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.8</span>,</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">1</span>,</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="sc">~</span><span class="fu">paste0</span>(</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Station: &lt;/strong&gt;"</span>, station, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Observations: &lt;/strong&gt;"</span>, n_observations, <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Mean Temp: &lt;/strong&gt;"</span>, <span class="fu">round</span>(mean_temp, <span class="dv">2</span>), <span class="st">" °C&lt;br&gt;"</span>,</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Lat: &lt;/strong&gt;"</span>, <span class="fu">round</span>(latitude, <span class="dv">4</span>), <span class="st">"&lt;br&gt;"</span>,</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>      <span class="st">"&lt;strong&gt;Lon: &lt;/strong&gt;"</span>, <span class="fu">round</span>(longitude, <span class="dv">4</span>)</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>station</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addLegend</span>(</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"bottomright"</span>,</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">pal =</span> pal,</span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="sc">~</span>mean_temp,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mean Temperature (°C)"</span>,</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.8</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addScaleBar</span>(<span class="at">position =</span> <span class="st">"bottomleft"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-f6e56efa9d650b1aea47" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-f6e56efa9d650b1aea47">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircleMarkers","args":[[24.7846666666667,24.711,24.6715,24.5791666666667,25.6415,24.5356666666667,25.4026666666667,25.9133333333333,25.7336666666667,25.582,25.3406666666667,25.3495,25.3511666666667,25.1648333333333,25.1661666666667,24.9338333333333,24.8158333333333,24.7611666666667,25.0055,24.4761666666667],[-80.86466666666669,-80.837,-81.2051666666667,-81.1808333333333,-80.1061666666667,-81.4135,-82.2148333333333,-81.7985,-81.5751666666667,-81.47,-81.1546666666667,-81.2253333333333,-81.49266666666669,-81.4935,-81.2373333333333,-81.1638333333333,-80.7528333333333,-80.72499999999999,-80.3751666666667,-81.71533333333331],8,null,null,{"interactive":true,"className":"","stroke":true,"color":"#333333","weight":1,"opacity":0.5,"fill":true,"fillColor":["#C72427","#FFF2AB","#FEB86A","#669BC8","#FED989","#FCFDC7","#313695","#CEEAF3","#FBFDC9","#FEDC8C","#FED788","#FEE497","#FDB163","#FEB86A","#FFF7B3","#E7F5ED","#A50026","#FFFCBB","#FFCD7E","#FEDF8F"],"fillOpacity":0.8},null,null,["<strong>Station: <\/strong>10<br><strong>Observations: <\/strong>4<br><strong>Mean Temp: <\/strong>27.37 °C<br><strong>Lat: <\/strong>24.7847<br><strong>Lon: <\/strong>-80.8647","<strong>Station: <\/strong>12<br><strong>Observations: <\/strong>94<br><strong>Mean Temp: <\/strong>26.22 °C<br><strong>Lat: <\/strong>24.711<br><strong>Lon: <\/strong>-80.837","<strong>Station: <\/strong>16<br><strong>Observations: <\/strong>12<br><strong>Mean Temp: <\/strong>26.63 °C<br><strong>Lat: <\/strong>24.6715<br><strong>Lon: <\/strong>-81.2052","<strong>Station: <\/strong>18<br><strong>Observations: <\/strong>271<br><strong>Mean Temp: <\/strong>25.12 °C<br><strong>Lat: <\/strong>24.5792<br><strong>Lon: <\/strong>-81.1808","<strong>Station: <\/strong>2<br><strong>Observations: <\/strong>13<br><strong>Mean Temp: <\/strong>26.43 °C<br><strong>Lat: <\/strong>25.6415<br><strong>Lon: <\/strong>-80.1062","<strong>Station: <\/strong>21LK<br><strong>Observations: <\/strong>156<br><strong>Mean Temp: <\/strong>26.06 °C<br><strong>Lat: <\/strong>24.5357<br><strong>Lon: <\/strong>-81.4135","<strong>Station: <\/strong>30<br><strong>Observations: <\/strong>85<br><strong>Mean Temp: <\/strong>24.63 °C<br><strong>Lat: <\/strong>25.4027<br><strong>Lon: <\/strong>-82.2148","<strong>Station: <\/strong>33<br><strong>Observations: <\/strong>17<br><strong>Mean Temp: <\/strong>25.7 °C<br><strong>Lat: <\/strong>25.9133<br><strong>Lon: <\/strong>-81.7985","<strong>Station: <\/strong>41<br><strong>Observations: <\/strong>3<br><strong>Mean Temp: <\/strong>26.05 °C<br><strong>Lat: <\/strong>25.7337<br><strong>Lon: <\/strong>-81.5752","<strong>Station: <\/strong>45<br><strong>Observations: <\/strong>12<br><strong>Mean Temp: <\/strong>26.41 °C<br><strong>Lat: <\/strong>25.582<br><strong>Lon: <\/strong>-81.47","<strong>Station: <\/strong>54<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>26.44 °C<br><strong>Lat: <\/strong>25.3407<br><strong>Lon: <\/strong>-81.1547","<strong>Station: <\/strong>56<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>26.35 °C<br><strong>Lat: <\/strong>25.3495<br><strong>Lon: <\/strong>-81.2253","<strong>Station: <\/strong>57.2<br><strong>Observations: <\/strong>4<br><strong>Mean Temp: <\/strong>26.67 °C<br><strong>Lat: <\/strong>25.3512<br><strong>Lon: <\/strong>-81.4927","<strong>Station: <\/strong>59<br><strong>Observations: <\/strong>16<br><strong>Mean Temp: <\/strong>26.63 °C<br><strong>Lat: <\/strong>25.1648<br><strong>Lon: <\/strong>-81.4935","<strong>Station: <\/strong>62<br><strong>Observations: <\/strong>5<br><strong>Mean Temp: <\/strong>26.17 °C<br><strong>Lat: <\/strong>25.1662<br><strong>Lon: <\/strong>-81.2373","<strong>Station: <\/strong>68<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>25.86 °C<br><strong>Lat: <\/strong>24.9338<br><strong>Lon: <\/strong>-81.1638","<strong>Station: <\/strong>7<br><strong>Observations: <\/strong>1<br><strong>Mean Temp: <\/strong>27.57 °C<br><strong>Lat: <\/strong>24.8158<br><strong>Lon: <\/strong>-80.7528","<strong>Station: <\/strong>9<br><strong>Observations: <\/strong>93<br><strong>Mean Temp: <\/strong>26.12 °C<br><strong>Lat: <\/strong>24.7612<br><strong>Lon: <\/strong>-80.725","<strong>Station: <\/strong>MR<br><strong>Observations: <\/strong>58<br><strong>Mean Temp: <\/strong>26.5 °C<br><strong>Lat: <\/strong>25.0055<br><strong>Lon: <\/strong>-80.3752","<strong>Station: <\/strong>WS<br><strong>Observations: <\/strong>78<br><strong>Mean Temp: <\/strong>26.4 °C<br><strong>Lat: <\/strong>24.4762<br><strong>Lon: <\/strong>-81.7153"],null,["10","12","16","18","2","21LK","30","33","41","45","54","56","57.2","59","62","68","7","9","MR","WS"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#313695 , #5384BC 12.7283344097917%, #A9D8E8 29.7145280316159%, #F6FBD2 46.7007216534401%, #FFCE7E 63.6869152752643%, #F26941 80.6731088970885%, #B10F27 97.6593025189127%, #A50026 "],"labels":["25.0","25.5","26.0","26.5","27.0","27.5"],"na_color":null,"na_label":"NA","opacity":0.8,"position":"bottomright","type":"numeric","title":"Mean Temperature (°C)","extra":{"p_1":0.1272833440979173,"p_n":0.9765930251891265},"layerId":null,"className":"info legend","group":null}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":true,"updateWhenIdle":true,"position":"bottomleft"}]}],"limits":{"lat":[24.4761666666667,25.9133333333333],"lng":[-82.2148333333333,-80.1061666666667]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>createSurfaceMap <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var_name, legend_min, legend_max){</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># additional: parameters</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># model = try "Sph" (spherical), "Exp" (exponential) or "Gau" (Gaussian) to get the best variogram fit</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  MODEL <span class="ot">&lt;-</span> <span class="st">"Exp"</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># length.out Increase for a finer grid (slower), decrease for speed</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  LENGTH_OUT <span class="ot">=</span> <span class="dv">300</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bbox_ext = 0.1 Adjust padding around your data extent (in degrees)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#A nugget = 0 Set to a small positive value if data has measurement error</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>({</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get average value of var_name for 0-5 meters in df</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(depth <span class="sc">&gt;=</span> <span class="dv">0</span> <span class="sc">&amp;</span> depth <span class="sc">&lt;=</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(station) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">mean_value =</span> <span class="fu">mean</span>(.data[[var_name]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">latitude   =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(latitude)),</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">longitude  =</span> <span class="fu">first</span>(<span class="fu">na.omit</span>(longitude)),</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">.groups    =</span> <span class="st">"drop"</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    librarian<span class="sc">::</span><span class="fu">shelf</span>(</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">quiet =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      sp, gstat, ggplot2, viridis, raster, sf</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 1. Prepare spatial data ---</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    df_sp <span class="ot">&lt;-</span> df</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    df_sp<span class="sc">$</span>latitude  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_sp<span class="sc">$</span>latitude)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    df_sp<span class="sc">$</span>longitude <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df_sp<span class="sc">$</span>longitude)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    df_sp <span class="ot">&lt;-</span> df_sp[<span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>mean_value) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>latitude) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(df_sp<span class="sc">$</span>longitude), ]</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coordinates</span>(df_sp) <span class="ot">&lt;-</span> <span class="er">~</span>longitude <span class="sc">+</span> latitude</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">proj4string</span>(df_sp) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +datum=WGS84"</span>)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 2. Create interpolation grid ---</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    bbox_ext  <span class="ot">&lt;-</span> <span class="fl">0.1</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    lon_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">bbox</span>(df_sp)[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">-</span> bbox_ext, <span class="fu">bbox</span>(df_sp)[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">+</span> bbox_ext, <span class="at">length.out =</span> LENGTH_OUT)</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    lat_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">bbox</span>(df_sp)[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">-</span> bbox_ext, <span class="fu">bbox</span>(df_sp)[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> bbox_ext, <span class="at">length.out =</span> LENGTH_OUT)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    grid <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">longitude =</span> lon_range, <span class="at">latitude =</span> lat_range)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coordinates</span>(grid) <span class="ot">&lt;-</span> <span class="er">~</span>longitude <span class="sc">+</span> latitude</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">proj4string</span>(grid) <span class="ot">&lt;-</span> <span class="fu">CRS</span>(<span class="st">"+proj=longlat +datum=WGS84"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gridded</span>(grid) <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 3. Fit variogram ---</span></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    vgm_emp <span class="ot">&lt;-</span> <span class="fu">variogram</span>(mean_value <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> df_sp)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    vgm_fit <span class="ot">&lt;-</span> <span class="fu">fit.variogram</span>(vgm_emp, <span class="at">model =</span> <span class="fu">vgm</span>(</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">psill  =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>gamma),</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">model  =</span> MODEL,</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>      <span class="at">range  =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>dist) <span class="sc">/</span> <span class="dv">2</span>,</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>      <span class="at">nugget =</span> <span class="fu">min</span>(vgm_emp<span class="sc">$</span>gamma)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>    vgm_line <span class="ot">&lt;-</span> <span class="fu">variogramLine</span>(vgm_fit, <span class="at">maxdist =</span> <span class="fu">max</span>(vgm_emp<span class="sc">$</span>dist))</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">data =</span> vgm_emp, <span class="fu">aes</span>(<span class="at">x =</span> dist, <span class="at">y =</span> gamma, <span class="at">size =</span> np), <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_line</span>(<span class="at">data =</span> vgm_line, <span class="fu">aes</span>(<span class="at">x =</span> dist, <span class="at">y =</span> gamma), <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Empirical Variogram with Fitted Model"</span>,</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>             <span class="at">x =</span> <span class="st">"Distance"</span>, <span class="at">y =</span> <span class="st">"Semivariance"</span>, <span class="at">size =</span> <span class="st">"Num. pairs"</span>) <span class="sc">+</span></span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>)</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 4. Perform Ordinary Kriging ---</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>    krig_result <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">krige</span>(</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>      mean_value <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">locations =</span> df_sp, </span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>      <span class="at">newdata =</span> grid, </span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">model =</span> vgm_fit</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 5. Convert to data frame and clip to convex hull ---</span></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>    krig_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(krig_result)</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"var1.pred"</span>] <span class="ot">&lt;-</span> <span class="st">"predicted"</span></span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"var1.var"</span>]  <span class="ot">&lt;-</span> <span class="st">"variance"</span></span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build convex hull from sample points</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>    pts_sf  <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>    hull_sf <span class="ot">&lt;-</span> <span class="fu">st_convex_hull</span>(<span class="fu">st_union</span>(pts_sf))</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Clip kriged grid to hull</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>    krig_sf      <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(krig_df, <span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"longitude"</span>, <span class="st">"latitude"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    krig_clipped <span class="ot">&lt;-</span> <span class="fu">st_filter</span>(krig_sf, hull_sf)</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    krig_df      <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">st_drop_geometry</span>(krig_clipped), <span class="fu">st_coordinates</span>(krig_clipped))</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"X"</span>] <span class="ot">&lt;-</span> <span class="st">"longitude"</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(krig_df)[<span class="fu">names</span>(krig_df) <span class="sc">==</span> <span class="st">"Y"</span>] <span class="ot">&lt;-</span> <span class="st">"latitude"</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>    <span class="co"># --- 6. Plot surface map ---</span></span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>  librarian<span class="sc">::</span><span class="fu">shelf</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>, ggplot2, viridis, sf, ggspatial, rnaturalearth, rnaturalearthdata)</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Basemap ---</span></span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  world <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"medium"</span>, <span class="at">returnclass =</span> <span class="st">"sf"</span>)</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Kriged surface</span></span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_raster</span>(<span class="at">data =</span> krig_df, <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">fill =</span> predicted), <span class="at">interpolate =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> longitude, <span class="at">y =</span> latitude, <span class="at">fill =</span> mean_value),</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>                   <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>          <span class="at">option =</span> <span class="st">"plasma"</span>,</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>          <span class="at">name   =</span> <span class="st">"Value"</span>,</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits =</span> <span class="fu">c</span>(legend_min, legend_max),</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>          <span class="at">oob    =</span> scales<span class="sc">::</span>squish</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Basemap</span></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_sf</span>(<span class="at">data =</span> world, <span class="at">fill =</span> <span class="st">"gray85"</span>, <span class="at">color =</span> <span class="st">"gray50"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Colorscale with hardcoded limits</span></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_viridis_c</span>(</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a>          <span class="at">option  =</span> <span class="st">"plasma"</span>,</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>          <span class="at">name    =</span> <span class="st">"Value"</span>,</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>          <span class="at">limits  =</span> <span class="fu">c</span>(legend_min, legend_max),</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>          <span class="at">oob     =</span> scales<span class="sc">::</span>squish   <span class="co"># squish values outside limits into the color range</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Zoom to data extent with a small buffer</span></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>        <span class="fu">coord_sf</span>(</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fu">min</span>(krig_df<span class="sc">$</span>longitude) <span class="sc">-</span> <span class="fl">0.1</span>, <span class="fu">max</span>(krig_df<span class="sc">$</span>longitude) <span class="sc">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(krig_df<span class="sc">$</span>latitude)  <span class="sc">-</span> <span class="fl">0.1</span>, <span class="fu">max</span>(krig_df<span class="sc">$</span>latitude)  <span class="sc">+</span> <span class="fl">0.1</span>),</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>          <span class="at">expand =</span> <span class="cn">FALSE</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>        <span class="fu">annotation_scale</span>(<span class="at">location =</span> <span class="st">"bl"</span>) <span class="sc">+</span></span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>        <span class="fu">annotation_north_arrow</span>(<span class="at">location =</span> <span class="st">"tr"</span>, <span class="at">style =</span> <span class="fu">north_arrow_fancy_orienteering</span>()) <span class="sc">+</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="fu">paste</span>(<span class="st">"Kriging Surface:"</span>, var_name),</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"Longitude"</span>, <span class="at">y =</span> <span class="st">"Latitude"</span></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">"error generating surface map for {var_name}:"</span>))</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(e)</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"sea_water_temperature"</span>, <span class="dv">15</span>, <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"chlorophyll_fluorescence"</span>, <span class="fl">0.02</span>, <span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"oxygen_saturation"</span>, <span class="dv">4</span>, <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">createSurfaceMap</span>(cruise_df, <span class="st">"sea_water_salinity"</span>, <span class="dv">30</span>, <span class="dv">40</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[using ordinary kriging]</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="WS18120_files/figure-html/create interpolated surface maps-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/USF-IMARS\.github\.io\/seus-mbon-cruise-ctd-processing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
