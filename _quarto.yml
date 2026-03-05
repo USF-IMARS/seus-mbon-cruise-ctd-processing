@@ -17,7 +17,7 @@ website:
   navbar:
     left:
       - ctd_reports/ctd_reports.qmd
-      - cruise_report/cruise_reports.qmd
+      - cruise_reports/cruise_reports.qmd
       - href: https://github.com/USF-IMARS/seus-mbon-cruise-ctd-processing
         text: Source Code on GitHub
         
