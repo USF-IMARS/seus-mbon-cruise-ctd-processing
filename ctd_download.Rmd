@@ -23,7 +23,6 @@ library("rerddap")  # used to access different ERDDAPs
 library("dplyr")    # used to manipulate variables
 library("here")     # used to get relative directory location to a project
 library("glue")
-library("fs")
 ```
 
 # Set database
@@ -45,7 +44,7 @@ loc <- here("data", "raw", "ctd")
 ```{r create-dir}
 # create folder if doesn't exist
 here(loc, cruiseID) %>%
-  fs::dir_create()
+  dir.create(recursive = TRUE, showWarnings = FALSE)
 ```
 
 # Function to query and download CTD data from each cruise

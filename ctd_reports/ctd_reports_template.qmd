@@ -112,7 +112,7 @@ tryCatch({
   } else {
     # create folder if doesn't exist
     clean_data_loc <- here::here("data/02_clean")
-    try(fs::dir_create(clean_data_loc))
+    try(dir.create(clean_data_loc, recursive = TRUE, showWarnings = FALSE))
 
     # save ctd to .csv (without row names/indices)
     write.csv(cast_df, glue("{clean_data_loc}/{params$cast_id}.csv"), row.names = FALSE)

@@ -1,9 +1,17 @@
-library("dplyr") # used to manipulate variables
-library("here") # used to get relative directory location to a project
-library("glue")
-library("fs")
-library("readr")
-library("rerddap") # used to access different ERDDAPs
+# install & load packages using librarian package
+lib_path <- "~/R/library"
+if (!requireNamespace("librarian", quietly = TRUE)) {
+  install.packages("librarian", lib = lib_path)
+}
+library(librarian, lib.loc = lib_path)
+librarian::lib_startup(librarian, lib = lib_path, global = TRUE)
+shelf(
+  dplyr,
+  here,
+  glue,
+  readr,
+  rerddap
+)
 
 # this database contains CTD data 
 database <- "https://gcoos5.geos.tamu.edu/erddap/"
@@ -18,7 +26,7 @@ mapping <- read_csv(here::here("data/ctd_datasetid_cruisename_stationname_mappin
 
 # Set folder location
 loc <- here("data", "01_raw")
-fs::dir_create(loc)
+dir.create(loc, recursive = TRUE, showWarnings = FALSE)
 
 # Download each dataset from the mapping
 for (i in seq_len(nrow(mapping))) {
@@ -32,7 +40,7 @@ for (i in seq_len(nrow(mapping))) {
   file_path <- here(loc, aligned_filename)
   
   # skip already downloaded files
-  if (fs::file_exists(file_path)) {
+  if (file.exists(file_path)) {
     cat("Skipping:", aligned_filename, "\n")
     next
   }
